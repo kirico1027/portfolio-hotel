@@ -1,0 +1,23 @@
+@use "global" as *;
+
+.home-main__inner {
+  padding: 0 rem(6);
+
+  @include mq(md) {
+    padding: 0;
+  }
+}
+
+.home-main__card .blog-card__img {
+  overflow: hidden;
+  width: 100%;
+}
+
+.home-main__card .blog-card__img img {
+  height: auto;
+  transition: transform .6s ease;
+}
+
+.home-main__card .blog-card__img:hover img {
+  transform: scale(1.1);
+}

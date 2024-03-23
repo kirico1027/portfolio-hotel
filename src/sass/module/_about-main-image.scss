@@ -1,0 +1,110 @@
+@use "global" as *;
+
+.about-main-image__image {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.about-main-image__image-left {
+  width: 37.1%;
+  z-index: 2;
+  height: auto;
+  display: block;
+
+  @include mq(md) {
+  }
+}
+
+.about-main-image__image-left img {
+  aspect-ratio: 128/194;
+  object-fit: cover;
+
+  @include mq(md) {
+    aspect-ratio: 400/606;
+  }
+
+}
+
+.about-main-image__image-right {
+  width: 81.449%;
+  height: auto;
+  display: block;
+  margin-left: rem(-200);
+  margin-top: rem(26);
+
+  @include mq(md) {
+  margin-top: rem(80);
+  }
+}
+
+.about-main-image__image-right img {
+  aspect-ratio: 281 / 186;
+  object-fit: cover;
+}
+
+.about-main-image__body {
+  margin-top: rem(40);
+
+  @include mq(md) {
+    display: flex;
+    position: absolute;
+    top: calc(50% - rem(10));
+    left: calc(50% + rem(80));
+    transform: translate(-50%, -50%);
+    margin-top: 0;
+    column-gap: calc((40 / 1440) * 100vw);
+    z-index: 3;
+  }
+}
+
+.about-main-image__body-title {
+  font-family: $second-font-family;
+  font-size: rem(40);
+  font-weight: $regular;
+  line-height: 1.02;
+  color: $accent-color;
+
+  @include mq(md) {
+    font-size: rem(80);
+    line-height: calc(100 / 80);
+    color: $white;
+    margin-left: rem(-1);
+  }
+}
+
+.about-main-image__box {
+  margin-top: rem(14.5);
+
+  @include mq(md) {
+    margin-top: rem(0);
+  }
+}
+
+.about-main-image__text {
+  font-family: $base-font-family;
+  font-size: rem(16);
+  font-weight: $regular;
+  line-height: calc(24 / 16);
+  color: $title-color;
+
+  @include mq(md) {
+    color: $white;
+    width: rem(400);
+  }
+}
+
+.about-main-image__text span {
+  margin-top: rem(10);
+  display: block;
+}
+
+.about-main-image__button {
+  text-align: center;
+  margin-top: rem(50);
+
+  @include mq(md) {
+    margin-top: rem(40);
+  }
+}

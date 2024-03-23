@@ -1,0 +1,14 @@
+@use "global" as *;
+
+.layout-page-top {
+  position: fixed;
+  right: rem(15);
+  bottom: rem(16);
+  z-index: 800;
+  cursor: pointer;
+
+  @include mq(md) {
+    right: rem(20);
+    bottom: rem(20);
+  }
+}

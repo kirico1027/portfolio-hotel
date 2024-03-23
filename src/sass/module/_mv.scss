@@ -1,0 +1,48 @@
+@use "global" as *;
+
+.mv {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+}
+
+.mv__inner {
+  height: inherit;
+}
+
+.mv__title-wrap {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  color: $white;
+  text-align: center;
+}
+
+.mv__main-title {
+  font-size: rem(40);
+  font-family: $third-font-family;
+  font-weight: $regular;
+  line-height: calc(48 / 40);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  padding-right: rem(2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+
+  @include mq(md) {
+    font-size: rem(80);
+    line-height: calc(100 / 80);
+    letter-spacing: 0.3em;
+  }
+}
+
+.mv__sub-title {
+  font-size: rem(20);
+  font-family: $second-font-family;
+  font-weight: $regular;
+  line-height: calc(33 / 20);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+}

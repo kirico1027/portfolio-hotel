@@ -1,0 +1,147 @@
+@use "global" as *;
+
+.footer {
+  padding: rem(48) 0 rem(56);
+  color: $white;
+  background-color: $accent-color;
+
+  @include mq(md) {
+    padding: rem(80) 0;
+  }
+}
+
+.footer__content a:hover {
+  color: #867050
+}
+
+.footer__head-box {
+  @include mq(md) {
+    display: flex;
+    column-gap: rem(40);
+  }
+}
+
+.footer__logo {
+ font-size: rem(18);
+}
+
+.footer__sns {
+  margin-top: rem(18);
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-left: rem(2);
+
+  @include mq(md) {
+    padding-bottom: rem(7);
+    align-items: flex-end;
+  }
+}
+
+.footer__sns-icon {
+  display: block;
+  width: rem(20);
+
+  @include mq(md) {
+    width: rem(26);
+  }
+}
+
+.footer__sns-icon+.footer__sns-icon {
+  margin-left: rem(20);
+
+  @include mq(md) {
+    margin-left: rem(23);
+  }
+}
+
+.footer__nav {
+  margin-top: rem(38);
+  margin: auto;
+
+  @include mq(md) {
+    width: 100%;
+    margin-top: rem(20.5);
+    padding-inline: rem(5);
+  }
+}
+
+.footer__nav-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(30);
+
+  @include mq(md) {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.footer__nav-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(30);
+
+  @include mq(md) {
+    width: rem(160);
+    row-gap: rem(30);
+  }
+}
+
+.footer__nav-content+.footer__nav-content {
+  @include mq(md) {
+    margin-left: rem(0);
+  }
+}
+
+.footer__nav-block {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(5);
+
+  @include mq(md) {
+    row-gap: rem(13.5);
+  }
+}
+
+.footer__nav-items {
+  display: flex;
+  justify-content: center;
+  column-gap: 0;
+
+  @include mq(md) {
+    justify-content: flex-start;
+    column-gap: rem(0);
+  }
+}
+
+.footer__nav-item a {
+  display: block;
+  font-size: rem(16);
+  line-height: calc(18 /16);
+  font-weight: $regular;
+  padding: rem(5) 0;
+
+  @include mq(md) {}
+}
+
+.footer__nav-item--main a {
+  font-weight: $bold;
+}
+
+
+.footer__copyright {
+  margin-top: rem(57);
+  display: block;
+  font-size: rem(12);
+  font-family: $second-font-family;
+  font-weight: $regular;
+  line-height: 1;
+  text-align: center;
+
+  @include mq(md) {
+    font-size: rem(14);
+    margin-top: rem(77);
+  }
+}

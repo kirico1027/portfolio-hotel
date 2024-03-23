@@ -1,0 +1,32 @@
+@use "global" as *;
+
+.form-select select {
+  padding: rem(10) rem(25) rem(10) rem(8);
+  width: 100%;
+  height: rem(40);
+  font-size: rem(14);
+  line-height: 1;
+  border: 1px solid $accent-color;
+  font-weight: $regular;
+  cursor: pointer;
+  color: $font-color;
+}
+
+.form-select {
+  position: relative;
+}
+
+.form-select::after {
+  content: "";
+  position: absolute;
+  top: rem(15);
+  right: rem(8);
+  border: rem(6) solid transparent;
+  border-top: rem(9) solid $accent-color;
+  cursor: pointer;
+  pointer-events: none;
+
+  @include mq(md) {
+    right: rem(20)
+  }
+}

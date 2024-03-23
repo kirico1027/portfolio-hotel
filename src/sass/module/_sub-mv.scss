@@ -1,0 +1,51 @@
+@use "global" as *;
+
+.sub-mv {
+  height: rem(460);
+  position: relative;
+
+  @include mq(md) {
+    height: rem(748);
+  }
+}
+
+.sub-mv__picture {
+  height: 100%;
+  display: block;
+}
+
+.sub-mv__picture img {
+  aspect-ratio: 1440/748;
+  object-fit: cover;
+  height: 100%;
+}
+
+.sub-mv--others {
+  background-image: url(../images/common/sub-mv-others.jpg);
+
+  @include mq(md) {
+    background-image: url(../images/common/sub-mv-others-pc.jpg);
+  }
+}
+
+.sub-mv__title {
+  font-family: $third-font-family;
+  font-size: min(10.666vw, rem(52));
+  font-weight: $regular;
+  line-height: 1;
+  color: $white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+  letter-spacing: 0.03em;
+  text-indent: 0.03em;
+
+  @include mq(md) {
+    font-size: rem(80);
+    top: calc(50% - rem(-50))
+  }
+}

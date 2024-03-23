@@ -1,0 +1,63 @@
+@use "global" as *;
+
+.breadcrumb span {
+  font-family: $base-font-family;
+  font-size:  rem(14);
+  font-weight: $regular;
+  line-height: 1;
+  color: #0d2936;
+  display: inline-block;
+}
+
+.breadcrumb__home {
+  position: relative;
+}
+
+.breadcrumb__home::after {
+  content: '';
+  position: absolute;
+  width: rem(6);
+  height: auto;
+  aspect-ratio: 1;
+  border-right: rem(1) solid #0d2936;
+  border-bottom: rem(1) solid #0d2936;
+  top: calc(50% + rem(0.4));
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  margin-left: rem(21);
+}
+
+.breadcrumb__current {
+  margin-left: rem(17);
+}
+
+.breadcrumb__current--first {
+  position: relative;
+}
+
+.breadcrumb__current--first::after {
+  content: '';
+  position: absolute;
+  width: rem(6);
+  height: auto;
+  aspect-ratio: 1;
+  border-right: rem(1) solid #0d2936;;
+  border-bottom: rem(1) solid #0d2936;;
+  top: calc(50% + rem(0.4));
+  right: -13px;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  margin-left: rem(21);
+}
+
+.breadcrumb--404 span {
+  color: $white;
+}
+
+.breadcrumb--404 .breadcrumb__home::after {
+  border-right: rem(1) solid $white;
+  border-bottom: rem(1) solid $white;
+}
+
+.white-text {
+  color: white !important;
+}

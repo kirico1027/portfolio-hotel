@@ -1,0 +1,105 @@
+@use "global" as *;
+
+.campaign {
+  overflow: hidden;
+  padding-bottom: rem(6);
+}
+
+.campaign__inner {
+  margin: auto;
+  width: 100%;
+}
+
+.campaign__swiper-button-wrap {
+  position: relative;
+  margin-top: rem(40);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.campaign__swiper-button-wrap .swiper-button-prev,
+.campaign__swiper-button-wrap .swiper-button-next {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-45%);
+}
+
+.campaign__swiper-button-wrap .swiper-button-prev::after,
+.campaign__swiper-button-wrap .swiper-button-next::after {
+  font-size: rem(16);
+  color: $font-color;
+}
+
+.campaign__swiper-button-wrap .swiper-pagination {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: $font-color;
+  width: auto;
+}
+
+.campaign__swiper-button-wrap .swiper-button-prev {
+  left: calc(50% - rem(70));
+}
+
+.campaign__swiper-button-wrap .swiper-button-next {
+  left: calc(50% + rem(50));
+}
+
+.campaign__swiper-button-wrap .swiper-pagination-current,
+.campaign__swiper-button-wrap .swiper-pagination-total {
+  padding-inline: rem(5);
+}
+
+.campaign__content {
+  margin-top: rem(23.5);
+  position: relative;
+
+  @include mq(md) {
+    margin-top: rem(80);
+  }
+}
+
+.campaign__cards {
+  padding: rem(5);
+
+  @include mq(md) {
+    margin-left: rem(-5);
+    padding-left: rem(5);
+  }
+}
+
+.campaign__swiper {
+  width: 100%;
+  margin: rem(40) 0 0;
+  padding: rem(45) 0 rem(120);
+}
+
+.campaign__button {
+  text-align: center;
+  margin-top: rem(80);
+
+  @include mq(md) {
+    margin-top: rem(70);
+  }
+}
+
+.campaign__card.swiper-slide img {
+  width: 100%;
+}
+
+.campaign__card.swiper-slide {
+  opacity: 0.4;
+  overflow: hidden;
+  transition: .7s;
+  z-index: 1;
+}
+
+.campaign__card.swiper-slide-active {
+  opacity: 1;
+  z-index: 2;
+  position: relative;
+  transform: scale(1.5);
+}

@@ -1,0 +1,47 @@
+@use "global" as *;
+
+.tab-menu {
+  display: flex;
+  justify-content: space-between;
+  column-gap: rem(20);
+}
+
+.tab-menu__item {
+  display: inline-block;
+  font-family: $base-font-family;
+  font-size: rem(14);
+  font-weight: $regular;
+  line-height: 1.4;
+  background-color: $white;
+  padding: rem(10) 0;
+  width: 100%;
+  color: $accent-color;
+  border: rem(1) solid $font-color;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+
+  @include mq(md) {
+    max-width: rem(300);
+    font-size: rem(24);
+    padding: rem(15) 0;
+  }
+}
+
+.tab-menu__item span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.tab-menu__item:hover {
+  color: $white;
+  background-color: $accent-color;
+}
+
+.tab-menu__item.is-active {
+  color: $white;
+  background-color: $accent-color;
+}

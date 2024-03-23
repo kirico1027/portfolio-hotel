@@ -1,0 +1,49 @@
+@use "global" as *;
+
+.single-content > * {
+  font-family: $base-font-family;
+  font-size: rem(16);
+  font-weight: $regular;
+  line-height: calc(24/16);
+  color: $font-color;
+  margin-top: rem(24);
+
+  @include mq(md) {
+  margin-top: rem(40);
+  }
+}
+
+.single-content div img {
+  aspect-ratio: 345/231;
+  object-fit: cover;
+  height: auto;
+}
+
+.single-content ul {
+  padding-left: rem(26);
+}
+
+.single-content ul li span {
+  font-family: $base-font-family;
+  font-size: rem(16);
+  font-weight: $regular;
+  line-height: 1.7;
+  color: $font-color;
+  
+  display: inline-block;
+}
+
+.single-content ul li {
+  position: relative;
+}
+
+.single-content ul li::before {
+  content: '';
+  position: absolute;
+  top: rem(3);
+  left: rem(-26);
+  background-image: url(../images/common/single-starfish.png);
+  background-size: cover;
+  width: rem(18);
+  height: rem(18);
+}

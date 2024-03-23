@@ -1,0 +1,17 @@
+@use "global" as *;
+
+.about__inner {
+  position: relative;
+}
+
+.about__main-image {
+  margin-top: rem(28);
+
+  @include mq(md) {
+    margin-top: rem(40);
+    position: relative;
+  }
+}
+
+
+

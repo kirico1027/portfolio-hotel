@@ -1,0 +1,9 @@
+@use "global" as *;
+
+.layout-page-about-lead {
+  margin-top: rem(50);
+
+  @include mq(md) {
+    margin-top: rem(150);
+  }
+}

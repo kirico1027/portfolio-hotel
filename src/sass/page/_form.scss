@@ -1,0 +1,160 @@
+@use "global" as *;
+
+.form__item {
+  padding-bottom: rem(23.5);
+  border-bottom: 1px dotted $accent-color;
+
+  @include mq(md) {
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: rem(40);
+  }
+}
+
+.form__item.form__item--textarea {
+  padding-bottom: rem(18);
+
+  @include mq(md) {
+    align-items: flex-start;
+    padding-bottom: rem(38);
+  }
+}
+
+.form__item+.form__item {
+  margin-top: rem(24);
+
+  @include mq(md) {
+    margin-top: rem(40);
+  }
+}
+
+.form__label {
+  font-size: rem(16.5);
+  font-weight: $bold;
+  line-height: 1.5;
+  color: $title-color;
+
+  @include mq(md) {
+    width: 31.42%;
+  }
+}
+
+.form__label span {
+  color: $point-color;
+  font-size: 100%;
+  font-weight: bold;
+  margin-left: rem(2);
+}
+
+.form__input {
+  padding: rem(7) rem(16);
+  width: 100%;
+  font-size: rem(16);
+  line-height: 1;
+  border: 1px solid $accent-color;
+  cursor: pointer;
+}
+
+.form__textarea {
+  padding: rem(8) rem(15);
+  width: 100%;
+  height: rem(200);
+  font-size: rem(16);
+  border: 1px solid $accent-color;
+  resize: none;
+}
+
+.form__input,
+.form__select,
+.form__textarea {
+  margin-top: rem(15);
+  background-color: $white;
+  flex-grow: 1;
+
+  @include mq(md) {
+    margin-top: 0;
+    flex: 1;
+  }
+}
+
+.form__checkbox {
+  margin-top: rem(19);
+  background-color: $white;
+  margin-left: rem(-4);
+
+  @include mq(md) {
+    margin-top: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(6);
+  }
+}
+
+.form__checkbox-agree {
+  padding: 0 rem(32);
+  margin-top: rem(40);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mq(md) {
+    margin-top: rem(80);
+  }
+}
+
+.form__submit-wrap {
+  text-align: center;
+  margin-top: rem(24);
+
+  @include mq(md) {
+    margin-top: rem(42);
+  }
+}
+
+.form__input::placeholder {
+  color: #ddf0f1;
+  font-size: rem(16);
+  font-weight: $regular;
+}
+
+.form__item input.error,
+.form__item textarea.error,
+.form__checkbox-agree input.error {
+  border: solid 1px $point-color;
+  background-color: #F4DACC;
+  color: $white;
+}
+
+#form__error {
+  font-family: $base-font-family;
+  font-size: 14px;
+  font-weight: $regular;
+  line-height: 1.5;
+  color: $point-color;
+  padding-bottom: rem(38);
+  padding-inline: rem(60);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mq(md) {
+    padding-bottom: rem(40);
+  }
+}
+
+.wpcf7-form-control-wrap {
+  flex: 1;
+  display: block;
+}
+
+.wpcf7-form-control {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(8);
+}
+
+.wpcf7-not-valid-tip {
+  margin-top: rem(5);
+}

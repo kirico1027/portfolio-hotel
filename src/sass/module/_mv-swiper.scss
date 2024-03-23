@@ -1,0 +1,11 @@
+@use "global" as *;
+
+.mv-swiper,
+.mv-swiper__image,
+.mv-swiper__image img {
+  height: inherit;
+}
+
+.mv-swiper__image img {
+  object-fit: cover;
+}

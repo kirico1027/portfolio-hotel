@@ -1,0 +1,9 @@
+@use "global" as *;
+
+.archive-voice__cards {
+  margin-top: rem(40);
+}
+
+.archive-voice__pagenavi .wp-pagenavi {
+  column-gap: rem(40);
+}

@@ -1,0 +1,22 @@
+@use "global" as *;
+
+.sidebar-title {
+  position: relative;
+  font-family: $base-font-family;
+  font-size:  rem(24);
+  font-weight: $regular;
+  line-height: 1;
+  padding: rem(15) 0;
+  text-align: center;
+}
+
+.sidebar-title::before {
+    position: absolute;
+    content: "";
+    width: 8px;
+    height: 100%;
+    background-color: $accent-color;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}

@@ -1,0 +1,23 @@
+@use "global" as *;
+
+.sidebar__inner {
+  padding: 0 rem(25);
+
+  @include mq(md) {
+    padding: 0;
+  }
+}
+
+.sidebar__container {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(71);
+}
+
+.sidebar__campaign {
+  margin-top: rem(12);
+}
+
+.sidebar__archive {
+  margin-top: rem(12);
+}

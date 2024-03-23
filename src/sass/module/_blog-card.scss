@@ -1,0 +1,51 @@
+@use "global" as *;
+
+.blog-card {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  background-color: $white;
+}
+
+.blog-card+.blog-card {
+  margin-top: rem(40);
+
+  @include mq(md) {
+    margin-top: 0;
+  }
+}
+
+.blog-card a {
+  display: inline-block;
+}
+
+.blog-card__img img {
+  aspect-ratio: 301 / 201;
+  object-fit: cover;
+  height: auto;
+}
+
+.blog-card__body {
+  color: $title-color;
+  padding: rem(18);
+}
+
+.blog-card__title {
+  font-family: $base-font-family;
+  font-size: rem(16);
+  font-weight: $medium;
+  line-height: calc(24 / 16);
+  padding-bottom: rem(8);
+  border-bottom: 1px solid $accent-color;
+  margin-top: rem(1);
+}
+
+.blog-card__text {
+  font-family: $base-font-family;
+  font-size: rem(16);
+  font-weight: $regular;
+  line-height: calc(24 / 16);
+  margin-top: rem(16);
+
+  @include mq(md) {
+    color: $font-color;
+  }
+}

@@ -1,0 +1,81 @@
+@use "global" as *;
+
+.tab-content {
+  padding: rem(24) rem(22) rem(23);
+  border: 1px solid $accent-color;
+
+  @include mq(md) {
+    padding: rem(15) rem(22) rem(21);
+  }
+}
+
+.tab-content__item {
+  display: none;
+}
+
+.tab-content__item.is-active {
+  display: block;
+  animation: fade 0.3s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.tab-content__box {
+  @include mq(md) {
+    display: flex;
+    align-items: center;
+    column-gap: rem(48);
+  }
+}
+
+.tab-content__body {
+  font-family: $base-font-family;
+
+  @include mq(md) {
+    flex: 1;
+    margin-top: rem(5);
+  }
+}
+
+.tab-content__title {
+  font-size: rem(24);
+  font-weight: $bold;
+  line-height: 1;
+  color: $title-color;
+  padding-bottom: rem(15);
+  border-bottom: 1px solid $accent-color;
+}
+
+.tab-content__text {
+  font-size: rem(16);
+  font-weight: $regular;
+  line-height: calc(24/16);
+  color: $font-color;
+  margin-top: rem(8);
+
+  @include mq(md) {
+  margin-top: rem(9);
+  }
+}
+
+.tab-content__image {
+  margin-top: rem(8);
+
+  @include mq(md) {
+    width: 47.7%;
+  }
+}
+
+.tab-content__image img {
+  aspect-ratio: 297/189;
+  object-fit: cover;
+  height: auto;
+}

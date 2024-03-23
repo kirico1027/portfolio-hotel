@@ -1,0 +1,41 @@
+@use "global" as *;
+
+.confirmation__inner.inner {
+  @include mq("md") {
+    max-width: rem(850);
+  }
+}
+
+.confirmation__title {
+  font-family: $base-font-family;
+  font-size: rem(24);
+  font-weight: $medium;
+  line-height: 1;
+
+  @include mq(md) {
+    font-size: rem(32);
+  }
+}
+
+.confirmation__content {
+  font-family: $base-font-family;
+  font-size: rem(16);
+  font-weight: $regular;
+  line-height: calc(32/16);
+  color: $title-color;
+  margin-top: rem(45);
+
+  @include mq(md) {
+    margin-top: rem(47);
+  }
+}
+
+.confirmation__content ol {
+  list-style: block;
+  padding-left: 1em;
+}
+
+.wp-block-group {
+  margin-top: rem(32);
+}
+

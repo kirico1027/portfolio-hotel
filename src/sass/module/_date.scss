@@ -1,0 +1,8 @@
+@use "global" as *;
+
+.date {
+  font-family: $second-font-family;
+  font-size: rem(12);
+  font-weight: $regular;
+  line-height: 1;
+}

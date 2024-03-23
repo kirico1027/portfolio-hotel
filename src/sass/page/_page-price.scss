@@ -1,0 +1,40 @@
+@use "global" as *;
+
+.page-price__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(38.5);
+  position: relative;
+
+  @include mq(md) {
+    row-gap: rem(78);
+  }
+}
+
+.page-price__list::before {
+  content: '';
+  position: absolute;
+  width: calc((120 / 375) * 100vw);
+  height: calc((55 / 375) * 100vw);
+  background-image: url(../images/common/fish-illustration-right.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  left: calc(50% - min(46vw, rem(620)));
+  top: rem(-24);
+
+  @include mq(md) {
+    width: rem(301);
+    height: rem(138);
+    left: calc(50% - min(48vw, rem(620)));
+    top: rem(-68);
+    z-index: 0;
+  }
+}
+
+.page-price__inner.inner {
+
+  @include mq(md) {
+    max-width: rem(750);
+  }
+}

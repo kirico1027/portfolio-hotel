@@ -1,0 +1,43 @@
+@use "global" as *;
+
+.single-main__date {
+  font-family: $second-font-family;
+  font-size:  rem(14);
+  font-weight: $regular;
+  line-height: calc(18/14);
+  color: $title-color;
+
+  @include mq(md) {
+  
+  }
+}
+
+.single-main__title {
+  font-family: $base-font-family;
+  font-size:  rem(24);
+  font-weight: $medium;
+  line-height: 1;
+  color: $title-color;
+  margin-top: rem(13);
+  padding-bottom: rem(15);
+  border-bottom: 1px solid $accent-color;
+
+  @include mq(md) {
+  font-size:  rem(32);
+  margin-top: rem(15);
+  }
+}
+
+.single-main__thumbnail {
+  margin-top: rem(24);
+
+  @include mq(md) {
+  margin-top: rem(40);
+  }
+}
+
+.single-main__thumbnail img {
+  aspect-ratio: 345/231;
+  object-fit: cover;
+  height: auto;
+}

@@ -1,0 +1,30 @@
+@use "global" as *;
+
+.section-title {
+  color: $title-color;
+  font-weight: $regular;
+}
+
+.section-title__main {
+  font-family: $second-font-family;
+  font-size: rem(32);
+  line-height: 1;
+  text-align: center;
+
+  @include mq(md) {
+    font-size: rem(40);
+  }
+}
+
+.section-title__main::first-letter {
+  color: $accent-color;
+}
+
+.section-title__main--contact {
+  font-size: rem(80);
+
+  @include mq(md) {
+    font-size: rem(80);
+  }
+}
+

@@ -1,0 +1,51 @@
+@use "sass:math";
+
+// インナー幅設定
+// コンテンツのインナー幅（最も共通の幅が多い部分）
+$inner: 1080px;
+// ※キュンパス幅ではなくインナーの幅を指す
+
+// 余白
+$padding-pc: 25px;
+$padding-sp: 15px;
+
+////////////////////
+// フォント設定
+////////////////////
+
+$base-font-family: 'Noto Sans JP', sans-serif;
+$second-font-family: 'Gotu', sans-serif;
+$third-font-family: 'Lato', sans-serif;
+// ※検証ツールでしっかり反映されているか確認する
+
+body {
+  font-family: $base-font-family;
+}
+
+/* 追加
+ハンバーガーメニューが開いたとき、スクロールさせない */
+body.is-noscroll {
+  overflow: hidden;
+}
+
+a:hover {
+  opacity: 0.85;
+  transition: opacity 0.3s;
+}
+
+// フォントウェイト
+$regular: 400;
+$medium: 500;
+$bold: 700;
+
+////////////////////
+// 色の指定
+////////////////////
+
+//色指定（共通性のあるものは出来る限り指定すると良い）
+$font-color: #131e29;
+$title-color: #131e29;
+$accent-color: #000;
+$accent-bg: #f5f5f5;
+$white: #fff;
+$point-color: #C94800;

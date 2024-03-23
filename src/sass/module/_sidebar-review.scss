@@ -1,0 +1,48 @@
+@use "global" as *;
+
+.sidebar-review__content {
+  margin-top: rem(22);
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+  background-color: $white;
+}
+
+.sidebar-review__image img {
+  aspect-ratio: 294/218;
+  object-fit: cover;
+  height: auto;
+}
+
+.sidebar-review__body {
+  font-family: $base-font-family;
+  color: $title-color;
+  padding: rem(15) rem(24) rem(24);
+}
+
+.sidebar-review__age {
+  font-size:  rem(12);
+  font-weight: $regular;
+  line-height: calc(18/12);
+}
+
+.sidebar-review__title {
+  font-size:  rem(16);
+  font-weight: $medium;
+  line-height: 1.45;
+  margin-top: rem(9);
+  border-bottom: 1px solid $font-color;
+  padding-bottom: rem(5);
+}
+
+.sidebar-review__button {
+  text-align: center;
+  margin-top: rem(45);
+}
+
+.sidebar-review__text {
+  color: $font-color;
+  font-size: rem(16);
+  font-weight: $medium;
+  line-height: 1.5;
+  margin-top: rem(10);
+}
+

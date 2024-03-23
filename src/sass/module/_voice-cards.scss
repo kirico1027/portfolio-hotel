@@ -1,0 +1,22 @@
+@use "global" as *;
+
+.voice-cards {
+
+  @include mq(md) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(80) rem(40);
+  }
+}
+
+.voice-cards__card {
+  padding: rem(10) rem(16) rem(24);
+  display: inline-block;
+  background-color: $white;
+
+  height: 100%;
+
+  @include mq(md) {
+    padding: rem(24);
+  }
+}

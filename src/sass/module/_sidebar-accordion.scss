@@ -1,0 +1,108 @@
+@use "global" as *;
+
+.sidebar-accordion__year {
+  position: relative;
+  padding: rem(6) 0;
+  cursor: pointer;
+  background-color: $white;
+
+
+
+
+
+  font-family: $base-font-family;
+  font-size: rem(24);
+  color: $accent-color;
+  font-weight: $regular;
+  line-height: 1;
+  display: inline-block;
+  position: relative;
+}
+
+.sidebar-accordion__year::before {
+  position: absolute;
+  content: "";
+  top: calc(50% + rem(2));
+  transform: translateY(-50%);
+  left: rem(-28);
+  display: inline-block;
+  border-style: solid;
+  border-width: rem(10) 0px rem(10) rem(18);
+  border-color: transparent transparent transparent $accent-color ;
+  transition: all 0.3s;
+}
+
+.sidebar-accordion__year.is-open::before  {
+  transform: translateY(rem(-10)) rotate(90deg);
+  transition: all 0.3s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sidebar-accordion__year span {
+  font-family: $base-font-family;
+  font-size: rem(24);
+  color: $accent-color;
+  font-weight: $regular;
+  line-height: 1;
+  display: inline-block;
+  position: relative;
+}
+
+.sidebar-accordion__year span::before {
+  position: absolute;
+  content: "";
+  top: calc(50% + rem(2));
+  transform: translateY(-50%);
+  left: rem(-28);
+  display: inline-block;
+  border-style: solid;
+  border-width: rem(10) 0px rem(10) rem(18);
+  border-color: transparent transparent transparent $accent-color ;
+  transition: all 0.3s;
+}
+
+.sidebar-accordion__year.is-open span::before {
+  transform: translateY(rem(-10)) rotate(90deg);
+  transition: all 0.3s;
+}
+
+.sidebar-accordion__month-box {
+  padding-left: rem(28);
+}
+
+.sidebar-accordion__month {
+  display: none;
+  padding: rem(6) 0;
+}
+
+.sidebar-accordion__month a {
+  font-family: $base-font-family;
+  font-size: rem(24);
+  color: $accent-color;
+  font-weight: $regular;
+  line-height: 1;
+  position: relative;
+}
+
+.sidebar-accordion__month a::before {
+  position: absolute;
+  content: "";
+  top: calc(50% + rem(2));
+  transform: translateY(-50%);
+  left: rem(-26);
+  display: inline-block;
+  border-style: solid;
+  border-width: rem(10) 0px rem(10) rem(18);
+  border-color: transparent transparent transparent $accent-color;
+}

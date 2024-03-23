@@ -1,0 +1,45 @@
+@use "global" as *;
+
+.price-item {
+  font-family: $base-font-family;
+  color: $title-color;
+}
+
+.price-item+.price-item {
+  margin-top: rem(40);
+}
+
+.price-item__title {
+  font-size: rem(16);
+  font-weight: $bold;
+  line-height: calc(24 / 16);
+  padding-bottom: rem(3);
+  border-bottom: 1px solid $accent-color;
+}
+
+.price-item__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-item__body {
+  display: flex;
+  justify-content: space-between;
+  margin-top: rem(8);
+  font-size: rem(14);
+  font-weight: $regular;
+  line-height: calc(24 / 14);
+
+  @include mq(md) {
+    font-size: rem(16);
+    line-height: calc(24 / 16);
+  }
+}
+
+.price-item__price {
+  padding-left: rem(5);
+
+  @include mq(md) {
+    padding-left: rem(10);
+  }
+}

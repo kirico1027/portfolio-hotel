@@ -1,0 +1,56 @@
+@use "global" as *;
+
+.page-about-lead__content-sp {
+  position: relative;
+
+  @include mq(md) {
+    display: none;
+  }
+}
+
+.page-about-lead__content-pc {
+  display: none;
+
+  @include mq(md) {
+    display: block;
+    position: relative;
+  }
+}
+
+.page-about-lead__image {
+  position: relative;
+}
+
+.page-about-lead__image-right img {
+  aspect-ratio: 345/228;
+  object-fit: cover;
+  height: auto;
+}
+
+.page-about-lead__body-title {
+  font-family: $second-font-family                    ;
+  font-size: min(10.666vw, rem(50));
+  font-weight: $regular;
+  line-height: 1.02;
+  color: $white;
+  position: absolute;
+  top: 10.5%;
+  left: 7%;
+}
+
+.page-about-lead__box {
+  margin-top: rem(40);
+}
+
+.page-about-lead__text {
+  font-family: $base-font-family;
+  font-size: rem(16);
+  font-weight: $regular;
+  line-height: calc(24 / 16);
+  color: $title-color;
+}
+
+.page-about-lead__text span {
+  margin-top: rem(10);
+  display: block;
+}

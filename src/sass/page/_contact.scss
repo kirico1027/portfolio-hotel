@@ -1,0 +1,167 @@
+@use "global" as *;
+
+.contact {
+  text-align: center;
+  position: relative;
+
+  @include mq(md) {
+    filter: initial;
+  }
+}
+
+.contact__inner {
+  width: 100%;
+  max-width: rem(640);
+  padding-right: rem(30);
+  padding-left: rem(30);
+  margin-right: auto;
+  margin-left: auto;
+
+
+  @include mq("md") {
+    max-width: $inner + strip-unit($padding-pc) * 2;
+    padding-right: $padding-pc;
+    padding-left: $padding-pc;
+  }
+}
+
+.contact__container {
+  text-align: center;
+  position: relative;
+
+  @include mq(md) {
+    display: flex;
+    padding: rem(80) rem(50);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  }
+}
+
+
+.contact__content-first {
+  padding: 0 rem(10);
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+
+  @include mq(md) {
+    width: 53.35%;
+    padding: 0 rem(82) 0 0;
+    border-right: 1px solid $accent-color;
+    filter: initial;
+  }
+}
+
+.contact__content-second {
+  margin-top: rem(41);
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+
+  @include mq(md) {
+    flex: 1;
+    margin-top: rem(21);
+    padding-left: rem(17);
+    filter: initial;
+  }
+}
+
+.contact__logo {
+  border-bottom: 1px solid $accent-color;
+
+  @include mq(md) {
+    padding-bottom: rem(2);
+  }
+}
+
+.contact__logo a {
+  display: inline-block;
+  width: rem(174);
+
+  @include mq(md) {
+    width: rem(200);
+  }
+}
+
+.contact__body {
+  margin-top: rem(0);
+
+  @include mq(md) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: rem(0);
+    filter: initial;
+  }
+}
+
+.contact__info {
+  @include mq(md) {
+    text-align: left;
+    margin-top: rem(-2);
+  }
+}
+
+.contact__info-intro {
+  flex-wrap: wrap;
+  color: $font-color;
+  line-height: 1.75;
+}
+
+.contact__info-name {
+  font-weight: bold;
+  font-size: rem(20);
+}
+
+.contact__info-address {
+  display: inline-block;
+  font-family: $base-font-family;
+  font-size: rem(16);
+  font-weight: $regular;
+  color: $title-color;
+  line-height: calc(28 / 16);
+  white-space: nowrap;
+  margin-top: rem(20);
+}
+
+.contact__map-wrap {
+  margin-top: rem(15);
+  width: 100%;
+
+  @include mq(md) {
+    margin-top: rem(30);
+  }
+}
+
+.contact__map {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 54.237%;
+}
+
+.contact__map iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.contact__lead {
+  font-family: $base-font-family;
+  font-size: rem(14);
+  font-weight: $regular;
+  line-height: calc(18 / 14);
+  color: $accent-color;
+  margin-top: rem(7);
+
+  @include mq(md) {
+    margin-top: rem(8);
+  }
+}
+
+.contact__button {
+  text-align: center;
+  margin-top: rem(40);
+
+  @include mq(md) {
+    margin-top: rem(40);
+
+  }
+}

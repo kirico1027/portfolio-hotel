@@ -1,0 +1,110 @@
+@use "global" as *;
+
+.page-price-item {
+  font-family: $base-font-family;
+  border: 1px solid $accent-color;
+
+  @include mq(md) {
+    display: flex;
+  }
+}
+
+.page-price-item__title {
+  padding-left: rem(30);
+  font-size: rem(16);
+  font-weight: $bold;
+  color: $white;
+  background-color: $accent-color;
+  border: 1px solid $accent-color;
+  text-align: center;
+  padding: rem(7) 0;
+
+  @include mq(md) {
+    width: 28.57%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: rem(70);
+  }
+}
+
+.page-price-item__title span {
+  position: relative;
+}
+
+.page-price-item__title span::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  transform: translateY(-50%);
+  left: rem(-32);
+  background-size: contain;
+  width: rem(24);
+  height: rem(24);
+  background-image: url("../images/common/tab-menu01-white.svg");
+
+  @include mq(md) {
+    left: 50%;
+    transform: translateX(-50%);
+    top: rem(32);
+    width: rem(65);
+    height: rem(65);
+    background-repeat: no-repeat;
+  }
+}
+
+.page-price-item__content {
+  background-color: $white;
+
+  @include mq(md) {
+    flex: 1;
+  }
+}
+
+.page-price-item__body {
+  display: flex;
+}
+
+.page-price-item__body:not(:last-child) {
+  border-bottom: 1px solid $accent-color;
+}
+
+.page-price-item__body:nth-child(1) .page-price-item__course,
+.page-price-item__body:nth-child(1) .page-price-item__price {
+  height: rem(61);
+  ;
+}
+
+.page-price-item__course,
+.page-price-item__price {
+  font-size: rem(16);
+  line-height: calc(24/16);
+  font-weight: $regular;
+  display: flex;
+  align-items: center;
+  height: rem(58.5);
+
+  @include mq(md) {
+    height: rem(57.5);
+  }
+}
+
+.page-price-item__course {
+  width: 69.6%;
+  justify-content: center;
+  border-right: 1px solid $accent-color;
+  padding-inline: rem(10);
+
+  @include mq(md) {
+    width: 68%;
+    justify-content: left;
+    padding-left: rem(16);
+  }
+}
+
+.page-price-item__price {
+  justify-content: right;
+  padding-right: rem(16);
+  flex: 1;
+}

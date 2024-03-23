@@ -1,0 +1,69 @@
+@use "global" as *;
+
+.information-card {
+  @include mq(md) {
+    display: flex;
+    align-items: flex-end;
+    column-gap: rem(48);
+  }
+}
+
+.information-card__img {
+  @include mq(md) {
+    width: 49.9%;
+  }
+}
+
+.information-card__img img {
+  aspect-ratio: 345 / 227;
+  object-fit: cover;
+  height: auto;
+
+  @include mq(md) {
+    aspect-ratio: 540 / 356;
+  }
+}
+
+.information-card__body {
+  font-family: $base-font-family;
+  color: $title-color;
+  margin-top: rem(25.5);
+
+  @include mq(md) {
+    flex: 1;
+    margin-top: rem(0);
+  }
+}
+
+.information-card__title {
+  font-size: rem(20);
+  font-weight: $bold;
+  line-height: calc(24 / 20);
+  padding-bottom: rem(10);
+  border-bottom: 1px solid $accent-color;
+
+  @include mq(md) {
+    font-size: rem(24);
+    line-height: 1;
+    padding-bottom: rem(15);
+  }
+}
+
+.information-card__text {
+  font-size: rem(16);
+  font-weight: $regular;
+  letter-spacing: .0em;
+  line-height: calc(24 / 16);
+  color: $title-color;
+  margin-top: rem(8);
+
+  @include mq(md) {
+    color: $font-color;
+    margin-top: rem(7.5);
+  }
+}
+
+.information__button {
+  text-align: center;
+  margin-top: rem(20);
+}
