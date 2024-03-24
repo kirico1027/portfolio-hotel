@@ -49,6 +49,10 @@
   background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
-  height: rem(400);
+  height: rem(250);
   margin-top: rem(100);
+
+  @include mq(md) {
+    height: rem(350);
+  }
 }

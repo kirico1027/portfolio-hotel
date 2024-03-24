@@ -42,7 +42,7 @@ jQuery(function ($) {
     const mv_swiper = new Swiper(".js-mv-swiper", {
       centeredSlides: true, // 1枚目のスライドを中央にする
       loop: true,
-      speed: 2000,
+      speed: 6000,
       effect: "fade",
       pagination: {
         el: ".swiper-pagination", // ページネーションのクラス名を指定
@@ -188,9 +188,9 @@ jQuery(function ($) {
 // headerをスクロールすると、色が変わる
   jQuery(window).on('scroll', function () {
     if (jQuery(this).scrollTop() > 100) {
-        jQuery('.header, .header__nav-item a, .header__logo-main, .header__logo-sub').addClass('js-change-color');
+        jQuery('.header, .header__nav-item a, .header__logo-main, .header__logo-sub, .header__hamburger span').addClass('js-change-color');
     } else {
-        jQuery('.header, .header__nav-item a, .header__logo-main, .header__logo-sub').removeClass('js-change-color');
+        jQuery('.header, .header__nav-item a, .header__logo-main, .header__logo-sub, .header__hamburger span').removeClass('js-change-color');
     }
   });
   

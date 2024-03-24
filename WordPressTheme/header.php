@@ -51,10 +51,10 @@ $privacypolicy = esc_url(home_url("/privacypolicy"));
       <nav class="header__nav">
         <ul class="header__nav-items">
           <li class="header__nav-item">
-            <a href="<?php echo $campaign; ?>">Rooms&nbsp;&&nbsp;Suites<span></span></a>
+            <a href="<?php echo $campaign; ?>">Rooms & Suites<span></span></a>
           </li>
           <li class="header__nav-item">
-            <a href="<?php echo $about; ?>">About&nbsp;us<span></span></a>
+            <a href="<?php echo $about; ?>">About us<span></span></a>
           </li>
           <li class="header__nav-item">
             <a href="<?php echo $information; ?>">Information<span></span></a>
@@ -82,7 +82,7 @@ $privacypolicy = esc_url(home_url("/privacypolicy"));
               <div class="header__drawer-content">
                 <div class="header__drawer-block">
                   <div class="header__drawer-item header__drawer-item--main">
-                    <a href="<?php echo $campaign; ?>">Rooms&nbsp;&&nbsp;Suites</a>
+                    <a href="<?php echo $campaign; ?>">Rooms & Suites</a>
                   </div>
                   <div class="header__drawer-item">
                     <a href="<?php echo $campaign_category_license; ?>">Rooms</a>
@@ -94,7 +94,7 @@ $privacypolicy = esc_url(home_url("/privacypolicy"));
               </div>
               <div class="header__drawer-content">
                 <div class="header__drawer-item header__drawer-item--main">
-                  <a href="<?php echo $about; ?>">About&nbsp;us</a>
+                  <a href="<?php echo $about; ?>">About us</a>
                 </div>
               </div>
               <div class="header__drawer-content">

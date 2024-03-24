@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  column-gap: rem(82);
+  column-gap: rem(50);
 }
 
 .single-pagenavi__prev,
@@ -13,9 +13,6 @@
   border: rem(1) solid $accent-color;
   color: $accent-color;
   display: inline-block;
-  font-family: "Lato", sans-serif;
-  font-size: rem(16);
-  font-weight: 700;
   line-height: 1;
   transition: 0.3s;
   white-space: nowrap;
@@ -34,7 +31,7 @@
 .single-pagenavi__next a {
   display: block;
   width: 100%;
-  font-size: rem(36);
+  height: rem(36);
 }
 
 .single-pagenavi__prev::after,
@@ -95,3 +92,7 @@
   border-bottom: rem(1) solid $white;
   border-right: rem(1) solid $white;
 }
+
+
+
+

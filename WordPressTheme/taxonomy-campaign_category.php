@@ -94,7 +94,7 @@
                   ?>
           </p>
           <div class="page-campaign-card__button">
-            <a href="<?php echo esc_url(home_url("/contact")) ?>" class="button"><span>Contact&nbsp;us</span></a>
+            <a href="<?php echo esc_url(home_url("/contact")) ?>" class="button"><span>Reserve</span></a>
           </div>
         </li>
         <?php endwhile; ?>

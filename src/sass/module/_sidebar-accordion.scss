@@ -6,12 +6,8 @@
   cursor: pointer;
   background-color: $white;
 
-
-
-
-
   font-family: $base-font-family;
-  font-size: rem(24);
+  font-size: rem(22);
   color: $accent-color;
   font-weight: $regular;
   line-height: 1;
@@ -24,10 +20,10 @@
   content: "";
   top: calc(50% + rem(2));
   transform: translateY(-50%);
-  left: rem(-28);
+  left: rem(-25);
   display: inline-block;
   border-style: solid;
-  border-width: rem(10) 0px rem(10) rem(18);
+  border-width: rem(8) 0px rem(8) rem(15);
   border-color: transparent transparent transparent $accent-color ;
   transition: all 0.3s;
 }
@@ -36,18 +32,6 @@
   transform: translateY(rem(-10)) rotate(90deg);
   transition: all 0.3s;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 .sidebar-accordion__year span {
   font-family: $base-font-family;
@@ -88,7 +72,7 @@
 
 .sidebar-accordion__month a {
   font-family: $base-font-family;
-  font-size: rem(24);
+  font-size: rem(22);
   color: $accent-color;
   font-weight: $regular;
   line-height: 1;
@@ -103,6 +87,6 @@
   left: rem(-26);
   display: inline-block;
   border-style: solid;
-  border-width: rem(10) 0px rem(10) rem(18);
+  border-width: rem(8) 0px rem(8) rem(15);
   border-color: transparent transparent transparent $accent-color;
 }

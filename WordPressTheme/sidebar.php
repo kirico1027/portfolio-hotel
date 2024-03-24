@@ -91,7 +91,7 @@
           <?php endif; ?>
         </div>
         <div class="sidebar-review__button">
-          <a href="<?php echo esc_url(home_url("/voice")) ?>" class="button"><span>View&nbsp;more</span></a>
+          <a href="<?php echo esc_url(home_url("/voice")) ?>" class="button"><span>View more</span></a>
         </div>
       </div>
       <div class="sidebar__campaign sidebar-campaign">
@@ -130,13 +130,6 @@
                       }
                       ?>
                 </p>
-
-                <?php $priceGroup = get_field('price_group');
-                    if ($priceGroup['price_before'] && $priceGroup['price_after']) : ?>
-                <p class="sidebar-campaign-card__price">
-                  <span>¥<?php echo $priceGroup['price_before']; ?></span>¥<?php echo $priceGroup['price_after']; ?>
-                </p>
-                <?php endif; ?>
               </div>
             </div>
           </li>
@@ -145,7 +138,7 @@
           <?php endif; ?>
         </ul>
         <div class="sidebar-campaign__button">
-          <a href="<?php echo esc_url(home_url("/campaign")) ?>" class="button"><span>View&nbsp;more</span></a>
+          <a href="<?php echo esc_url(home_url("/campaign")) ?>" class="button"><span>View more</span></a>
         </div>
       </div>
 

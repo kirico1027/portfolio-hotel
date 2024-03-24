@@ -45,6 +45,9 @@
                 <a href="<?php echo $prev_url; ?>">前の記事</a>
                 <?php endif; ?>
               </div>
+              <div class="single-pagenavi__center">
+                <a href="<?php echo esc_url(home_url("/blog")); ?>">一覧へ戻る</a>
+              </div>
               <div class="single-pagenavi__next">
                 <?php if ($next) : ?>
                 <a href="<?php echo $next_url; ?>">後の記事</a>

@@ -22,11 +22,25 @@
 }
 
 .footer__logo {
- font-size: rem(18);
+  max-width: rem(120);
+  width: 100%;
+  display: inline-block;
+
+  @include mq("md") {
+    max-width: rem(120);
+  }
+}
+
+.footer__logo a {
+  transition: 0.3s;
+}
+
+.footer__logo a:hover {
+  opacity: 0.3s;
 }
 
 .footer__sns {
-  margin-top: rem(18);
+  margin-top: rem(10);
   display: flex;
   justify-content: left;
   align-items: center;

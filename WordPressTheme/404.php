@@ -12,7 +12,7 @@
         <p class="page-404__text">申し訳ありません。<br>
           お探しのページが見つかりません。</p>
         <div class="page-404__button">
-          <a href="<?php echo esc_url(home_url("/")) ?>" class="page-404-button"><span>Page&nbsp;TOP</span></a>
+          <a href="<?php echo esc_url(home_url("/")) ?>" class="page-404-button"><span>Page TOP</span></a>
         </div>
       </div>
     </div>

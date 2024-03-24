@@ -50,7 +50,7 @@
   @include mq(md) {
     display: flex;
     position: absolute;
-    top: calc(50% - rem(10));
+    top: calc(50% + rem(20));
     left: calc(50% + rem(80));
     transform: translate(-50%, -50%);
     margin-top: 0;
@@ -84,9 +84,9 @@
 
 .about-main-image__text {
   font-family: $base-font-family;
-  font-size: rem(16);
+  font-size: rem(17);
   font-weight: $regular;
-  line-height: calc(24 / 16);
+  line-height: 1.6;
   color: $title-color;
 
   @include mq(md) {
@@ -103,8 +103,4 @@
 .about-main-image__button {
   text-align: center;
   margin-top: rem(50);
-
-  @include mq(md) {
-    margin-top: rem(40);
-  }
 }

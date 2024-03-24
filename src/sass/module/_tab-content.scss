@@ -67,10 +67,11 @@
 }
 
 .tab-content__image {
-  margin-top: rem(8);
+  margin-top: rem(18);
 
   @include mq(md) {
     width: 47.7%;
+    margin-top: rem(0);
   }
 }
 

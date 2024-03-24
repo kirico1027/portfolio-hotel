@@ -7,7 +7,7 @@
 }
 
 .tab-menu__item {
-  display: inline-block;
+  display: flex;
   font-family: $base-font-family;
   font-size: rem(14);
   font-weight: $regular;
@@ -18,22 +18,17 @@
   color: $accent-color;
   border: rem(1) solid $font-color;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-  text-align: center;
   cursor: pointer;
   transition: 0.3s;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
   @include mq(md) {
     max-width: rem(300);
     font-size: rem(24);
     padding: rem(15) 0;
   }
-}
-
-.tab-menu__item span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
 }
 
 .tab-menu__item:hover {

@@ -13,7 +13,7 @@
             <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/about2.jpg" alt="ホテルの寝室の画像"
               loading="lazy">
           </figure>
-          <h2 class="page-about-lead__body-title">with&nbsp;all<br>one's&nbsp;heart</h2>
+          <h2 class="page-about-lead__body-title">with all<br>one's heart</h2>
         </div>
         <div class="page-about-lead__box">
           <p class="page-about-lead__text">

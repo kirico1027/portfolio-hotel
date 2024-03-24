@@ -4,11 +4,10 @@
     <div class="mv__inner">
       <div class="mv__title-wrap">
         <h2 class="mv__main-title">KIRICO</h2>
-        <p class="mv__sub-title">PALECE&nbsp;HOTEL</p>
+        <p class="mv__sub-title">PALECE HOTEL</p>
       </div>
       <div class="mv__swiper mv-swiper swiper js-mv-swiper">
         <div class="mv-swiper__wrapper swiper-wrapper">
-
           <?php
           $mv_pc_img = get_field('mv_pc');
           $mv_sp_img = get_field('mv_sp');
@@ -101,7 +100,7 @@
       </div>
 
       <div class="campaign__button">
-        <a href="<?php echo esc_url(home_url("/campaign")) ?>" class="button"><span>View&nbsp;more</span></a>
+        <a href="<?php echo esc_url(home_url("/campaign")) ?>" class="button"><span>View more</span></a>
       </div>
     </div>
   </section>
@@ -109,7 +108,7 @@
   <section class="about layout-about">
     <div class="about__inner inner">
       <div class="about__title section-title">
-        <h3 class="section-title__main">About&nbsp;us</h3>
+        <h3 class="section-title__main">About us</h3>
       </div>
       <div class="about__main-image about-main-image">
         <div class="about-main-image__image">
@@ -134,7 +133,7 @@
               <span>清潔なお部屋と充実したアメニティで、心地よい時間を提供いたします。お客様の幸せを願い、心からのサポートをお約束いたします。 </span>
             </p>
             <div class="about-main-image__button">
-              <a href="<?php echo esc_url(home_url("/about")) ?>" class="button"><span>View&nbsp;more</span></a>
+              <a href="<?php echo esc_url(home_url("/about")) ?>" class="button"><span>View more</span></a>
             </div>
           </div>
         </div>
@@ -152,12 +151,14 @@
           <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/information1.jpg" alt="画像" loading="lazy">
         </figure>
         <div class="information-card__body">
-          <h4 class="information-card__title">Gardening Party</h4>
-          <p class="information-card__text">
-            春の訪れを感じる特別なガーデニングパーティに、ぜひご参加ください。ホテル庭園では、新緑が輝き、心地よい風が吹き抜けます。レストランからは、春の味覚を楽しめる軽食が提供されます。プロのガーデニングアドバイザーによるワークショップでは、春の植物の育て方やお手入れのコツを学び、庭園をより楽しむヒントを得られます。音楽や春の香りに包まれながら、贅沢な時間をお過ごしください。
-          </p>
+          <div>
+            <h4 class="information-card__title">Gardening Party</h4>
+            <p class="information-card__text">
+              春の訪れを感じる特別なガーデニングパーティに、ぜひご参加ください。ホテル庭園では、新緑が輝き、心地よい風が吹き抜けます。レストランからは、春の味覚を楽しめる軽食が提供されます。プロのガーデニングアドバイザーによるワークショップでは、春の植物の育て方やお手入れのコツを学び、庭園をより楽しむヒントを得られます。音楽や春の香りに包まれながら、贅沢な時間をお過ごしください。
+            </p>
+          </div>
           <div class="information__button">
-            <a href="<?php echo esc_url(home_url("/information")) ?>" class="button"><span>View&nbsp;more</span></a>
+            <a href="<?php echo esc_url(home_url("/information")) ?>" class="button"><span>View more</span></a>
           </div>
         </div>
       </div>
@@ -211,7 +212,7 @@
         ?>
       </ul>
       <div class="blog__button">
-        <a href="<?php echo esc_url(home_url("/blog")) ?>" class="button"><span>View&nbsp;more</span></a>
+        <a href="<?php echo esc_url(home_url("/blog")) ?>" class="button"><span>View more</span></a>
       </div>
     </div>
   </section>
@@ -286,7 +287,7 @@
         <?php endif; ?>
       </ul>
       <div class="voice__button">
-        <a href="<?php echo esc_url(home_url("/voice")) ?>" class="button"><span>View&nbsp;more</span></a>
+        <a href="<?php echo esc_url(home_url("/voice")) ?>" class="button"><span>View more</span></a>
       </div>
     </div>
   </section>
