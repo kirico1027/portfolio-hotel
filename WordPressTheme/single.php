@@ -31,8 +31,6 @@
           </article>
 
           <?php endwhile; ?>
-          <?php else : ?>
-          <!-- No posts found -->
           <?php endif; ?>
           <div class="single__pagenavi single-pagenavi layout-pagenavi">
             <div class="single-pagenavi__box">
@@ -56,7 +54,7 @@
           </div>
         </div>
 
-        <?php get_template_part('template-parts/aside'); ?>
+        <?php get_sidebar(); ?>
 
       </div>
     </div>

@@ -24,8 +24,8 @@
                 </p>
               </div>
               <figure class="tab-content__image">
-                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/information1.jpg"
-                  alt="エメラルドグリーンの海に浮かぶ5人のダイバーたちの画像" loading="lazy">
+                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/information1.jpg" alt="ガーデニングパーティの画像"
+                  loading="lazy">
               </figure>
             </div>
           </li>
@@ -38,8 +38,8 @@
                 </p>
               </div>
               <figure class="tab-content__image">
-                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/information2.jpg"
-                  alt="海底の巨大なサンゴの上を泳ぐ無数のサカナの画像" loading="lazy">
+                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/information2.jpg" alt="展覧会の画像"
+                  loading="lazy">
               </figure>
             </div>
           </li>
@@ -52,8 +52,8 @@
                 </p>
               </div>
               <figure class="tab-content__image">
-                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/information3.jpg"
-                  alt="海底を泳ぐ鮮やかな黄色のサカナの画像" loading="lazy">
+                <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/information3.jpg" alt="リラクゼーションの画像"
+                  loading="lazy">
               </figure>
             </div>
           </li>

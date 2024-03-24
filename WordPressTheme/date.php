@@ -4,14 +4,14 @@
     <picture class="sub-mv__picture">
       <source srcset="<?php echo get_theme_file_uri(); ?>/assets/images/common/sub-mv-blog.jpg"
         media="(min-width: 768px)" type="image/jpg">
-      <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/sub-mv-blog.jpg"
-        alt="海上の明かりに照らされ神秘的な青さの海中を泳ぐ無数のサカナの群れ" loading="lazy">
+      <img src="<?php echo get_theme_file_uri(); ?>/assets/images/common/sub-mv-blog.jpg" alt="ホテルの寝室の画像" loading="
+        lazy">
     </picture>
-    <?php if(is_month()): ?>
-    <h1 class="sub-mv__title"><?php the_time('Y年m月') ?></h1>
-    <?php else: ?>
-    <h2 class="sub-mv__title"><?php the_time('Y年'); ?></h2>
-    <?php endif; ?>
+    <h1 class="sub-mv__title">
+      <?php
+      the_archive_title();
+      ?>
+    </h1>
   </section>
 
   <?php get_template_part('template-parts/breadcrumb'); ?>
@@ -62,7 +62,7 @@
 
         </div>
 
-        <?php get_template_part('template-parts/aside'); ?>
+        <?php get_sidebar(); ?>
 
       </div>
     </div>

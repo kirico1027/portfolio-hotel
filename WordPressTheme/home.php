@@ -1,4 +1,5 @@
-<?php get_header(); ?> <main>
+<?php get_header(); ?>
+<main>
 
   <?php get_template_part('template-parts/sub-mv'); ?>
 
@@ -37,21 +38,19 @@
               <?php endwhile; ?>
               <?php endif; ?>
             </ul>
-          </div>
-
-          <div class="home-main__pagenavi pagenavi layout-pagenavi">
-            <div class="pagenavi__inner">
-              <div class="pagination">
-                <?php if (function_exists('wp_pagenavi')) {
+            <div class="home-main__pagenavi pagenavi layout-pagenavi">
+              <div class="pagenavi__inner">
+                <div class="pagination">
+                  <?php if (function_exists('wp_pagenavi')) {
                   wp_pagenavi();
                 } ?>
+                </div>
               </div>
             </div>
           </div>
-
         </div>
 
-        <?php get_template_part('template-parts/aside'); ?>
+        <?php get_sidebar() ?>
 
       </div>
     </div>

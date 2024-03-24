@@ -19,32 +19,30 @@
           'number' => 10
         ));
         ?>
-        <div class="category-list__items">
-          <div class="category-list__item <?php echo (is_post_type_archive()) ? 'is-active' : ''; ?>">
-            <a href="<?php echo esc_url(home_url('campaign')); ?>">ALL</a>
-          </div>
+        <ul class="category-list__items">
+          <li class="category-list__item is-active">
+            <a href=" <?php echo esc_url(home_url('campaign')); ?>">ALL</a>
+          </li>
 
           <?php
-          if ($terms) {
-            foreach ($terms as $term) {
-              $term_class = ($current_term_id === $term->term_id) ? 'is-active' : '';
+          if ($terms) :
+            foreach ($terms as $term) :
+              $term_class = ($current_term_id === $term->term_id) ?: '';
           ?>
-          <div class="category-list__item <?php echo esc_attr($term_class); ?>">
+          <li class="category-list__item <?php echo esc_attr($term_class); ?>">
             <a href="<?php echo esc_url(get_term_link($term->term_id)); ?>">
               <?php echo esc_html($term->name); ?>
             </a>
-          </div>
+          </li>
           <?php
-            }
-          }
+            endforeach;
+          endif;
           ?>
-        </div>
+        </ul>
       </div>
       <div class="page-campaign__cards">
         <?php if (have_posts()) : ?>
         <?php while (have_posts()) : the_post(); ?>
-        <?php setup_postdata($post); ?>
-
         <div class="page-campaign__card page-campaign-card">
           <figure class="page-campaign-card__img">
             <?php if (has_post_thumbnail()) : ?>
@@ -59,13 +57,13 @@
           </div>
           <p class="page-campaign-card__text">
             <?php
-                    $campaign_text = get_field("campaign_text");
-                    if (mb_strlen($campaign_text) > 200) {
-                      echo mb_substr($campaign_text, 0, 200, 'UTF-8') . '...';
-                    } else {
-                      echo $campaign_text;
-                    }
-                    ?>
+                $campaign_text = get_field("campaign_text");
+                if (mb_strlen($campaign_text) > 200) {
+                  echo mb_substr($campaign_text, 0, 200, 'UTF-8') . '...';
+                } else {
+                  echo $campaign_text;
+                }
+                ?>
           </p>
           <div class="page-campaign-card__button">
             <a href="<?php echo esc_url(home_url("/contact")) ?>" class="button"><span>Reserve</span></a>
@@ -78,14 +76,14 @@
         <?php endif; ?>
 
       </div>
-    </div>
 
-    <div class="page-campaign__pagenavi pagenavi">
-      <div class="pagenavi__inner">
-        <div class="pagination">
-          <?php if (function_exists('wp_pagenavi')) {
-          wp_pagenavi();
-        } ?>
+      <div class="page-campaign__pagenavi pagenavi">
+        <div class="pagenavi__inner">
+          <div class="pagination">
+            <?php if (function_exists('wp_pagenavi')) {
+            wp_pagenavi();
+          } ?>
+          </div>
         </div>
       </div>
     </div>

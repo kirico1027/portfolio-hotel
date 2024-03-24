@@ -86,7 +86,9 @@
             </p>
 
           </div>
-          <?php endwhile; ?> <?php wp_reset_postdata(); ?> <?php endif; ?>
+          <?php endwhile; ?>
+          <?php wp_reset_postdata(); ?>
+          <?php endif; ?>
         </div>
         <div class="sidebar-review__button">
           <a href="<?php echo esc_url(home_url("/voice")) ?>" class="button"><span>View&nbsp;more</span></a>
@@ -178,10 +180,10 @@
                     (<?php echo $month->post_count; ?>)
                   </a>
                 </li>
-                <?php $year_prev = $year_current;
-              endforeach; ?>
               </ul>
             </div>
+            <?php $year_prev = $year_current;
+              endforeach; ?>
           </div>
         </div>
       </div>
