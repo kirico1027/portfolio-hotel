@@ -6,7 +6,6 @@
   top: 0;
   right: 0;
   left: 0;
-  bottom: 0;
   width: 100%;
   height: rem(80);
   transition: background-color .5s, color .5s;
@@ -60,14 +59,12 @@
 }
 
 .header__logo-main,
-.header__logo-sub {
-  
-}
+.header__logo-sub {}
 
 .header__logo-main:hover,
 .header__logo-sub:hover {
   opacity: 0.7;
-  
+
 }
 
 .header__logo-sub.js-change-color {
@@ -134,7 +131,7 @@
 .header__nav-item a::after {
   content: '';
   position: absolute;
-  bottom: rem(18);
+  bottom: rem(10);
   left: 0;
   width: 100%;
   height: 1px;

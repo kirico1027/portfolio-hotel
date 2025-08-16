@@ -1,4 +1,4 @@
-<aside class="blog-common__sidebar sidebar">
+<aside class="sidebar">
   <div class="sidebar__inner">
     <div class="sidebar__container">
       <div class="sidebar__popular sidebar-popular">

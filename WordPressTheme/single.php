@@ -56,8 +56,9 @@
             </div>
           </div>
         </div>
-
-        <?php get_sidebar(); ?>
+        <div class="blog-common__sidebar">
+          <?php get_sidebar(); ?>
+        </div>
 
       </div>
     </div>

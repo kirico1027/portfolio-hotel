@@ -86,8 +86,9 @@
   font-family: $base-font-family;
   font-size: rem(17);
   font-weight: $regular;
-  line-height: 1.6;
+  line-height: 1.7;
   color: $title-color;
+  text-align: justify;
 
   @include mq(md) {
     color: $white;

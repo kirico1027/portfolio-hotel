@@ -15,22 +15,31 @@ function my_setup()
 add_action('after_setup_theme', 'my_setup');
 
 /* CSSとJavaScriptの読み込み */
-function my_script_init()
-{ // WordPressに含まれているjquery.jsを読み込まない
+function my_script_init() {
+  // WordPressに含まれているjquery.jsを読み込まない
   wp_deregister_script('jquery');
-  // jQueryの読み込み
   wp_enqueue_script('jquery', '//code.jquery.com/jquery-3.6.1.min.js', "", '1.0.1');
-// プラグイン
-wp_enqueue_script( 'swiper', "//cdn.jsdelivr.net/npm/swiper@7/swiper-bundle.min.js", "7.0.0", true );
-wp_enqueue_script( 'inview', get_theme_file_uri() . '/assets/js/jquery.inview.min.js', array(), '1.0.1');
-wp_enqueue_script('script-js', get_theme_file_uri() . '/assets/js/script.js', array('jquery'), '1.0.1', true);
-// Webフォントの読み込み
-wp_enqueue_style('NotoSansJP', '//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
-wp_enqueue_style('Gotu', '//fonts.googleapis.com/css2?family=Gotu:ital,wght@0,400;0,500;0,700;1,700&display=swap" rel="stylesheet');
-wp_enqueue_style('Lato', '//fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-// css
-wp_enqueue_style('swiper-css', '//cdn.jsdelivr.net/npm/swiper@7/swiper-bundle.min.css', array(), '7.0.0');
-wp_enqueue_style('style-css', get_theme_file_uri() . '/assets/css/style.css', array(), '1.0.1');
+
+  // プラグイン系
+  wp_enqueue_script('gsap', '//cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js', array(), null, true);
+  wp_enqueue_script('gsap-scrolltrigger', '//cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js', array('gsap'), null, true);
+  wp_enqueue_script('split-type', 'https://unpkg.com/split-type', array(), null, true);
+  wp_enqueue_script('swiper', '//cdn.jsdelivr.net/npm/swiper@7/swiper-bundle.min.js', array(), '7.0.0', true);
+  wp_enqueue_script('inview', get_theme_file_uri() . '/assets/js/jquery.inview.min.js', array(), '1.0.1');
+
+  // Lenis（先に読み込む）
+  wp_enqueue_script('lenis', 'https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.34/dist/lenis.min.js', array(), null, true);
+
+  // メインJS（Lenis に依存）
+  wp_enqueue_script('script-js', get_theme_file_uri() . '/assets/js/script.js', array('jquery', 'lenis'), '1.0.1', true);
+
+  // Webフォント
+  wp_enqueue_style('NotoSansJP', '//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+  wp_enqueue_style('CormorantGaramond', '//fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,700;1,700&display=swap', array(), null);
+
+  // CSS
+  wp_enqueue_style('swiper-css', '//cdn.jsdelivr.net/npm/swiper@7/swiper-bundle.min.css', array(), '7.0.0');
+  wp_enqueue_style('style-css', get_theme_file_uri() . '/assets/css/style.css', array(), '1.0.1');
 }
 add_action('wp_enqueue_scripts', 'my_script_init');
 

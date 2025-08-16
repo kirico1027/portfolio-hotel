@@ -17,6 +17,6 @@
   height: 100%;
 
   @include mq(md) {
-    padding: rem(24);
+    padding: rem(24) rem(24) rem(28);
   }
 }

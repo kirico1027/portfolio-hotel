@@ -1,5 +1,5 @@
 body {
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 }
 
 /* 追加
@@ -58,12 +58,6 @@ dd {
 	margin: 0;
 }
 
-/* Set core root defaults */
-
-html {
-	scroll-behavior: smooth;
-}
-
 /* Set core body defaults */
 
 body {
@@ -112,7 +106,8 @@ select {
 /* Blur images when they have no alt attribute */
 
 img:not([alt]) {
-	filter: blur(10px);
+	-webkit-filter: blur(10px);
+	        filter: blur(10px);
 }
 
 /* フォームリセット */
@@ -160,6 +155,12 @@ a {
 	color: inherit;
 	text-decoration: none;
 	transition: opacity 0.3s;
+}
+
+.about {
+  position: relative;
+  z-index: 2;
+  background-color: #ffffff;
 }
 
 .about__inner {
@@ -213,9 +214,13 @@ a {
 	margin-top: 6.25rem;
 }
 
+
 .campaign {
 	overflow: hidden;
 	padding-bottom: 0.375rem;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 2;
 }
 
 .campaign__inner {
@@ -325,17 +330,19 @@ a {
 }
 
 .contact__content-first {
-	filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+	-webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+	        filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 	padding: 0 0.625rem;
 }
 
 .contact__content-second {
-	filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+	-webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+	        filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 	margin-top: 2.5625rem;
 }
 
 .contact__logo {
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #2b2b2b;
 }
 
 .contact__logo a {
@@ -361,7 +368,7 @@ a {
 .contact__info-address {
 	color: #131e29;
 	display: inline-block;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.75;
@@ -390,8 +397,8 @@ a {
 }
 
 .contact__lead {
-	color: #000;
-	font-family: "Noto Sans JP", sans-serif;
+	color: #2b2b2b;
+	font-family: "Noto Serif JP", serif;
 	font-size: 0.875rem;
 	font-weight: 400;
 	line-height: 1.2857142857;
@@ -404,7 +411,7 @@ a {
 }
 
 .form__item {
-	border-bottom: 1px dotted #000;
+	border-bottom: 1px dotted #2b2b2b;
 	padding-bottom: 1.46875rem;
 }
 
@@ -431,7 +438,7 @@ a {
 }
 
 .form__input {
-	border: 1px solid #000;
+	border: 1px solid #2b2b2b;
 	cursor: pointer;
 	font-size: 1rem;
 	line-height: 1;
@@ -440,7 +447,7 @@ a {
 }
 
 .form__textarea {
-	border: 1px solid #000;
+	border: 1px solid #2b2b2b;
 	font-size: 1rem;
 	height: 12.5rem;
 	padding: 0.5rem 0.9375rem;
@@ -482,6 +489,24 @@ a {
 	font-weight: 400;
 }
 
+.form__input::-webkit-input-placeholder {
+	color: #ddf0f1;
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+.form__input:-ms-input-placeholder {
+	color: #ddf0f1;
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+.form__input::-ms-input-placeholder {
+	color: #ddf0f1;
+	font-size: 1rem;
+	font-weight: 400;
+}
+
 .form__input::placeholder {
 	color: #ddf0f1;
 	font-size: 1rem;
@@ -500,7 +525,7 @@ a {
 	align-items: center;
 	color: #C94800;
 	display: flex;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 14px;
 	font-weight: 400;
 	justify-content: center;
@@ -544,7 +569,7 @@ a {
 }
 
 .layout-about {
-	margin-top: 5.1875rem;
+	padding-top: 5.1875rem;
 }
 
 .layout-archive-voice {
@@ -564,7 +589,7 @@ a {
 }
 
 .layout-campaign {
-	margin-top: 2.75rem;
+	padding-top: 2.75rem;
 }
 
 .layout-confirmation {
@@ -656,7 +681,7 @@ a {
 }
 
 .page-404 {
-	background-color: #000;
+	background-color: #2b2b2b;
 	padding-bottom: 0.9375rem;
 	padding-top: 5rem;
 }
@@ -685,7 +710,7 @@ a {
 }
 
 .page-404__title {
-	font-family: "Lato", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 5rem;
 	font-weight: 400;
 	letter-spacing: 0.5em;
@@ -694,7 +719,7 @@ a {
 }
 
 .page-404__text {
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	letter-spacing: 0.01em;
 	line-height: 1.5;
@@ -715,13 +740,17 @@ a {
 
 .page-about-gallery__image {
 	cursor: pointer;
+  overflow: hidden;
+}
+
+.page-about-gallery__image img {
+  height: calc(100% + 100px);
 }
 
 .page-about-gallery__image:nth-child(6n+1) img,
 .page-about-gallery__image:nth-child(6n+6) img {
 	-o-object-fit: cover;
 	aspect-ratio: 345/219;
-	height: auto;
 	object-fit: cover;
 }
 
@@ -731,7 +760,6 @@ a {
 .page-about-gallery__image:nth-child(6n+5) img {
 	-o-object-fit: cover;
 	aspect-ratio: 345/219;
-	height: auto;
 	object-fit: cover;
 }
 
@@ -756,7 +784,7 @@ a {
 
 .page-about-lead__body-title {
 	color: #fff;
-	font-family: "Gotu", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: min(10.666vw, 3.125rem);
 	font-weight: 400;
 	left: 7%;
@@ -771,7 +799,7 @@ a {
 
 .page-about-lead__text {
 	color: #131e29;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.5;
@@ -794,7 +822,7 @@ a {
 }
 
 .page-complete__content {
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.45;
@@ -826,7 +854,7 @@ a {
 }
 
 .page-contact__form {
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	position: relative;
 }
 
@@ -960,7 +988,7 @@ a {
 }
 
 .sidebar-popular__text {
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 500;
 	line-height: 1.3;
@@ -987,16 +1015,16 @@ a {
 
 .single-main__date {
 	color: #131e29;
-	font-family: "Gotu", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 0.875rem;
 	font-weight: 400;
 	line-height: 1.2857142857;
 }
 
 .single-main__title {
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #2b2b2b;
 	color: #131e29;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1.5rem;
 	font-weight: 500;
 	line-height: 1;
@@ -1026,8 +1054,8 @@ a {
 .single-pagenavi__prev,
 .single-pagenavi__next {
 	background-color: #fff;
-	border: 0.0625rem solid #000;
-	color: #000;
+	border: 0.0625rem solid #2b2b2b;
+	color: #2b2b2b;
 	cursor: pointer;
 	display: inline-block;
 	line-height: 1;
@@ -1053,8 +1081,8 @@ a {
 .single-pagenavi__prev::after,
 .single-pagenavi__next::after {
 	aspect-ratio: 1/1;
-	border-bottom: 0.0625rem solid #000;
-	border-right: 0.0625rem solid #000;
+	border-bottom: 0.0625rem solid #2b2b2b;
+	border-right: 0.0625rem solid #2b2b2b;
 	content: "";
 	height: auto;
 	position: absolute;
@@ -1071,8 +1099,8 @@ a {
 .single-pagenavi__prev:hover::after,
 .single-pagenavi__next:hover::after {
 	aspect-ratio: 1/1;
-	border-bottom: 0.0625rem solid #000;
-	border-right: 0.0625rem solid #000;
+	border-bottom: 0.0625rem solid #2b2b2b;
+	border-right: 0.0625rem solid #2b2b2b;
 	content: "";
 	height: auto;
 	position: absolute;
@@ -1097,8 +1125,8 @@ a {
 
 .single-pagenavi__prev:hover,
 .single-pagenavi__next:hover {
-	background-color: #000;
-	border-color: #000;
+	background-color: #2b2b2b;
+	border-color: #2b2b2b;
 	color: #fff;
 	opacity: 1;
 }
@@ -1216,8 +1244,8 @@ a {
 }
 
 .about-main-image__body-title {
-	color: #000;
-	font-family: "Gotu", sans-serif;
+	color: #2b2b2b;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 2.5rem;
 	font-weight: 400;
 	line-height: 1.02;
@@ -1229,10 +1257,11 @@ a {
 
 .about-main-image__text {
 	color: #131e29;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1.0625rem;
 	font-weight: 400;
-	line-height: 1.6;
+	line-height: 1.7;
+	text-align: justify;
 }
 
 .about-main-image__text span {
@@ -1247,8 +1276,18 @@ a {
 
 .blog-card {
 	background-color: #fff;
-	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	-webkit-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
+
+.blog-card:hover .blog-card__title {
+  color: #867050;
+}
+
+.blog-card:hover .blog-card__img img {
+  transform: scale(1.1);
+}
+
 
 .blog-card + .blog-card {
 	margin-top: 2.5rem;
@@ -1258,34 +1297,42 @@ a {
 	display: inline-block;
 }
 
+.blog-card__img {
+  overflow: hidden;
+}
+
 .blog-card__img img {
 	-o-object-fit: cover;
 	aspect-ratio: 301/201;
 	height: auto;
+  transition: transform 0.6s ease;
 	object-fit: cover;
+  display: block;
+  width: 100%;
 }
 
 .blog-card__body {
 	color: #131e29;
-	padding: 1.125rem;
+	padding: 1.4rem 1.5rem 1.9rem;
 }
 
 .blog-card__title {
-	border-bottom: 1px solid #000;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 500;
-	line-height: 1.5;
-	margin-top: 0.0625rem;
-	padding-bottom: 0.5rem;
+	line-height: 1;
+	margin-top: 0.5rem;
 }
 
 .blog-card__text {
-	font-family: "Noto Sans JP", sans-serif;
-	font-size: 1rem;
+	font-family: "Noto Serif JP", serif;
+	font-size: 0.95rem;
 	font-weight: 400;
-	line-height: 1.5;
+	line-height: 1.6;
+  border-top: 1px solid #2b2b2b;
 	margin-top: 1rem;
+  padding-top: 1.2rem;
+	text-align: justify;
 }
 
 .blog-common__sidebar {
@@ -1295,7 +1342,7 @@ a {
 .breadcrumb span {
 	color: #0d2936;
 	display: inline-block;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 0.875rem;
 	font-weight: 400;
 	line-height: 1;
@@ -1355,12 +1402,12 @@ a {
 }
 
 .button {
-	background-color: #000;
-	border: solid 1px #000;
+	background-color: #2b2b2b;
+	border: solid 1px #2b2b2b;
 	color: #fff;
 	cursor: pointer;
 	display: inline-block;
-	font-family: "Gotu", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 1.5714285714;
@@ -1374,7 +1421,7 @@ a {
 }
 
 .button::before {
-	border: solid 1px #000;
+	border: solid 1px #2b2b2b;
 	content: "";
 	display: inline-block;
 	height: calc(100% + 1px);
@@ -1433,7 +1480,7 @@ a {
 }
 
 .button:hover {
-	color: #000;
+	color: #2b2b2b;
 	opacity: 1;
 }
 
@@ -1444,7 +1491,7 @@ a {
 
 .button:hover span::before,
 .button:hover span::after {
-	background: #000;
+	background: #2b2b2b;
 }
 
 .campaign-card {
@@ -1488,10 +1535,10 @@ a {
 }
 
 .campaign-card__category span {
-	border: 1px solid #000;
-	color: #000;
+	border: 1px solid #2b2b2b;
+	color: #2b2b2b;
 	display: inline-block;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 0.75rem;
 	font-weight: 400;
 	line-height: 1.8333333333;
@@ -1500,7 +1547,7 @@ a {
 
 .campaign-card__title-main {
 	color: #131e29;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 1rem;
 	font-weight: 500;
 	line-height: 1.5;
@@ -1510,7 +1557,7 @@ a {
 }
 
 .campaign-card__title-main::after {
-	background-color: #000;
+	background-color: #2b2b2b;
 	bottom: 0;
 	content: "";
 	display: inline-block;
@@ -1523,7 +1570,7 @@ a {
 
 .campaign-card__title-sub {
 	color: #131e29;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 0.875rem;
 	font-weight: 400;
 	line-height: 1.7142857143;
@@ -1532,8 +1579,8 @@ a {
 }
 
 .campaign-card__price {
-	color: #000;
-	font-family: "Lato", sans-serif;
+	color: #2b2b2b;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 2rem;
 	font-weight: 700;
 	line-height: 1.1;
@@ -1546,7 +1593,7 @@ a {
 	-webkit-text-decoration: line-through 3px solid #C94800;
 	color: #131e29;
 	display: inline-block;
-	font-family: "Lato", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 1.25rem;
 	font-weight: 700;
 	line-height: 1;
@@ -1559,9 +1606,10 @@ a {
 
 .campaign-card__text {
 	display: none;
-	font-size: 0.84375rem;
-	line-height: 1.5;
+	font-size: 0.65rem;
+	line-height: 1.75;
 	margin-top: 0.9375rem;
+	text-align: justify;
 }
 
 .category-list__items {
@@ -1574,9 +1622,9 @@ a {
 
 .category-list__item {
 	background-color: #fff;
-	border: 1px solid #000;
-	color: #000;
-	font-family: "Noto Sans JP", sans-serif;
+	border: 1px solid #2b2b2b;
+	color: #2b2b2b;
+	font-family: "Noto Serif JP", serif;
 	font-size: 0.875rem;
 	font-weight: 400;
 	line-height: 1.5714285714;
@@ -1586,12 +1634,12 @@ a {
 }
 
 .category-list__item.is-active {
-	background-color: #000;
+	background-color: #2b2b2b;
 	color: #fff;
 }
 
 .category-list__item:hover {
-	background-color: #000;
+	background-color: #2b2b2b;
 	color: #fff;
 }
 
@@ -1606,7 +1654,7 @@ a {
 }
 
 .js-colorbox .color {
-	background-color: #000;
+	background-color: #2b2b2b;
 	height: 100%;
 	position: absolute;
 	right: 0;
@@ -1621,7 +1669,7 @@ a {
 }
 
 .confirmation__title {
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1.5rem;
 	font-weight: 500;
 	line-height: 1;
@@ -1629,7 +1677,7 @@ a {
 
 .confirmation__content {
 	color: #131e29;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 2;
@@ -1646,14 +1694,14 @@ a {
 }
 
 .date {
-	font-family: "Gotu", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 0.75rem;
 	font-weight: 400;
 	line-height: 1;
 }
 
 .footer {
-	background-color: #000;
+	background-color: #2b2b2b;
 	color: #fff;
 	padding: 3rem 0 3.5rem;
 }
@@ -1707,6 +1755,7 @@ a {
 .footer__nav-content {
 	display: flex;
 	flex-direction: column;
+	font-family: "Cormorant Garamond", serif;
 	row-gap: 1.875rem;
 }
 
@@ -1737,7 +1786,7 @@ a {
 
 .footer__copyright {
 	display: block;
-	font-family: "Gotu", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 0.75rem;
 	font-weight: 400;
 	line-height: 1;
@@ -1754,7 +1803,7 @@ a {
 
 .form-agree input[type=checkbox] {
 	background: #fff;
-	border: 1px solid #000;
+	border: 1px solid #2b2b2b;
 	cursor: pointer;
 	display: block;
 	height: 1.375rem;
@@ -1793,12 +1842,12 @@ a {
 }
 
 .form-button {
-	background-color: #000;
-	border: solid 1px #000;
+	background-color: #2b2b2b;
+	border: solid 1px #2b2b2b;
 	color: #fff;
 	cursor: pointer;
 	display: inline-block;
-	font-family: "Gotu", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 1.5714285714;
@@ -1811,7 +1860,7 @@ a {
 }
 
 .form-button::before {
-	border: solid 1px #000;
+	border: solid 1px #2b2b2b;
 	content: "";
 	display: inline-block;
 	height: calc(100% + 1px);
@@ -1838,7 +1887,7 @@ a {
 }
 
 .form-button:hover {
-	color: #000;
+	color: #2b2b2b;
 	opacity: 1;
 }
 
@@ -1882,7 +1931,7 @@ a {
 
 .form-button:hover span::before,
 .form-button:hover span::after {
-	background: #000;
+	background: #2b2b2b;
 }
 
 .form-button input {
@@ -1890,7 +1939,7 @@ a {
 }
 
 .form-button:hover input {
-	color: #000;
+	color: #2b2b2b;
 }
 
 span.wpcf7-spinner {
@@ -1917,7 +1966,7 @@ span.wpcf7-spinner {
 
 .form-checkbox input[type=checkbox] {
 	background: #fff;
-	border: 1px solid #000;
+	border: 1px solid #2b2b2b;
 	cursor: pointer;
 	display: block;
 	height: 0.875rem;
@@ -1945,7 +1994,7 @@ span.wpcf7-spinner {
 }
 
 .form-select select {
-	border: 1px solid #000;
+	border: 1px solid #2b2b2b;
 	color: #131e29;
 	cursor: pointer;
 	font-size: 0.875rem;
@@ -1962,7 +2011,7 @@ span.wpcf7-spinner {
 
 .form-select::after {
 	border: 0.375rem solid transparent;
-	border-top: 0.5625rem solid #000;
+	border-top: 0.5625rem solid #2b2b2b;
 	content: "";
 	cursor: pointer;
 	pointer-events: none;
@@ -1991,7 +2040,7 @@ span.wpcf7-spinner {
 }
 
 .header.is-open {
-	background-color: #000;
+	background-color: #2b2b2b;
 	transition: background-color 0.2s;
 }
 
@@ -2035,24 +2084,20 @@ span.wpcf7-spinner {
 	display: flex;
 	flex-direction: column;
 	height: 4.375rem;
-	padding-top: 0.9375rem;
+	padding-top: 1rem;
 }
 
 .header__nav {
 	display: none;
-	height: 2.5rem;
+	/* height: 2.5rem; */
 }
 
 .header__nav-items {
 	-moz-column-gap: 2.51875rem;
 	column-gap: 2.51875rem;
 	display: flex;
-	height: inherit;
+	/* height: inherit; */
 	justify-content: space-between;
-}
-
-.header__nav-item {
-	height: inherit;
 }
 
 .header__nav-item a {
@@ -2060,7 +2105,7 @@ span.wpcf7-spinner {
 	color: #fff;
 	display: flex;
 	flex-direction: column;
-	font-family: "Gotu", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 1.125rem;
 	font-weight: 400;
 	height: inherit;
@@ -2070,43 +2115,85 @@ span.wpcf7-spinner {
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
 }
 
+/* ナビ項目全体のホバーで文字色変更 */
+.header__nav-item a:hover .before span,
+ .header__nav-item a:hover .after span {
+  color: #867050;
+}
+
+/* 表示構造の基本設定 */
+.text-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  letter-spacing: 0.1em;
+  padding-inline: 0.3em;
+}
+
+
+/* .before / .after 共通のスタイル */
+.before,
+.after {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.before {
+  z-index: 2; /* 上に表示 */
+}
+
+.after {
+  z-index: 1; /* 下に隠れる */
+}
+
+/* 1文字ごとのspan（SplitTypeの出力） */
+.before span,
+.after span {
+  line-height: 1.1;
+  transition: color 0.3s ease-out;
+  white-space: pre;
+  display: inline-block;
+  transform: translateY(0%);
+}
+
+/* 初期状態：afterは下に隠す */
+.after span {
+  transform: translateY(100%);
+}
+
+.text-original {
+  visibility: hidden;
+  height: auto;
+  display: inline-block;
+  white-space: pre;
+  overflow: hidden;
+}
+
+.char {
+  display: inline-block;
+  white-space: pre;
+}
+
+.char.is-space {
+  letter-spacing: 0;/* 空白は字間をゼロに */
+  width: 0.2em; /* ← 空白の幅を明示的に確保 */
+}
+
+/* 念のため：空でも強制的にスペース表示 */
+.char.is-space:empty::before {
+  content: "\00a0";
+}
+
+
+
+
 .header__nav-item a.js-change-color {
 	color: #131e29;
 	text-shadow: none;
-}
-
-.header__nav-item a::after {
-	background: #fff;
-	border-radius: 4px;
-	bottom: 1.125rem;
-	content: "";
-	height: 1px;
-	left: 0;
-	position: absolute;
-	transform: scale(0, 1);
-	transform-origin: center top;
-	transition: transform 0.3s;
-	width: 100%;
-}
-
-.header__nav-item a.js-change-color::after {
-	background: #131e29;
-}
-
-.header__nav-item a:hover::after {
-	opacity: 1;
-	transform: scale(1, 1);
-}
-
-.header__nav-item a:hover {
-	opacity: 1;
-}
-
-.header__nav-item span {
-	display: block;
-	font-family: "Noto Sans JP", sans-serif;
-	font-size: 0.625rem;
-	margin-top: 0.4375rem;
 }
 
 .header__hamburger {
@@ -2168,7 +2255,7 @@ span.wpcf7-spinner {
 }
 
 .header__drawer {
-	background-color: #000;
+	background-color: #2b2b2b;
 	display: none;
 	height: calc(100vh - 80px);
 	left: 0;
@@ -2240,29 +2327,37 @@ span.wpcf7-spinner {
 
 .information-card__body {
 	color: #131e29;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	margin-top: 1.59375rem;
 }
 
 .information-card__title {
-	border-bottom: 1px solid #000;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 1.25rem;
 	font-weight: 700;
 	line-height: 1.2;
-	padding-bottom: 0.625rem;
 }
 
 .information-card__text {
-	color: #131e29;
+	border-top: 1px solid #2b2b2b;
+}
+
+.information-card__text span {
+	color: #eee;
 	font-size: 1rem;
 	font-weight: 400;
 	letter-spacing: 0em;
-	line-height: 1.7;
+	line-height: 1.8;
 	margin-top: 0.5rem;
+	text-align: justify;
+}
+
+.information-card__text span.is-active {
+  color: #131e29;
 }
 
 .information__button {
-	margin-top: 1.25rem;
+	margin-top: 0.9375rem;
 	text-align: center;
 }
 
@@ -2304,6 +2399,12 @@ span.wpcf7-spinner {
 	width: 92%;
 }
 
+.mv__swiper,
+.mv-swiper {
+  will-change: transform;
+}
+
+
 .mv-swiper,
 .mv-swiper__image,
 .mv-swiper__image img {
@@ -2312,7 +2413,8 @@ span.wpcf7-spinner {
 
 .mv-swiper__image img {
 	-o-object-fit: cover;
-	filter: brightness(0.9);
+	-webkit-filter: brightness(0.9);
+	        filter: brightness(0.9);
 	object-fit: cover;
 }
 
@@ -2320,6 +2422,7 @@ span.wpcf7-spinner {
 	height: 100vh;
 	position: relative;
 	z-index: 1;
+  overflow: hidden;
 }
 
 .mv__inner {
@@ -2338,7 +2441,7 @@ span.wpcf7-spinner {
 }
 
 .mv__main-title {
-	font-family: "Lato", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 2.5rem;
 	font-weight: 400;
 	letter-spacing: 0.3em;
@@ -2350,20 +2453,21 @@ span.wpcf7-spinner {
 }
 
 .mv__sub-title {
-	font-family: "Gotu", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 1.25rem;
 	font-weight: 400;
 	line-height: 1.65;
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+  margin-top: 0.5rem;
 }
 
 .page-404-button {
 	background-color: #fff;
 	border: solid 1px #fff;
-	color: #000;
+	color: #2b2b2b;
 	cursor: pointer;
 	display: inline-block;
-	font-family: "Gotu", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 1.5714285714;
@@ -2388,7 +2492,7 @@ span.wpcf7-spinner {
 }
 
 .page-404-button::after {
-	background: #000;
+	background: #2b2b2b;
 	content: "";
 	display: inline-block;
 	height: 100%;
@@ -2407,7 +2511,7 @@ span.wpcf7-spinner {
 }
 
 .page-404-button span::before {
-	background: #000;
+	background: #2b2b2b;
 	border-radius: 4px;
 	content: "";
 	display: block;
@@ -2422,7 +2526,7 @@ span.wpcf7-spinner {
 }
 
 .page-404-button span::after {
-	background: #000;
+	background: #2b2b2b;
 	border-radius: 4px;
 	content: "";
 	display: block;
@@ -2452,7 +2556,8 @@ span.wpcf7-spinner {
 .page-campaign-card {
 	background-color: #fff;
 	display: flex;
-	filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+	-webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+	        filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 	flex-direction: column;
 	height: 100%;
 }
@@ -2473,10 +2578,10 @@ span.wpcf7-spinner {
 }
 
 .page-campaign-card__category span {
-	border: 1px solid #000;
-	color: #000;
+	border: 1px solid #2b2b2b;
+	color: #2b2b2b;
 	display: inline-block;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 0.75rem;
 	font-weight: 400;
 	line-height: 1.8333333333;
@@ -2484,9 +2589,9 @@ span.wpcf7-spinner {
 }
 
 .page-campaign-card__title-main {
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #2b2b2b;
 	color: #131e29;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 500;
 	line-height: 1.5;
@@ -2495,7 +2600,7 @@ span.wpcf7-spinner {
 
 .page-campaign-card__title-sub {
 	color: #131e29;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 0.875rem;
 	font-weight: 400;
 	line-height: 1.7142857143;
@@ -2504,8 +2609,8 @@ span.wpcf7-spinner {
 }
 
 .page-campaign-card__price {
-	color: #000;
-	font-family: "Lato", sans-serif;
+	color: #2b2b2b;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 2rem;
 	font-weight: 700;
 	line-height: 1.1;
@@ -2518,7 +2623,7 @@ span.wpcf7-spinner {
 	-webkit-text-decoration: line-through 3px solid #C94800;
 	color: #131e29;
 	display: inline-block;
-	font-family: "Lato", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 1.25rem;
 	font-weight: 700;
 	line-height: 1;
@@ -2532,18 +2637,19 @@ span.wpcf7-spinner {
 .page-campaign-card__text {
 	color: #131e29;
 	flex: 1;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 400;
 	letter-spacing: 0em;
-	line-height: 1.5;
+	line-height: 1.8;
 	margin-top: 1.5rem;
 	padding-left: 1.5rem;
 	padding-right: 1.5rem;
+	text-align: justify;
 }
 
 .page-campaign-card__period {
-	font-family: "Lato", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 700;
 	line-height: 1.125;
@@ -2557,13 +2663,13 @@ span.wpcf7-spinner {
 }
 
 .page-price-item {
-	border: 1px solid #000;
-	font-family: "Noto Sans JP", sans-serif;
+	border: 1px solid #2b2b2b;
+	font-family: "Noto Serif JP", serif;
 }
 
 .page-price-item__title {
-	background-color: #000;
-	border: 1px solid #000;
+	background-color: #2b2b2b;
+	border: 1px solid #2b2b2b;
 	color: #fff;
 	font-size: 1rem;
 	font-weight: 700;
@@ -2597,7 +2703,7 @@ span.wpcf7-spinner {
 }
 
 .page-price-item__body:not(:last-child) {
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #2b2b2b;
 }
 
 .page-price-item__body:nth-child(1) .page-price-item__course,
@@ -2616,7 +2722,7 @@ span.wpcf7-spinner {
 }
 
 .page-price-item__course {
-	border-right: 1px solid #000;
+	border-right: 1px solid #2b2b2b;
 	justify-content: center;
 	padding-left: 0.625rem;
 	padding-right: 0.625rem;
@@ -2631,7 +2737,7 @@ span.wpcf7-spinner {
 
 .page-top {
 	background-color: rgba(255, 255, 255, 0.8);
-	border: 1px solid #000;
+	border: 1px solid #2b2b2b;
 	border-radius: 50%;
 	height: 3rem;
 	opacity: 0;
@@ -2646,7 +2752,7 @@ span.wpcf7-spinner {
 }
 
 .page-top::before {
-	background: #000;
+	background: #2b2b2b;
 	border-radius: 4px;
 	content: "";
 	display: block;
@@ -2659,7 +2765,7 @@ span.wpcf7-spinner {
 }
 
 .page-top::after {
-	background: #000;
+	background: #2b2b2b;
 	border-radius: 4px;
 	content: "";
 	display: block;
@@ -2689,11 +2795,11 @@ span.wpcf7-spinner {
 .wp-pagenavi a,
 .wp-pagenavi span {
 	background-color: #fff;
-	border: 1px solid #000;
-	color: #000;
+	border: 1px solid #2b2b2b;
+	color: #2b2b2b;
 	cursor: pointer;
 	display: inline-block;
-	font-family: "Lato", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 700;
 	height: 2.375rem;
@@ -2707,8 +2813,8 @@ span.wpcf7-spinner {
 .wp-pagenavi a:hover,
 .pagenavi__previouspostslink:hover,
 .pagenavi__nextpostslink:hover {
-	background-color: #000;
-	border-color: #000;
+	background-color: #2b2b2b;
+	border-color: #2b2b2b;
 	color: #fff;
 	opacity: 1;
 }
@@ -2720,8 +2826,8 @@ span.wpcf7-spinner {
 }
 
 .wp-pagenavi span.current {
-	background-color: #000;
-	border-color: #000;
+	background-color: #2b2b2b;
+	border-color: #2b2b2b;
 	color: #fff;
 }
 
@@ -2741,8 +2847,8 @@ span.wpcf7-spinner {
 .wp-pagenavi .previouspostslink::after,
 .wp-pagenavi .nextpostslink::after {
 	aspect-ratio: 1/1;
-	border-bottom: 0.0625rem solid #000;
-	border-right: 0.0625rem solid #000;
+	border-bottom: 0.0625rem solid #2b2b2b;
+	border-right: 0.0625rem solid #2b2b2b;
 	content: "";
 	height: auto;
 	position: absolute;
@@ -2767,7 +2873,7 @@ span.wpcf7-spinner {
 
 .price-item {
 	color: #131e29;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 }
 
 .price-item + .price-item {
@@ -2775,7 +2881,7 @@ span.wpcf7-spinner {
 }
 
 .price-item__title {
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #2b2b2b;
 	font-size: 1rem;
 	font-weight: 700;
 	line-height: 1.5;
@@ -2806,14 +2912,14 @@ span.wpcf7-spinner {
 }
 
 .section-title__main {
-	font-family: "Gotu", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 2rem;
 	line-height: 1;
 	text-align: center;
 }
 
 .section-title__main::first-letter {
-	color: #000;
+	color: #2b2b2b;
 }
 
 .section-title__main--contact {
@@ -2822,10 +2928,10 @@ span.wpcf7-spinner {
 
 .sidebar-accordion__year {
 	background-color: #fff;
-	color: #000;
+	color: #2b2b2b;
 	cursor: pointer;
 	display: inline-block;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1.375rem;
 	font-weight: 400;
 	line-height: 1;
@@ -2835,7 +2941,7 @@ span.wpcf7-spinner {
 }
 
 .sidebar-accordion__year::before {
-	border-color: transparent transparent transparent #000;
+	border-color: transparent transparent transparent #2b2b2b;
 	border-style: solid;
 	border-width: 0.5rem 0px 0.5rem 0.9375rem;
 	content: "";
@@ -2853,9 +2959,9 @@ span.wpcf7-spinner {
 }
 
 .sidebar-accordion__year span {
-	color: #000;
+	color: #2b2b2b;
 	display: inline-block;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1.5rem;
 	font-weight: 400;
 	line-height: 1;
@@ -2863,7 +2969,7 @@ span.wpcf7-spinner {
 }
 
 .sidebar-accordion__year span::before {
-	border-color: transparent transparent transparent #000;
+	border-color: transparent transparent transparent #2b2b2b;
 	border-style: solid;
 	border-width: 0.625rem 0px 0.625rem 1.125rem;
 	content: "";
@@ -2890,8 +2996,8 @@ span.wpcf7-spinner {
 }
 
 .sidebar-accordion__month a {
-	color: #000;
-	font-family: "Noto Sans JP", sans-serif;
+	color: #2b2b2b;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1.375rem;
 	font-weight: 400;
 	line-height: 1;
@@ -2899,7 +3005,7 @@ span.wpcf7-spinner {
 }
 
 .sidebar-accordion__month a::before {
-	border-color: transparent transparent transparent #000;
+	border-color: transparent transparent transparent #2b2b2b;
 	border-style: solid;
 	border-width: 0.5rem 0px 0.5rem 0.9375rem;
 	content: "";
@@ -2914,7 +3020,8 @@ span.wpcf7-spinner {
 	-webkit-backface-visibility: hidden;
 	-webkit-transform: translate3d(0, 0, 0);
 	-webkit-transform-style: preserve-3d;
-	filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+	-webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+	        filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .sidebar-campaign-card__item {
@@ -2946,7 +3053,7 @@ span.wpcf7-spinner {
 .sidebar-campaign-card__title-main {
 	color: #131e29;
 	flex-grow: 1;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 500;
 	line-height: 1.5;
@@ -2968,7 +3075,7 @@ span.wpcf7-spinner {
 
 .sidebar-campaign-card__title-sub {
 	color: #131e29;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 0.875rem;
 	font-weight: 400;
 	line-height: 1.7142857143;
@@ -2977,8 +3084,8 @@ span.wpcf7-spinner {
 }
 
 .sidebar-campaign-card__price {
-	color: #000;
-	font-family: "Lato", sans-serif;
+	color: #2b2b2b;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 2rem;
 	font-weight: 700;
 	line-height: 1.1;
@@ -2991,7 +3098,7 @@ span.wpcf7-spinner {
 	-webkit-text-decoration: line-through 3px solid #C94800;
 	color: #131e29;
 	display: inline-block;
-	font-family: "Lato", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 1.25rem;
 	font-weight: 700;
 	line-height: 1;
@@ -3004,7 +3111,8 @@ span.wpcf7-spinner {
 
 .sidebar-review__content {
 	background-color: #fff;
-	filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+	-webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+	        filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 	margin-top: 1.375rem;
 }
 
@@ -3017,8 +3125,8 @@ span.wpcf7-spinner {
 
 .sidebar-review__body {
 	color: #131e29;
-	font-family: "Noto Sans JP", sans-serif;
-	padding: 0.9375rem 1.5rem 1.5rem;
+	font-family: "Noto Serif JP", serif;
+	padding: 0.9375rem 1.4375rem 1.375rem;
 }
 
 .sidebar-review__age {
@@ -3043,14 +3151,15 @@ span.wpcf7-spinner {
 
 .sidebar-review__text {
 	color: #131e29;
-	font-size: 1rem;
+	font-size: 0.875rem;
 	font-weight: 500;
 	line-height: 1.5;
 	margin-top: 0.625rem;
+	text-align: justify;
 }
 
 .sidebar-title {
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1.5rem;
 	font-weight: 400;
 	line-height: 1;
@@ -3059,7 +3168,7 @@ span.wpcf7-spinner {
 }
 
 .sidebar-title::before {
-	background-color: #000;
+	background-color: #2b2b2b;
 	content: "";
 	height: 100%;
 	left: 0;
@@ -3071,11 +3180,12 @@ span.wpcf7-spinner {
 
 .single-content > * {
 	color: #131e29;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 400;
-	line-height: 1.5;
+	line-height: 1.7;
 	margin-top: 1.5rem;
+	text-align: justify;
 }
 
 .single-content div img {
@@ -3092,7 +3202,7 @@ span.wpcf7-spinner {
 .single-content ul li span {
 	color: #131e29;
 	display: inline-block;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.7;
@@ -3126,7 +3236,8 @@ span.wpcf7-spinner {
 .sub-mv__picture img {
 	-o-object-fit: cover;
 	aspect-ratio: 1440/748;
-	filter: brightness(0.9);
+	-webkit-filter: brightness(0.9);
+	        filter: brightness(0.9);
 	height: 100%;
 	object-fit: cover;
 }
@@ -3137,7 +3248,7 @@ span.wpcf7-spinner {
 
 .sub-mv__title {
 	color: #fff;
-	font-family: "Lato", sans-serif;
+	font-family: "Cormorant Garamond", serif;
 	font-size: min(10.666vw, 3.25rem);
 	font-weight: 400;
 	left: 50%;
@@ -3153,7 +3264,7 @@ span.wpcf7-spinner {
 }
 
 .tab-content {
-	border: 1px solid #000;
+	border: 1px solid #2b2b2b;
 	padding: 1.5rem 1.375rem 1.4375rem;
 }
 
@@ -3162,16 +3273,17 @@ span.wpcf7-spinner {
 }
 
 .tab-content__item.is-active {
-	animation: fade 0.3s;
+	-webkit-animation: fade 0.3s;
+	        animation: fade 0.3s;
 	display: block;
 }
 
 .tab-content__body {
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 }
 
 .tab-content__title {
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #2b2b2b;
 	color: #131e29;
 	font-size: 1.5rem;
 	font-weight: 700;
@@ -3183,8 +3295,9 @@ span.wpcf7-spinner {
 	color: #131e29;
 	font-size: 1rem;
 	font-weight: 400;
-	line-height: 1.5;
+	line-height: 1.8;
 	margin-top: 0.5rem;
+	text-align: justify;
 }
 
 .tab-content__image {
@@ -3210,10 +3323,10 @@ span.wpcf7-spinner {
 	background-color: #fff;
 	border: 0.0625rem solid #131e29;
 	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-	color: #000;
+	color: #2b2b2b;
 	cursor: pointer;
 	display: flex;
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "Noto Serif JP", serif;
 	font-size: 0.875rem;
 	font-weight: 400;
 	justify-content: center;
@@ -3225,18 +3338,19 @@ span.wpcf7-spinner {
 }
 
 .tab-menu__item:hover {
-	background-color: #000;
+	background-color: #2b2b2b;
 	color: #fff;
 }
 
 .tab-menu__item.is-active {
-	background-color: #000;
+	background-color: #2b2b2b;
 	color: #fff;
 }
 
 .voice-card {
-	filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
-	font-family: "Noto Sans JP", sans-serif;
+	-webkit-filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+	        filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+	font-family: "Noto Serif JP", serif;
 }
 
 .voice-card + .voice-card {
@@ -3251,7 +3365,7 @@ span.wpcf7-spinner {
 }
 
 .voice-card__content {
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #2b2b2b;
 	display: flex;
 	flex: 1;
 	flex-direction: column;
@@ -3274,8 +3388,8 @@ span.wpcf7-spinner {
 }
 
 .voice-card__category {
-	border: 1px solid #000;
-	color: #000;
+	border: 1px solid #2b2b2b;
+	color: #2b2b2b;
 	display: inline-block;
 	font-size: 0.75rem;
 	font-weight: 400;
@@ -3287,6 +3401,7 @@ span.wpcf7-spinner {
 .voice-card__title {
 	color: #131e29;
 	flex-grow: 1;
+	font-family: "Cormorant Garamond", serif;
 	font-size: 1rem;
 	font-weight: 500;
 	line-height: 1.42;
@@ -3308,8 +3423,9 @@ span.wpcf7-spinner {
 	color: #131e29;
 	font-size: 1rem;
 	font-weight: 400;
-	line-height: 1.5;
+	line-height: 1.7;
 	margin-top: 1rem;
+	text-align: justify;
 }
 
 .voice-cards__card {
@@ -3378,7 +3494,8 @@ html {
 }
 
 .contact {
-	filter: initial;
+	-webkit-filter: initial;
+	        filter: initial;
 }
 
 .contact__inner {
@@ -3394,14 +3511,16 @@ html {
 }
 
 .contact__content-first {
-	border-right: 1px solid #000;
-	filter: initial;
+	border-right: 1px solid #2b2b2b;
+	-webkit-filter: initial;
+	        filter: initial;
 	padding: 0 5.125rem 0 0;
 	width: 53.35%;
 }
 
 .contact__content-second {
-	filter: initial;
+	-webkit-filter: initial;
+	        filter: initial;
 	flex: 1;
 	margin-top: 1.3125rem;
 	padding-left: 1.0625rem;
@@ -3417,7 +3536,8 @@ html {
 
 .contact__body {
 	display: flex;
-	filter: initial;
+	-webkit-filter: initial;
+	        filter: initial;
 	flex-direction: column;
 	justify-content: space-between;
 	margin-top: 0rem;
@@ -3491,7 +3611,7 @@ html {
 }
 
 .layout-about {
-	margin-top: 8.625rem;
+	padding-top: 8.625rem;
 }
 
 .layout-archive-voice {
@@ -3507,7 +3627,7 @@ html {
 }
 
 .layout-campaign {
-	margin-top: 7.5rem;
+	padding-top: 7.5rem;
 }
 
 .layout-confirmation {
@@ -3871,7 +3991,7 @@ html {
 }
 
 .campaign-card__body {
-	padding: 1.25rem 1rem;
+	padding: 1.5rem 1.5rem 1.65rem;
 }
 
 .campaign-card__category span {
@@ -4015,7 +4135,8 @@ html {
 
 .header__nav {
 	display: block;
-	margin-top: 0.625rem;
+	margin-top: 1rem;
+  margin-left: 1.1rem;
 	width: 100%;
 }
 
@@ -4043,18 +4164,23 @@ html {
 	flex-direction: column;
 	justify-content: space-between;
 	margin-top: 0rem;
-	padding-top: 3.125rem;
+	padding-top: 2.1875rem;
 }
 
 .information-card__title {
-	font-size: 1.5rem;
+	font-size: 2rem;
 	line-height: 1;
-	padding-bottom: 0.9375rem;
 }
 
 .information-card__text {
-	color: #131e29;
-	margin-top: 0.46875rem;
+	margin-top: 1.3rem;
+  padding-top: 1.4rem;
+}
+
+
+.information-card__text span  {
+	color: #eee;
+	margin-top: 0.625rem;
 }
 
 .inner {
@@ -4102,6 +4228,7 @@ html {
 }
 
 .page-campaign-card__text {
+	line-height: 2;
 	margin-top: 1.25rem;
 }
 
@@ -4186,6 +4313,7 @@ html {
 }
 
 .single-content > * {
+	line-height: 2;
 	margin-top: 2.5rem;
 }
 
@@ -4219,7 +4347,7 @@ html {
 }
 
 .tab-content__text {
-	margin-top: 0.5625rem;
+	margin-top: 1rem;
 }
 
 .tab-content__image {
@@ -4261,6 +4389,7 @@ html {
 }
 
 .voice-card__text {
+	line-height: 1.9;
 	margin-top: 2.46875rem;
 }
 
@@ -4272,7 +4401,7 @@ html {
 }
 
 .voice-cards__card {
-	padding: 1.5rem;
+	padding: 1.5rem 1.5rem 1.75rem;
 }
 
 }
@@ -4293,6 +4422,18 @@ html {
 
 }
 
+@-webkit-keyframes fade {
+
+from {
+	opacity: 0;
+}
+
+to {
+	opacity: 1;
+}
+
+}
+
 @keyframes fade {
 
 from {
@@ -4306,4 +4447,79 @@ to {
 }
 
 
-/*# sourceMappingURL=style.css.map */
+
+/* 背景画像のマスクアニメーション用のスタイル */
+.c-fv__bg {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  z-index: 2;
+}
+
+/* テキストアニメーションの記述 */
+/* ヘッダー側 */
+.js-splitText {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  line-height: 1;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.js-splitText .char {
+  /* 通常は transition 無効に */
+  transition: none;
+  margin-left: 1px;
+}
+
+/* hover時にだけ transition 有効化 */
+.js-splitText.is-animating .char {
+  transition: transform 0.5s;
+}
+
+.mv__main-title span,
+.mv__sub-title span {
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+}
+
+body.is-top .js-splitText,
+body.is-top .header__logo {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.mv__main-title,
+.mv__sub-title {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.js-splitText .after .char {
+  opacity: 0;
+  visibility: hidden;
+}
+
+
+
+.mv__sticky-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+}
+
+
+
+
+
+
+
+
+
+

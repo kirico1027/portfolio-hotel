@@ -29,7 +29,8 @@
 .page-about-gallery__image:nth-child(6n+1) img,
 .page-about-gallery__image:nth-child(6n+6) img {
   aspect-ratio: 345/219;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: auto;
 
   @include mq(md) {
@@ -53,6 +54,7 @@
 .page-about-gallery__image:nth-child(6n+4) img,
 .page-about-gallery__image:nth-child(6n+5) img {
   aspect-ratio: 345/219;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: auto;
 }

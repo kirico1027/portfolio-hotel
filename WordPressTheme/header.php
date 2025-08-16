@@ -22,7 +22,7 @@ $campaign_category_trial_diving = esc_url(home_url("/campaign_category/suites"))
 $privacypolicy = esc_url(home_url("/privacypolicy"));
 ?>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(is_front_page() ? 'is-top' : ''); ?>>
   <?php wp_body_open(); ?>
   <header class="header js-header">
     <div class="header__inner">
@@ -51,22 +51,22 @@ $privacypolicy = esc_url(home_url("/privacypolicy"));
       <nav class="header__nav">
         <ul class="header__nav-items">
           <li class="header__nav-item">
-            <a href="<?php echo $campaign; ?>">Rooms & Suites<span></span></a>
+            <a class="js-splitText" href="<?php echo $campaign; ?>">ROOMS &amp; SUITES</a>
           </li>
           <li class="header__nav-item">
-            <a href="<?php echo $about; ?>">About us<span></span></a>
+            <a class="js-splitText" href="<?php echo $about; ?>">ABOUT US</a>
           </li>
           <li class="header__nav-item">
-            <a href="<?php echo $information; ?>">Information<span></span></a>
+            <a class="js-splitText" href="<?php echo $information; ?>">INFORMATION</a>
           </li>
           <li class="header__nav-item">
-            <a href="<?php echo $blog; ?>">Blog<span></span></a>
+            <a class="js-splitText" href="<?php echo $blog; ?>">BLOG</a>
           </li>
           <li class="header__nav-item">
-            <a href="<?php echo $voice; ?>">Voice<span></span></a>
+            <a class="js-splitText" href="<?php echo $voice; ?>">VOICE</a>
           </li>
           <li class="header__nav-item">
-            <a href="<?php echo $contact; ?>">Contact<span></span></a>
+            <a class="js-splitText" href="<?php echo $contact; ?>">CONTACT</a>
           </li>
         </ul>
       </nav>
@@ -82,7 +82,7 @@ $privacypolicy = esc_url(home_url("/privacypolicy"));
               <div class="header__drawer-content">
                 <div class="header__drawer-block">
                   <div class="header__drawer-item header__drawer-item--main">
-                    <a href="<?php echo $campaign; ?>">Rooms & Suites</a>
+                    <a href="<?php echo $campaign; ?>">Rooms&nbsp;&&nbsp;Suites</a>
                   </div>
                   <div class="header__drawer-item">
                     <a href="<?php echo $campaign_category_license; ?>">Rooms</a>
@@ -94,7 +94,7 @@ $privacypolicy = esc_url(home_url("/privacypolicy"));
               </div>
               <div class="header__drawer-content">
                 <div class="header__drawer-item header__drawer-item--main">
-                  <a href="<?php echo $about; ?>">About us</a>
+                  <a href="<?php echo $about; ?>">About&nbsp;us</a>
                 </div>
               </div>
               <div class="header__drawer-content">

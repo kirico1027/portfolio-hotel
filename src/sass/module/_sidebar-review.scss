@@ -15,7 +15,7 @@
 .sidebar-review__body {
   font-family: $base-font-family;
   color: $title-color;
-  padding: rem(15) rem(24) rem(24);
+  padding: rem(15) rem(23) rem(22);
 }
 
 .sidebar-review__age {
@@ -40,9 +40,10 @@
 
 .sidebar-review__text {
   color: $font-color;
-  font-size: rem(16);
+  font-size: rem(14);
   font-weight: $medium;
   line-height: 1.5;
   margin-top: rem(10);
+  text-align: justify;
 }
 

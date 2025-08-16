@@ -57,12 +57,13 @@
 .tab-content__text {
   font-size: rem(16);
   font-weight: $regular;
-  line-height: calc(24/16);
+  line-height: 1.8;
   color: $font-color;
-  margin-top: rem(8);
+  margin-top: rem(16);
+  text-align: justify;
 
   @include mq(md) {
-  margin-top: rem(9);
+    margin-top: rem(16);
   }
 }
 

@@ -13,9 +13,9 @@ $padding-sp: 15px;
 // フォント設定
 ////////////////////
 
-$base-font-family: 'Noto Sans JP', sans-serif;
-$second-font-family: 'Gotu', sans-serif;
-$third-font-family: 'Lato', sans-serif;
+$base-font-family: 'Noto Serif JP', serif;
+$second-font-family: 'Cormorant Garamond', serif;
+$third-font-family: 'Cormorant Garamond', serif;
 // ※検証ツールでしっかり反映されているか確認する
 
 body {
@@ -45,7 +45,7 @@ $bold: 700;
 //色指定（共通性のあるものは出来る限り指定すると良い）
 $font-color: #131e29;
 $title-color: #131e29;
-$accent-color: #000;
+$accent-color: #2b2b2b;
 $accent-bg: #f5f5f5;
 $white: #fff;
 $point-color: #C94800;

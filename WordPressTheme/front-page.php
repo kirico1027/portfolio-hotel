@@ -1,44 +1,47 @@
 <?php get_header(); ?>
 <main>
   <section class="mv">
-    <div class="mv__inner">
-      <div class="mv__title-wrap">
-        <h2 class="mv__main-title">KIRICO</h2>
-        <p class="mv__sub-title">PALECE HOTEL</p>
-      </div>
-      <div class="mv__swiper mv-swiper swiper js-mv-swiper">
-        <div class="mv-swiper__wrapper swiper-wrapper">
-          <?php
-          $mv_pc_img = get_field('mv_pc');
-          $mv_sp_img = get_field('mv_sp');
-          $mv_alt = get_field('mv_alt');
+    <div class="mv__sticky-wrap">
+      <div class="c-fv__bg"></div>
+      <div class="mv__inner">
+        <div class="mv__title-wrap">
+          <h2 class="mv__main-title">KIRICO</h2>
+          <p class=" mv__sub-title">PALECE HOTEL</p>
+        </div>
+        <div class="mv__swiper mv-swiper swiper js-mv-swiper">
+          <div class="mv-swiper__wrapper swiper-wrapper">
+            <?php
+            $mv_pc_img = get_field('mv_pc');
+            $mv_sp_img = get_field('mv_sp');
+            $mv_alt = get_field('mv_alt');
 
-          // $mv_pc_img と $mv_sp_img の配列の要素数を取得し、大きい方の数でループを回す
-          $max_items = max(count($mv_pc_img), count($mv_sp_img));
+            // $mv_pc_img と $mv_sp_img の配列の要素数を取得し、大きい方の数でループを回す
+            $max_items = max(count($mv_pc_img), count($mv_sp_img));
 
-          for ($i = 0; $i < $max_items; $i++) :
-            $pc_key = 'mv_pc' . ($i + 1); // PC用のキー
-            $sp_key = 'mv_sp' . ($i + 1); // SP用のキー
-            $alt_key = 'mv_alt' . ($i + 1); // alt属性用のキー
+            for ($i = 0; $i < $max_items; $i++) :
+              $pc_key = 'mv_pc' . ($i + 1); // PC用のキー
+              $sp_key = 'mv_sp' . ($i + 1); // SP用のキー
+              $alt_key = 'mv_alt' . ($i + 1); // alt属性用のキー
 
-            // PCとSPの画像が両方存在するかチェック
-            if (!empty($mv_pc_img[$pc_key]) && !empty($mv_sp_img[$sp_key])) {
-              $pc_src = $mv_pc_img[$pc_key];
-              $sp_src = $mv_sp_img[$sp_key];
-              $alt = isset($mv_alt[$alt_key]) ? $mv_alt[$alt_key] : ''; // alt属性が設定されていない場合は空文字をセット
+              // PCとSPの画像が両方存在するかチェック
+              if (!empty($mv_pc_img[$pc_key]) && !empty($mv_sp_img[$sp_key])) {
+                $pc_src = $mv_pc_img[$pc_key];
+                $sp_src = $mv_sp_img[$sp_key];
+                $alt = isset($mv_alt[$alt_key]) ? $mv_alt[$alt_key] : ''; // alt属性が設定されていない場合は空文字をセット
 
-          ?>
-          <div class="mv-swiper__slide swiper-slide">
-            <picture class="mv-swiper__image">
-              <source srcset="<?php echo $pc_src; ?>" media="(min-width:768px)" type="image/jpg">
-              <img src="<?php echo $sp_src; ?>" alt="<?php echo $alt; ?>">
-            </picture>
+            ?>
+            <div class="mv-swiper__slide swiper-slide">
+              <picture class="mv-swiper__image">
+                <source srcset="<?php echo $pc_src; ?>" media="(min-width:768px)" type="image/jpg">
+                <img src="<?php echo $sp_src; ?>" alt="<?php echo $alt; ?>">
+              </picture>
+            </div>
+            <?php
+              }
+            endfor;
+            ?>
+
           </div>
-          <?php
-            }
-          endfor;
-          ?>
-
         </div>
       </div>
     </div>
@@ -47,9 +50,15 @@
   <section class="campaign layout-campaign">
     <div class="campaign__inner">
       <div class="campaign__title section-title">
-        <h3 class="section-title__main">Rooms & Suites</h3>
+        <h3 class="section-title__main">
+          <span class="text">R</span><span class="text">o</span><span class="text">o</span><span
+            class="text">m</span><span class="text">s</span>
+          <span class="text">&</span>
+          <span class="text">S</span><span class="text">u</span><span class="text">i</span><span
+            class="text">t</span><span class="text">e</span><span class="text">s</span>
+        </h3>
       </div>
-      <div class="campaign__content">
+      <div class="campaign__content js-fade-up">
         <div class="campaign__swiper swiper js-campaign-swiper">
 
           <div class="campaign__cards swiper-wrapper">
@@ -78,8 +87,8 @@
                   <p class="campaign-card__text">
                     <?php
                       $campaign_text = get_field("campaign_text");
-                      if (mb_strlen($campaign_text) > 60) {
-                        echo mb_substr($campaign_text, 0, 60, 'UTF-8') . '...';
+                      if (mb_strlen($campaign_text) > 80) {
+                        echo mb_substr($campaign_text, 0, 80, 'UTF-8') . '...';
                       } else {
                         echo $campaign_text;
                       }
@@ -92,14 +101,14 @@
             <?php wp_reset_postdata(); ?>
           </div>
         </div>
-        <div class="campaign__swiper-button-wrap">
+        <div class="campaign__swiper-button-wrap js-fade-up">
           <button class="swiper-button-prev"></button>
           <div class="swiper-pagination"></div>
           <button class="swiper-button-next"></button>
         </div>
       </div>
 
-      <div class="campaign__button">
+      <div class="campaign__button js-fade-up">
         <a href="<?php echo esc_url(home_url("/campaign")) ?>" class="button"><span>View more</span></a>
       </div>
     </div>
@@ -108,9 +117,13 @@
   <section class="about layout-about">
     <div class="about__inner inner">
       <div class="about__title section-title">
-        <h3 class="section-title__main">About us</h3>
+        <h3 class="section-title__main">
+          <span class="text">A</span><span class="text">b</span><span class="text">o</span><span
+            class="text">u</span><span class="text">t</span>
+          <span class="text">u</span><span class="text">s</span>
+        </h3>
       </div>
-      <div class="about__main-image about-main-image">
+      <div class="about__main-image about-main-image js-fade-up">
         <div class="about-main-image__image">
           <picture class="about-main-image__image-left">
             <source srcset="<?php echo get_theme_file_uri() ?>/assets/images/common/about2.jpg"
@@ -144,17 +157,22 @@
   <section class="information layout-information">
     <div class="information__inner inner">
       <div class="information__title section-title">
-        <h3 class="section-title__main">Information</h3>
+        <h3 class="section-title__main">
+          <span class="text">I</span><span class="text">n</span><span class="text">f</span><span
+            class="text">o</span><span class="text">r</span><span class="text">m</span><span class="text">a</span><span
+            class="text">t</span><span class="text">i</span><span class="text">o</span><span class="text">n</span>
+        </h3>
       </div>
-      <div class="information__card information-card">
-        <figure class="information-card__img js-colorbox">
+      <div class="information__card information-card js-fade-up-wrapper">
+        <figure class="information-card__img js-fade-up-img js-colorbox">
           <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/information1.jpg" alt="画像" loading="lazy">
         </figure>
-        <div class="information-card__body">
+        <div class="information-card__body js-fade-up-text">
           <div>
             <h4 class="information-card__title">Gardening Party</h4>
-            <p class="information-card__text">
-              春の訪れを感じる特別なガーデニングパーティに、ぜひご参加ください。ホテル庭園では、新緑が輝き、心地よい風が吹き抜けます。レストランからは、春の味覚を楽しめる軽食が提供されます。プロのガーデニングアドバイザーによるワークショップでは、春の植物の育て方やお手入れのコツを学び、庭園をより楽しむヒントを得られます。音楽や春の香りに包まれながら、贅沢な時間をお過ごしください。
+            <p class="information-card__text js-colorChange">
+              春の訪れを感じるガーデニングパーティに、ぜひご参加ください。<br>
+              ホテル庭園では新緑が輝き、心地よい風が吹き抜けます。春の味覚を楽しめる軽食や、プロによる植物のお手入れワークショップもご用意。音楽と春の香りに包まれた、贅沢なひとときをお楽しみください。
             </p>
           </div>
           <div class="information__button">
@@ -170,7 +188,9 @@
   <section class="blog">
     <div class="blog__inner">
       <div class="blog__title">
-        <h3 class="section-title__main">Blog</h3>
+        <h3 class="section-title__main">
+          <span class="text">B</span><span class="text">l</span><span class="text">o</span><span class="text">g</span>
+        </h3>
       </div>
       <ul class="blog__cards blog-cards">
         <?php
@@ -199,7 +219,7 @@
                 <time datetime="<?php the_time('c'); ?>" class="blog-card__date date"><?php the_time('Y.m/d'); ?></time>
                 <h4 class="blog-card__title"><?php echo wp_trim_words(get_the_title(), 16, '…'); ?></h4>
                 <p class="blog-card__text">
-                  <?php echo wp_trim_words(get_the_content(), 90, '…'); ?>
+                  <?php echo wp_trim_words(get_the_content(), 70, '…'); ?>
                 </p>
               </div>
             </div>
@@ -211,7 +231,7 @@
         endif;
         ?>
       </ul>
-      <div class="blog__button">
+      <div class="blog__button js-fade-up">
         <a href="<?php echo esc_url(home_url("/blog")) ?>" class="button"><span>View more</span></a>
       </div>
     </div>
@@ -220,9 +240,12 @@
   <section class="voice layout-voice">
     <div class="voice__inner inner">
       <div class="voice__title section-title">
-        <h3 class="section-title__main">Voice</h3>
+        <h3 class="section-title__main">
+          <span class="text">V</span><span class="text">o</span><span class="text">i</span><span
+            class="text">c</span><span class="text">e</span>
+        </h3>
       </div>
-      <ul class="voice__cards voice-cards">
+      <ul class="voice__cards voice-cards js-fade-up">
         <?php
         $args = array(
           "post_type" => "voice",
@@ -286,7 +309,7 @@
         <?php wp_reset_postdata(); ?>
         <?php endif; ?>
       </ul>
-      <div class="voice__button">
+      <div class="voice__button js-fade-up">
         <a href="<?php echo esc_url(home_url("/voice")) ?>" class="button"><span>View more</span></a>
       </div>
     </div>
@@ -295,21 +318,26 @@
   <section class="price layout-price">
     <div class="price__inner inner">
       <div class="price__title section-title">
-        <h3 class="section-title__main">Location</h3>
+        <h3 class="section-title__main">
+          <span class="text">L</span><span class="text">o</span><span class="text">c</span><span
+            class="text">a</span><span class="text">t</span><span class="text">i</span><span class="text">o</span><span
+            class="text">n</span>
+        </h3>
       </div>
       <div class="price__container">
-        <div class="price__content">
+        <div class="price__content js-fade-up-wrapper">
           <picture class="price__image js-colorbox">
             <source srcset="<?php echo get_theme_file_uri() ?>/assets/images/common/price-pc.jpg"
               media="(min-width: 768px)" type="image/jpg">
-            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/sub-mv-others.jpg"
-              alt="海底の岩場にひしめくサンゴとその周りに群れる赤色の鮮やかな小魚の画像" loading="lazy">
+            <img class="js-fade-up-img" src=" <?php echo get_theme_file_uri() ?>
+              /assets/images/common/sub-mv-others.jpg" alt="海底の岩場にひしめくサンゴとその周りに群れる赤色の鮮やかな小魚の画像" loading="lazy">
           </picture>
-          <ul class="price__list">
+          <div class="price__list js-fade-up-text">
             <div class="contact__body">
               <div class="contact__info">
                 <p class="contact__info-intro">
                   当ホテルは新潟市中央区湖畔町に位置し、<br>美しい湖畔ロケーションと質の高いサービスで<br>お客様をお迎えします。<br>地元食材を使用した料理やスパ、<br>観光地へのアクセスも良好です。<br>是非、新潟の魅力をお楽しみください。
+                </p>
                 <p class="contact__info-address">
                   <span class="contact__info-name">Kirico Palace Hotel</span><br>
                   新潟県新潟市中央区湖畔町1-2-3<br>
@@ -328,7 +356,7 @@
               </div>
             </div>
 
-          </ul>
+          </div>
         </div>
       </div>
     </div>

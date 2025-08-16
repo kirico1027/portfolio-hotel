@@ -25,7 +25,7 @@
 
 .blog-card__body {
   color: $title-color;
-  padding: rem(18);
+  padding: rem(18) rem(18) rem(22);
 }
 
 .blog-card__title {
@@ -42,8 +42,9 @@
   font-family: $base-font-family;
   font-size: rem(16);
   font-weight: $regular;
-  line-height: calc(24 / 16);
+  line-height: 1.7;
   margin-top: rem(16);
+  text-align: justify;
 
   @include mq(md) {
     color: $font-color;

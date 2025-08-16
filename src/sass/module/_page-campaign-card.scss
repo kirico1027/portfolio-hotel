@@ -106,19 +106,21 @@
   font-size: rem(16);
   font-weight: $regular;
   letter-spacing: .0em;
-  line-height: calc(24/16);
+  line-height: 1.8;
   color: $title-color;
   margin-top: rem(24);
   padding-inline: rem(24);
   flex: 1;
+  text-align: justify;
 
   @include mq(md) {
     margin-top: rem(20);
+    line-height: 2;
   }
 }
 
 .page-campaign-card__period {
-  font-family: $third-font-family;
+  font-family: $base-font-family;
   font-size:  rem(16);
   font-weight: $bold;
   line-height: calc(18/16);
