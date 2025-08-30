@@ -750,8 +750,84 @@ WordPressTheme.ImageAnimation.prototype.setup = function () {
  * アニメーション設定
  *
  * 各画像コンテナにカラーボックス効果を設定します。
+ * IntersectionObserverを使用した高パフォーマンスな実装です。
  */
 WordPressTheme.ImageAnimation.prototype.setupAnimations = function () {
+  var self = this;
+  var SPEED = 700;
+
+  // IntersectionObserverが利用可能かチェック
+  if (!("IntersectionObserver" in window)) {
+    // フォールバック: 従来のinview実装
+    this.setupLegacyAnimations();
+    return;
+  }
+
+  this.$imageContainers.each(function () {
+    var container = this;
+    var colorEl = container.querySelector(".color");
+    var imgEl = container.querySelector("img");
+
+    // カラーボックス要素が存在しない場合は作成
+    if (!colorEl) {
+      colorEl = document.createElement("div");
+      colorEl.className = "color";
+      container.appendChild(colorEl);
+    }
+
+    // 画像要素が存在しない場合はスキップ
+    if (!imgEl) {
+      return;
+    }
+
+    // 初期状態設定
+    imgEl.style.opacity = "0";
+    colorEl.style.width = "0%";
+
+    var done = false;
+    var observer = new IntersectionObserver(
+      function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting || done) {
+            return;
+          }
+          done = true;
+
+          // カラーボックスアニメーション（右から左へ）
+          colorEl.style.transition = "width " + SPEED + "ms linear";
+          colorEl.style.width = "100%";
+
+          setTimeout(function () {
+            // 画像表示
+            imgEl.style.transition = "opacity " + Math.max(200, SPEED / 2) + "ms ease";
+            imgEl.style.opacity = "1";
+            colorEl.style.left = "0";
+            colorEl.style.right = "auto";
+
+            // カラーボックスを戻す（左から右へ）
+            colorEl.style.transition = "width " + SPEED + "ms linear";
+            colorEl.style.width = "0%";
+          }, SPEED + 200);
+
+          obs.unobserve(entry.target);
+        });
+      },
+      {
+        rootMargin: "0px 0px -10% 0px",
+        threshold: 0.2,
+      }
+    );
+
+    observer.observe(container);
+  });
+};
+
+/**
+ * 従来のinview実装（フォールバック）
+ *
+ * IntersectionObserverが利用できない場合の代替実装です。
+ */
+WordPressTheme.ImageAnimation.prototype.setupLegacyAnimations = function () {
   var self = this;
   var animationDuration = WordPressTheme.CONFIG.animation.duration.slow;
 
@@ -791,7 +867,7 @@ WordPressTheme.ImageAnimation.prototype.setupAnimations = function () {
       }
       animationTriggered = true;
 
-      $colorOverlay.animate(
+      $colorOverlay.delay(200).animate(
         {
           width: "100%",
         },
@@ -799,18 +875,14 @@ WordPressTheme.ImageAnimation.prototype.setupAnimations = function () {
         function () {
           $imageElement.css("opacity", "1");
           jQuery(this).css({
-            width: "0%",
-            left: "auto",
-            right: "0",
+            left: "0",
+            right: "auto",
           });
           jQuery(this).animate(
             {
-              width: "100%",
+              width: "0%",
             },
-            animationDuration,
-            function () {
-              jQuery(this).remove();
-            }
+            animationDuration
           );
         }
       );
