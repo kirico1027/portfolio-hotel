@@ -1336,28 +1336,44 @@ WordPressTheme.GSAPAnimation.prototype.setup = function () {
  * セクションタイトルアニメーションの初期化
  *
  * セクションタイトルのスクロールアニメーションを設定します。
+ * 文字がランダムに浮き上がるアニメーションを実装。
  */
 WordPressTheme.GSAPAnimation.prototype.initSectionTitleAnimation = function () {
   var self = this;
-  jQuery(WordPressTheme.CONFIG.selectors.sectionTitle).each(function () {
-    var $sectionElement = jQuery(this);
-    var $textElements = $sectionElement.find(".text");
 
-    if ($textElements.length > 0) {
+  // GSAPとScrollTriggerが利用可能かチェック
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    WordPressTheme.Utils.logWarning("GSAPAnimation", "GSAP or ScrollTrigger not available", {});
+    return;
+  }
+
+  // .section-title__main要素が存在するかチェック
+  if (!document.querySelector(".section-title__main")) {
+    WordPressTheme.Utils.logWarning("GSAPAnimation", "section-title__main element not found", {});
+    return;
+  }
+
+  jQuery(".section-title__main").each(function () {
+    var $section = jQuery(this);
+    var $texts = $section.find(".text");
+
+    if ($texts.length > 0) {
       gsap.fromTo(
-        $textElements,
-        { y: 50, opacity: 0 },
+        $texts,
         {
-          y: 0,
+          opacity: 0,
+          filter: "blur(5px)",
+        },
+        {
           opacity: 1,
-          duration: 1,
-          ease: WordPressTheme.CONFIG.animation.easing.smooth,
-          stagger: WordPressTheme.CONFIG.animation.stagger.text,
+          filter: "blur(0px)",
+          stagger: {
+            each: 0.1,
+            from: "random", // ランダムに文字が浮き上がる
+          },
           scrollTrigger: {
-            trigger: $sectionElement[0],
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
+            trigger: $section[0],
+            start: "top 95%",
           },
         }
       );
