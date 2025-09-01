@@ -1325,6 +1325,8 @@ WordPressTheme.GSAPAnimation.prototype.setup = function () {
   try {
     gsap.registerPlugin(ScrollTrigger);
     this.initSectionTitleAnimation();
+    this.initInformationCardAnimation();
+    this.initPriceContactAnimation();
     this.initBlogCardAnimation();
     this.initContactFormAnimation();
   } catch (error) {
@@ -1403,6 +1405,69 @@ WordPressTheme.GSAPAnimation.prototype.initSectionTitleAnimation = function () {
 };
 
 /**
+ * インフォメーションカードアニメーションの初期化
+ *
+ * インフォメーションカードのスクロールアニメーションを設定します。
+ * bodyが先にsection-title__mainと同じ動きで出現し、その後imgが出現します。
+ */
+WordPressTheme.GSAPAnimation.prototype.initInformationCardAnimation = function () {
+  // GSAPとScrollTriggerが利用可能かチェック
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    WordPressTheme.Utils.logWarning("GSAPAnimation", "GSAP or ScrollTrigger not available", {});
+    return;
+  }
+
+  jQuery(".information-card").each(function () {
+    var $card = jQuery(this);
+    var $body = $card.find(".information-card__body");
+    var $img = $card.find(".information-card__img");
+
+    // 1. bodyが先にsection-title__mainと同じ動きで出現
+    if ($body.length > 0) {
+      gsap.fromTo(
+        $body,
+        {
+          opacity: 0,
+          y: -60, // 上から60pxの位置から開始
+        },
+        {
+          opacity: 1,
+          y: 0, // 元の位置に下に降りる
+          duration: 1.5, // よりゆっくりとした動きに調整
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: $card[0],
+            start: "top 90%",
+          },
+        }
+      );
+    }
+
+    // 2. bodyアニメーション完了後にimgが出現
+    if ($img.length > 0) {
+      gsap.fromTo(
+        $img,
+        {
+          opacity: 0,
+          scale: 0.8, // 少し小さくしてから
+        },
+        {
+          opacity: 1,
+          scale: 1, // 元のサイズに
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.5, // bodyアニメーション開始から0.5秒後
+          scrollTrigger: {
+            trigger: $card[0],
+            start: "top 90%",
+          },
+        }
+      );
+    }
+  });
+};
+
+/**
  * ブログカードアニメーションの初期化
  *
  * ブログカードのスクロールアニメーションを設定します。
@@ -1427,6 +1492,92 @@ WordPressTheme.GSAPAnimation.prototype.initBlogCardAnimation = function () {
       }
     );
   }
+};
+
+/**
+ * プライス・コンタクトアニメーションの初期化
+ *
+ * プライスセクションのスクロールアニメーションを設定します。
+ * contact__info → price__image → contact__mapの順序で出現します。
+ */
+WordPressTheme.GSAPAnimation.prototype.initPriceContactAnimation = function () {
+  // GSAPとScrollTriggerが利用可能かチェック
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    WordPressTheme.Utils.logWarning("GSAPAnimation", "GSAP or ScrollTrigger not available", {});
+    return;
+  }
+
+  jQuery(".price__content").each(function () {
+    var $content = jQuery(this);
+    var $info = $content.find(".contact__info");
+    var $image = $content.find(".price__image");
+    var $map = $content.find(".contact__map-wrap");
+
+    // 1. contact__infoが先にsection-title__mainと同じ動きで出現
+    if ($info.length > 0) {
+      gsap.fromTo(
+        $info,
+        {
+          opacity: 0,
+          y: -60, // 上から60pxの位置から開始
+        },
+        {
+          opacity: 1,
+          y: 0, // 元の位置に下に降りる
+          duration: 1.5, // よりゆっくりとした動き
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: $content[0],
+            start: "top 90%",
+          },
+        }
+      );
+    }
+
+    // 2. contact__infoアニメーション完了後にprice__imageが出現
+    if ($image.length > 0) {
+      gsap.fromTo(
+        $image,
+        {
+          opacity: 0,
+          scale: 0.8, // 少し小さくしてから
+        },
+        {
+          opacity: 1,
+          scale: 1, // 元のサイズに
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.5, // contact__infoアニメーション開始から0.5秒後
+          scrollTrigger: {
+            trigger: $content[0],
+            start: "top 90%",
+          },
+        }
+      );
+    }
+
+    // 3. price__imageアニメーション完了後にcontact__mapが出現
+    if ($map.length > 0) {
+      gsap.fromTo(
+        $map,
+        {
+          opacity: 0,
+          y: 30, // 下から30pxの位置から開始
+        },
+        {
+          opacity: 1,
+          y: 0, // 元の位置に上に移動
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 1.5, // contact__infoアニメーション開始から1.5秒後（より遅く）
+          scrollTrigger: {
+            trigger: $content[0],
+            start: "top 90%",
+          },
+        }
+      );
+    }
+  });
 };
 
 /**
