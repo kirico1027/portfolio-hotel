@@ -58,7 +58,7 @@
             class="text">t</span><span class="text">e</span><span class="text">s</span>
         </h3>
       </div>
-      <div class="campaign__content js-fade-up">
+      <div class="campaign__content js-fade-down">
         <div class="campaign__swiper swiper js-campaign-swiper">
 
           <div class="campaign__cards swiper-wrapper">
@@ -101,14 +101,14 @@
             <?php wp_reset_postdata(); ?>
           </div>
         </div>
-        <div class="campaign__swiper-button-wrap js-fade-up">
+        <div class="campaign__swiper-button-wrap">
           <button class="swiper-button-prev"></button>
           <div class="swiper-pagination"></div>
           <button class="swiper-button-next"></button>
         </div>
       </div>
 
-      <div class="campaign__button js-fade-up">
+      <div class="campaign__button">
         <a href="<?php echo esc_url(home_url("/campaign")) ?>" class="button"><span>View more</span></a>
       </div>
     </div>
@@ -123,7 +123,7 @@
           <span class="text">u</span><span class="text">s</span>
         </h3>
       </div>
-      <div class="about__main-image about-main-image js-fade-up">
+      <div class="about__main-image about-main-image">
         <div class="about-main-image__image">
           <picture class="about-main-image__image-left">
             <source srcset="<?php echo get_theme_file_uri() ?>/assets/images/common/about2.jpg"
@@ -163,11 +163,11 @@
             class="text">t</span><span class="text">i</span><span class="text">o</span><span class="text">n</span>
         </h3>
       </div>
-      <div class="information__card information-card js-fade-up-wrapper">
-        <figure class="information-card__img js-fade-up-img js-colorbox">
+      <div class="information__card information-card">
+        <figure class="information-card__img js-colorbox">
           <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/information1.jpg" alt="画像" loading="lazy">
         </figure>
-        <div class="information-card__body js-fade-up-text">
+        <div class="information-card__body js-fade-down">
           <div>
             <h4 class="information-card__title">Gardening Party</h4>
             <p class="information-card__text js-colorChange">
@@ -231,7 +231,7 @@
         endif;
         ?>
       </ul>
-      <div class="blog__button js-fade-up">
+      <div class="blog__button">
         <a href="<?php echo esc_url(home_url("/blog")) ?>" class="button"><span>View more</span></a>
       </div>
     </div>
@@ -245,7 +245,7 @@
             class="text">c</span><span class="text">e</span>
         </h3>
       </div>
-      <ul class="voice__cards voice-cards js-fade-up">
+      <ul class="voice__cards voice-cards">
         <?php
         $args = array(
           "post_type" => "voice",
@@ -309,7 +309,7 @@
         <?php wp_reset_postdata(); ?>
         <?php endif; ?>
       </ul>
-      <div class="voice__button js-fade-up">
+      <div class="voice__button">
         <a href="<?php echo esc_url(home_url("/voice")) ?>" class="button"><span>View more</span></a>
       </div>
     </div>
@@ -325,16 +325,16 @@
         </h3>
       </div>
       <div class="price__container">
-        <div class="price__content js-fade-up-wrapper">
+        <div class="price__content">
           <picture class="price__image js-colorbox">
             <source srcset="<?php echo get_theme_file_uri() ?>/assets/images/common/price-pc.jpg"
               media="(min-width: 768px)" type="image/jpg">
-            <img class="js-fade-up-img" src=" <?php echo get_theme_file_uri() ?>
+            <img src=" <?php echo get_theme_file_uri() ?>
               /assets/images/common/sub-mv-others.jpg" alt="海底の岩場にひしめくサンゴとその周りに群れる赤色の鮮やかな小魚の画像" loading="lazy">
           </picture>
-          <div class="price__list js-fade-up-text">
+          <div class="price__list">
             <div class="contact__body">
-              <div class="contact__info">
+              <div class="contact__info js-fade-down">
                 <p class="contact__info-intro">
                   当ホテルは新潟市中央区湖畔町に位置し、<br>美しい湖畔ロケーションと質の高いサービスで<br>お客様をお迎えします。<br>地元食材を使用した料理やスパ、<br>観光地へのアクセスも良好です。<br>是非、新潟の魅力をお楽しみください。
                 </p>

@@ -1325,6 +1325,7 @@ WordPressTheme.GSAPAnimation.prototype.setup = function () {
   try {
     gsap.registerPlugin(ScrollTrigger);
     this.initSectionTitleAnimation();
+    this.initCommonFadeDownAnimation();
     this.initInformationCardAnimation();
     this.initPriceContactAnimation();
     this.initBlogCardAnimation();
@@ -1369,11 +1370,11 @@ WordPressTheme.GSAPAnimation.prototype.initSectionTitleAnimation = function () {
       {
         opacity: 1,
         y: 0, // 元の位置に下に降りる
-        duration: 1.0, // 少し長めにして動きをはっきりと
+        duration: 1.6, // 少し長めにして動きをはっきりと
         ease: "power2.out",
         scrollTrigger: {
           trigger: $section[0],
-          start: "top 90%",
+          start: "top 70%",
         },
       }
     );
@@ -1405,6 +1406,49 @@ WordPressTheme.GSAPAnimation.prototype.initSectionTitleAnimation = function () {
 };
 
 /**
+ * 共通フェードダウンアニメーションの初期化
+ *
+ * js-fade-downクラスを持つ要素のスクロールアニメーションを設定します。
+ * section-title__mainと同じ動きで上から下に降りながら出現します。
+ */
+WordPressTheme.GSAPAnimation.prototype.initCommonFadeDownAnimation = function () {
+  // GSAPとScrollTriggerが利用可能かチェック
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    WordPressTheme.Utils.logWarning("GSAPAnimation", "GSAP or ScrollTrigger not available", {});
+    return;
+  }
+
+  // .js-fade-down要素が存在するかチェック
+  if (!document.querySelector(".js-fade-down")) {
+    WordPressTheme.Utils.logWarning("GSAPAnimation", "js-fade-down element not found", {});
+    return;
+  }
+
+  jQuery(".js-fade-down").each(function () {
+    var $element = jQuery(this);
+
+    // section-title__mainと同じ動きで上から下に降りながら出現
+    gsap.fromTo(
+      $element,
+      {
+        opacity: 0,
+        y: -60, // 上から60pxの位置から開始
+      },
+      {
+        opacity: 1,
+        y: 0, // 元の位置に下に降りる
+        duration: 1.6, // section-title__mainと同じ速さ
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: $element[0],
+          start: "top 70%", // section-title__mainと同じタイミング
+        },
+      }
+    );
+  });
+};
+
+/**
  * インフォメーションカードアニメーションの初期化
  *
  * インフォメーションカードのスクロールアニメーションを設定します。
@@ -1419,29 +1463,9 @@ WordPressTheme.GSAPAnimation.prototype.initInformationCardAnimation = function (
 
   jQuery(".information-card").each(function () {
     var $card = jQuery(this);
-    var $body = $card.find(".information-card__body");
     var $img = $card.find(".information-card__img");
 
-    // 1. bodyが先にsection-title__mainと同じ動きで出現
-    if ($body.length > 0) {
-      gsap.fromTo(
-        $body,
-        {
-          opacity: 0,
-          y: -60, // 上から60pxの位置から開始
-        },
-        {
-          opacity: 1,
-          y: 0, // 元の位置に下に降りる
-          duration: 1.5, // よりゆっくりとした動きに調整
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: $card[0],
-            start: "top 90%",
-          },
-        }
-      );
-    }
+    // bodyはjs-fade-downクラスで共通アニメーション処理
 
     // 2. bodyアニメーション完了後にimgが出現
     if ($img.length > 0) {
@@ -1509,30 +1533,10 @@ WordPressTheme.GSAPAnimation.prototype.initPriceContactAnimation = function () {
 
   jQuery(".price__content").each(function () {
     var $content = jQuery(this);
-    var $info = $content.find(".contact__info");
     var $image = $content.find(".price__image");
     var $map = $content.find(".contact__map-wrap");
 
-    // 1. contact__infoが先にsection-title__mainと同じ動きで出現
-    if ($info.length > 0) {
-      gsap.fromTo(
-        $info,
-        {
-          opacity: 0,
-          y: -60, // 上から60pxの位置から開始
-        },
-        {
-          opacity: 1,
-          y: 0, // 元の位置に下に降りる
-          duration: 1.5, // よりゆっくりとした動き
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: $content[0],
-            start: "top 90%",
-          },
-        }
-      );
-    }
+    // contact__infoはjs-fade-downクラスで共通アニメーション処理
 
     // 2. contact__infoアニメーション完了後にprice__imageが出現
     if ($image.length > 0) {
