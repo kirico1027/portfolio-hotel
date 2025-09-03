@@ -109,7 +109,8 @@
       </div>
 
       <div class="campaign__button">
-        <a href="<?php echo esc_url(home_url("/campaign")) ?>" class="button"><span>View more</span></a>
+        <a href="<?php echo esc_url(home_url("/campaign")) ?>" class="button js-fade-in"><span>View
+            more</span></a>
       </div>
     </div>
   </section>
@@ -125,13 +126,13 @@
       </div>
       <div class="about__main-image about-main-image">
         <div class="about-main-image__image">
-          <picture class="about-main-image__image-left">
+          <picture class="about-main-image__image-left js-fade-down">
             <source srcset="<?php echo get_theme_file_uri() ?>/assets/images/common/about2.jpg"
               media="(min-width: 768px)" type="image/jpg">
             <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/about2.jpg" alt="ホテル内のレストランの画像"
               loading="lazy">
           </picture>
-          <picture class="about-main-image__image-right">
+          <picture class="about-main-image__image-right js-fade-down">
             <source srcset="<?php echo get_theme_file_uri() ?>/assets/images/common/about1.jpg"
               media="(min-width: 768px)" type="image/jpg">
             <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/about1.jpg" alt="ホテルの寝室の画像"
@@ -146,7 +147,8 @@
               <span>清潔なお部屋と充実したアメニティで、心地よい時間を提供いたします。お客様の幸せを願い、心からのサポートをお約束いたします。 </span>
             </p>
             <div class="about-main-image__button">
-              <a href="<?php echo esc_url(home_url("/about")) ?>" class="button"><span>View more</span></a>
+              <a href="<?php echo esc_url(home_url("/about")) ?>" class="button js-fade-in"><span>View
+                  more</span></a>
             </div>
           </div>
         </div>
@@ -176,7 +178,8 @@
             </p>
           </div>
           <div class="information__button">
-            <a href="<?php echo esc_url(home_url("/information")) ?>" class="button"><span>View more</span></a>
+            <a href="<?php echo esc_url(home_url("/information")) ?>" class="button js-fade-in"><span>View
+                more</span></a>
           </div>
         </div>
       </div>
@@ -232,7 +235,7 @@
         ?>
       </ul>
       <div class="blog__button">
-        <a href="<?php echo esc_url(home_url("/blog")) ?>" class="button"><span>View more</span></a>
+        <a href="<?php echo esc_url(home_url("/blog")) ?>" class="button js-fade-in"><span>View more</span></a>
       </div>
     </div>
   </section>
@@ -310,7 +313,8 @@
         <?php endif; ?>
       </ul>
       <div class="voice__button">
-        <a href="<?php echo esc_url(home_url("/voice")) ?>" class="button"><span>View more</span></a>
+        <a href="<?php echo esc_url(home_url("/voice")) ?>" class="button js-fade-in"><span>View
+            more</span></a>
       </div>
     </div>
   </section>
@@ -347,7 +351,7 @@
                 </p>
               </div>
               <div class="contact__map-wrap">
-                <div class="contact__map">
+                <div class="contact__map js-fade-in">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d25181.590301363347!2d139.03739536476618!3d37.91410263746811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z5paw5r2f55yM5paw5r2f5biC5Lit5aSu5Yy65rmW55WU55S6MS0yLTM!5e0!3m2!1sja!2sjp!4v1709948861134!5m2!1sja!2sjp"
                     width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"

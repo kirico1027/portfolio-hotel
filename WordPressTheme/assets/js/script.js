@@ -1330,6 +1330,7 @@ WordPressTheme.GSAPAnimation.prototype.setup = function () {
     this.initPriceContactAnimation();
     this.initBlogCardAnimation();
     this.initContactFormAnimation();
+    this.initFadeInAnimation();
   } catch (error) {
     WordPressTheme.Utils.logError("GSAPAnimation", "setup", error, {});
   }
@@ -1609,6 +1610,47 @@ WordPressTheme.GSAPAnimation.prototype.initContactFormAnimation = function () {
       }
     );
   }
+};
+
+/**
+ * フェードインアニメーションの初期化
+ *
+ * js-fade-inクラスを持つ要素のスクロールアニメーションを設定します。
+ * start: "top 70%"の位置から浮かんでくるように出現します。
+ */
+WordPressTheme.GSAPAnimation.prototype.initFadeInAnimation = function () {
+  // GSAPとScrollTriggerが利用可能かチェック
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    WordPressTheme.Utils.logWarning("GSAPAnimation", "GSAP or ScrollTrigger not available", {});
+    return;
+  }
+
+  // .js-fade-in要素が存在するかチェック
+  if (!document.querySelector(".js-fade-in")) {
+    WordPressTheme.Utils.logWarning("GSAPAnimation", "js-fade-in element not found", {});
+    return;
+  }
+
+  jQuery(".js-fade-in").each(function () {
+    var $element = jQuery(this);
+
+    // 要素がその位置から浮かんでくるように出現
+    gsap.fromTo(
+      $element,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 1.0, // 適度な速さ
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: $element[0],
+          start: "top 90%", // 要求された位置
+        },
+      }
+    );
+  });
 };
 
 // ========================================
