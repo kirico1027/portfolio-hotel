@@ -1361,26 +1361,7 @@ WordPressTheme.GSAPAnimation.prototype.initSectionTitleAnimation = function () {
     var $section = jQuery(this);
     var $texts = $section.find(".text");
 
-    // 1. 全体の上から下に降りるアニメーション
-    gsap.fromTo(
-      $section,
-      {
-        opacity: 0,
-        y: -60, // 上から60pxの位置から開始（よりはっきりとした距離）
-      },
-      {
-        opacity: 1,
-        y: 0, // 元の位置に下に降りる
-        duration: 1.6, // 少し長めにして動きをはっきりと
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: $section[0],
-          start: "top 70%",
-        },
-      }
-    );
-
-    // 2. 個別文字のランダムアニメーション（全体アニメーションと同時実行）
+    // 個別文字のランダムアニメーションのみ実行
     if ($texts.length > 0) {
       gsap.fromTo(
         $texts,
@@ -1395,10 +1376,11 @@ WordPressTheme.GSAPAnimation.prototype.initSectionTitleAnimation = function () {
             each: 0.1,
             from: "random", // ランダムに文字が浮き上がる
           },
-          duration: 0.6, // 全体アニメーションより短く
+          duration: 0.6,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: $section[0],
-            start: "top 90%",
+            start: "top 70%",
           },
         }
       );
@@ -1442,7 +1424,7 @@ WordPressTheme.GSAPAnimation.prototype.initCommonFadeDownAnimation = function ()
         ease: "power2.out",
         scrollTrigger: {
           trigger: $element[0],
-          start: "top 70%", // section-title__mainと同じタイミング
+          start: "top 55%", // section-title__mainと同じタイミング
         },
       }
     );
@@ -1553,28 +1535,6 @@ WordPressTheme.GSAPAnimation.prototype.initPriceContactAnimation = function () {
           duration: 0.8,
           ease: "power2.out",
           delay: 0.5, // contact__infoアニメーション開始から0.5秒後
-          scrollTrigger: {
-            trigger: $content[0],
-            start: "top 90%",
-          },
-        }
-      );
-    }
-
-    // 3. price__imageアニメーション完了後にcontact__mapが出現
-    if ($map.length > 0) {
-      gsap.fromTo(
-        $map,
-        {
-          opacity: 0,
-          y: 30, // 下から30pxの位置から開始
-        },
-        {
-          opacity: 1,
-          y: 0, // 元の位置に上に移動
-          duration: 0.8,
-          ease: "power2.out",
-          delay: 1.5, // contact__infoアニメーション開始から1.5秒後（より遅く）
           scrollTrigger: {
             trigger: $content[0],
             start: "top 90%",
