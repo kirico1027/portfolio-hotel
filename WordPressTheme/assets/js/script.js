@@ -1328,7 +1328,7 @@ WordPressTheme.GSAPAnimation.prototype.setup = function () {
     this.initCommonFadeDownAnimation();
     this.initInformationCardAnimation();
     this.initPriceContactAnimation();
-    this.initBlogCardAnimation();
+
     this.initContactFormAnimation();
     this.initFadeInAnimation();
   } catch (error) {
@@ -1407,7 +1407,30 @@ WordPressTheme.GSAPAnimation.prototype.initCommonFadeDownAnimation = function ()
     return;
   }
 
-  jQuery(".js-fade-down").each(function () {
+  // ブログカードの場合は特別処理（ランダム表示）
+  if (jQuery(".blog-card.js-fade-down").length > 0) {
+    gsap.fromTo(
+      ".blog-card.js-fade-down",
+      {
+        opacity: 0,
+        y: -60, // 上から60pxの位置から開始
+      },
+      {
+        opacity: 1,
+        y: 0, // 元の位置に下に降りる
+        duration: 1.6, // section-title__mainと同じ速さ
+        ease: "power2.out",
+        stagger: { each: 0.3, from: "random" }, // ランダム表示
+        scrollTrigger: {
+          trigger: ".blog-cards",
+          start: "top 55%", // section-title__mainと同じタイミング
+        },
+      }
+    );
+  }
+
+  // その他のjs-fade-down要素（ブログカード以外）
+  jQuery(".js-fade-down:not(.blog-card)").each(function () {
     var $element = jQuery(this);
 
     // section-title__mainと同じ動きで上から下に降りながら出現
@@ -1472,33 +1495,6 @@ WordPressTheme.GSAPAnimation.prototype.initInformationCardAnimation = function (
       );
     }
   });
-};
-
-/**
- * ブログカードアニメーションの初期化
- *
- * ブログカードのスクロールアニメーションを設定します。
- */
-WordPressTheme.GSAPAnimation.prototype.initBlogCardAnimation = function () {
-  if (WordPressTheme.Utils.elementExists(WordPressTheme.CONFIG.selectors.blogCard)) {
-    gsap.fromTo(
-      WordPressTheme.CONFIG.selectors.blogCard,
-      { y: 100, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: WordPressTheme.CONFIG.animation.easing.smooth,
-        stagger: WordPressTheme.CONFIG.animation.stagger.cards,
-        scrollTrigger: {
-          trigger: WordPressTheme.CONFIG.selectors.blogCard,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-  }
 };
 
 /**
