@@ -813,7 +813,7 @@ WordPressTheme.ImageAnimation.prototype.setupAnimations = function () {
         });
       },
       {
-        rootMargin: "0px 0px -10% 0px",
+        rootMargin: "0px 0px -50% 0px",
         threshold: 0.2,
       }
     );
