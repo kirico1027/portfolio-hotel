@@ -338,7 +338,7 @@
           </picture>
           <div class="price__list">
             <div class="contact__body">
-              <div class="contact__info js-fade-down">
+              <div class="contact__info">
                 <p class="contact__info-intro">
                   当ホテルは新潟市中央区湖畔町に位置し、<br>美しい湖畔ロケーションと質の高いサービスで<br>お客様をお迎えします。<br>地元食材を使用した料理やスパ、<br>観光地へのアクセスも良好です。<br>是非、新潟の魅力をお楽しみください。
                 </p>
@@ -350,7 +350,7 @@
                   Email: info@kiricopalacehotel.ie
                 </p>
               </div>
-              <div class="contact__map-wrap js-fade-in">
+              <div class="contact__map-wrap">
                 <div class="contact__map">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d25181.590301363347!2d139.03739536476618!3d37.91410263746811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z5paw5r2f55yM5paw5r2f5biC5Lit5aSu5Yy65rmW55WU55S6MS0yLTM!5e0!3m2!1sja!2sjp!4v1709948861134!5m2!1sja!2sjp"

@@ -1512,28 +1512,66 @@ WordPressTheme.GSAPAnimation.prototype.initPriceContactAnimation = function () {
 
   jQuery(".price__content").each(function () {
     var $content = jQuery(this);
-    var $image = $content.find(".price__image");
-    var $map = $content.find(".contact__map-wrap");
+    var $contactInfo = $content.find(".contact__info");
+    var $priceImage = $content.find(".price__image");
+    var $contactMap = $content.find(".contact__map-wrap");
 
-    // contact__infoはjs-fade-downクラスで共通アニメーション処理
-
-    // 2. contact__infoアニメーション完了後にprice__imageが出現
-    if ($image.length > 0) {
+    // 1. contact__infoのアニメーション（最初）
+    if ($contactInfo.length > 0) {
       gsap.fromTo(
-        $image,
+        $contactInfo,
         {
           opacity: 0,
-          scale: 0.8, // 少し小さくしてから
+          y: -60,
         },
         {
           opacity: 1,
-          scale: 1, // 元のサイズに
+          y: 0,
+          duration: 1.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: $content[0],
+            start: "top 80%",
+          },
+        }
+      );
+    }
+
+    // 2. price__imageのアニメーション
+    if ($priceImage.length > 0) {
+      gsap.fromTo(
+        $priceImage,
+        {
+          opacity: 0,
+          scale: 0.8,
+        },
+        {
+          opacity: 1,
+          scale: 1,
           duration: 0.8,
           ease: "power2.out",
-          delay: 0.5, // contact__infoアニメーション開始から0.5秒後
           scrollTrigger: {
             trigger: $content[0],
             start: "top 90%",
+          },
+        }
+      );
+    }
+
+    // 3. contact__map-wrapのアニメーション
+    if ($contactMap.length > 0) {
+      gsap.fromTo(
+        $contactMap,
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          duration: 2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: $content[0],
+            start: "top 20%",
           },
         }
       );
