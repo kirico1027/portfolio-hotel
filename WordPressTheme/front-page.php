@@ -170,7 +170,7 @@
           <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/information1.jpg" alt="画像" loading="lazy">
         </figure>
         <div class="information-card__body">
-          <div class="js-fade-down">
+          <div class="information-content">
             <h4 class="information-card__title">Gardening Party</h4>
             <p class="information-card__text js-colorChange">
               春の訪れを感じるガーデニングパーティに、ぜひご参加ください。<br>
@@ -178,7 +178,7 @@
             </p>
           </div>
           <div class="information__button">
-            <a href="<?php echo esc_url(home_url("/information")) ?>" class="button js-fade-in"><span>View
+            <a href="<?php echo esc_url(home_url("/information")) ?>" class="button"><span>View
                 more</span></a>
           </div>
         </div>

@@ -1544,6 +1544,53 @@ WordPressTheme.GSAPAnimation.prototype.initPriceContactAnimation = function () {
 };
 
 /**
+ * インフォメーションカードアニメーションの初期化
+ *
+ * インフォメーションカードのスクロールアニメーションを設定します。
+ * information-content → information__buttonの順序で出現します。
+ * information-card__imgはjs-colorboxで独立制御されます。
+ */
+WordPressTheme.GSAPAnimation.prototype.initInformationCardAnimation = function () {
+  // GSAPとScrollTriggerが利用可能かチェック
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    WordPressTheme.Utils.logWarning("GSAPAnimation", "GSAP or ScrollTrigger not available", {});
+    return;
+  }
+
+  jQuery(".information__card").each(function () {
+    var $card = jQuery(this);
+    var $content = $card.find(".information-content");
+    var $button = $card.find(".information__button .button");
+
+    // 一つのトリガーでタイムライン制御
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: $card[0],
+        start: "top 80%",
+      },
+    });
+
+    // 時系列でアニメーション実行
+    if ($content.length > 0) {
+      tl.fromTo(
+        $content,
+        { opacity: 0, y: -60 },
+        { opacity: 1, y: 0, duration: 1.6, ease: "power2.out" }
+      );
+    }
+
+    if ($button.length > 0) {
+      tl.fromTo(
+        $button,
+        { opacity: 0 },
+        { opacity: 1, duration: 1.0, ease: "power2.out" },
+        "+=1.5"
+      );
+    }
+  });
+};
+
+/**
  * コンタクトフォームアニメーションの初期化
  *
  * フォームアイテムのスクロールアニメーションを設定します。
@@ -1863,18 +1910,30 @@ WordPressTheme.AdvancedAnimation.prototype.initColorChangeAnimation = function (
         textSpans.push($span[0]);
       });
 
-      gsap.to(textSpans, {
-        scrollTrigger: {
-          trigger: $textElement[0],
-          start: "top 80%",
-          end: "bottom 50%",
-          scrub: 8,
-          onUpdate: function (self) {
-            var progress = self.progress * textSpans.length;
-            textSpans.forEach(function (span, index) {
-              span.classList.toggle("is-active", index < progress);
+      var isAnimationComplete = false;
+
+      var scrollTrigger = ScrollTrigger.create({
+        trigger: $textElement[0],
+        start: "top 80%",
+        end: "bottom 50%",
+        scrub: 8,
+        onUpdate: function (self) {
+          // アニメーションが完了済みの場合は何もしない
+          if (isAnimationComplete) return;
+
+          var progress = self.progress * textSpans.length;
+          textSpans.forEach(function (span, index) {
+            span.classList.toggle("is-active", index < progress);
+          });
+
+          // 進行度が100%に達したら完了フラグを立てる
+          if (self.progress >= 1) {
+            isAnimationComplete = true;
+            // すべての文字にis-activeクラスを確実に追加
+            textSpans.forEach(function (span) {
+              span.classList.add("is-active");
             });
-          },
+          }
         },
       });
     });
