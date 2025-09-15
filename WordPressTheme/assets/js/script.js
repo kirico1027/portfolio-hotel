@@ -79,7 +79,7 @@ WordPressTheme.CONFIG = {
       effect: "fade", // フェード効果
     },
     rooms: {
-      speed: 1800, // ルームスライダーの速度
+      speed: 2500, // ルームスライダーの速度
       slidesPerView: {
         mobile: 2, // モバイルでの表示枚数
         tablet: 3, // タブレットでの表示枚数
@@ -679,6 +679,11 @@ WordPressTheme.SwiperManager.prototype.initRoomsSlider = function () {
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        type: "bullets",
+        clickable: true,
       },
     });
   }
