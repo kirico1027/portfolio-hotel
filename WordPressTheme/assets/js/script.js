@@ -1327,7 +1327,7 @@ WordPressTheme.GSAPAnimation.prototype.setup = function () {
     this.initSectionTitleAnimation();
     this.initCommonFadeDownAnimation();
     this.initInformationCardAnimation();
-    this.initPriceContactAnimation();
+    this.initLocationContactAnimation();
 
     this.initContactFormAnimation();
     this.initFadeInAnimation();
@@ -1498,19 +1498,19 @@ WordPressTheme.GSAPAnimation.prototype.initInformationCardAnimation = function (
 };
 
 /**
- * プライス・コンタクトアニメーションの初期化
+ * ロケーション・コンタクトアニメーションの初期化
  *
- * プライスセクションのスクロールアニメーションを設定します。
- * contact__info → price__image → contact__mapの順序で出現します。
+ * ロケーションセクションのスクロールアニメーションを設定します。
+ * contact__info → location__image → contact__mapの順序で出現します。
  */
-WordPressTheme.GSAPAnimation.prototype.initPriceContactAnimation = function () {
+WordPressTheme.GSAPAnimation.prototype.initLocationContactAnimation = function () {
   // GSAPとScrollTriggerが利用可能かチェック
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
     WordPressTheme.Utils.logWarning("GSAPAnimation", "GSAP or ScrollTrigger not available", {});
     return;
   }
 
-  jQuery(".price__content").each(function () {
+  jQuery(".location__content").each(function () {
     var $content = jQuery(this);
     var $contactInfo = $content.find(".contact__info");
     var $contactMap = $content.find(".contact__map-wrap");

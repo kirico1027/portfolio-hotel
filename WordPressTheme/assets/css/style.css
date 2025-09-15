@@ -672,7 +672,7 @@ a {
 	margin-top: 2.5rem;
 }
 
-.layout-price {
+.layout-location {
 	margin-top: 5rem;
 }
 
@@ -909,32 +909,32 @@ a {
 	width: 32vw;
 }
 
-.price {
+.location {
 	background-color: #f5f5f5;
 	padding: 5.25rem 0 5.21875rem;
 }
 
-.price__container {
+.location__container {
 	margin-top: 1.78125rem;
 	position: relative;
 }
 
-.price__image {
+.location__image {
 	display: block;
 }
 
-.price__image img {
+.location__image img {
 	-o-object-fit: cover;
 	aspect-ratio: 345/227;
 	height: auto;
 	object-fit: cover;
 }
 
-.price__list {
+.location__list {
 	margin-top: 2.53125rem;
 }
 
-.price__button {
+.location__button {
 	margin-top: 2.5rem;
 	text-align: center;
 }
@@ -3830,15 +3830,15 @@ span.wpcf7-spinner {
 		z-index: 0;
 	}
 
-	.price {
+	.location {
 		padding: 6.375rem 0 6.5rem;
 	}
 
-	.price__container {
+	.location__container {
 		margin-top: 3rem;
 	}
 
-	.price__content {
+	.location__content {
 		-moz-column-gap: 5rem;
 		align-items: center;
 		column-gap: 5rem;
@@ -3846,20 +3846,20 @@ span.wpcf7-spinner {
 		flex-direction: row-reverse;
 	}
 
-	.price__image {
+	.location__image {
 		width: 45.682%;
 	}
 
-	.price__image img {
+	.location__image img {
 		aspect-ratio: 492/745;
 	}
 
-	.price__list {
+	.location__list {
 		flex: 1;
 		margin-top: 0;
 	}
 
-	.price__button {
+	.location__button {
 		margin-top: 4.9375rem;
 	}
 
