@@ -215,7 +215,7 @@ a {
 }
 
 
-.campaign {
+.rooms {
 	overflow: hidden;
 	padding-bottom: 0.375rem;
 	background-color: #ffffff;
@@ -223,12 +223,12 @@ a {
 	z-index: 2;
 }
 
-.campaign__inner {
+.rooms__inner {
 	margin: auto;
 	width: 100%;
 }
 
-.campaign__swiper-button-wrap {
+.rooms__swiper-button-wrap {
 	align-items: center;
 	display: flex;
 	justify-content: center;
@@ -237,20 +237,20 @@ a {
 	width: 100%;
 }
 
-.campaign__swiper-button-wrap .swiper-button-prev,
-.campaign__swiper-button-wrap .swiper-button-next {
+.rooms__swiper-button-wrap .swiper-button-prev,
+.rooms__swiper-button-wrap .swiper-button-next {
 	position: absolute;
 	top: 45%;
 	transform: translateY(-45%);
 }
 
-.campaign__swiper-button-wrap .swiper-button-prev::after,
-.campaign__swiper-button-wrap .swiper-button-next::after {
+.rooms__swiper-button-wrap .swiper-button-prev::after,
+.rooms__swiper-button-wrap .swiper-button-next::after {
 	color: #131e29;
 	font-size: 1rem;
 }
 
-.campaign__swiper-button-wrap .swiper-pagination {
+.rooms__swiper-button-wrap .swiper-pagination {
 	color: #131e29;
 	left: 50%;
 	position: absolute;
@@ -258,52 +258,52 @@ a {
 	width: auto;
 }
 
-.campaign__swiper-button-wrap .swiper-button-prev {
+.rooms__swiper-button-wrap .swiper-button-prev {
 	left: calc(50% - 4.375rem);
 }
 
-.campaign__swiper-button-wrap .swiper-button-next {
+.rooms__swiper-button-wrap .swiper-button-next {
 	left: calc(50% + 3.125rem);
 }
 
-.campaign__swiper-button-wrap .swiper-pagination-current,
-.campaign__swiper-button-wrap .swiper-pagination-total {
+.rooms__swiper-button-wrap .swiper-pagination-current,
+.rooms__swiper-button-wrap .swiper-pagination-total {
 	padding-left: 0.3125rem;
 	padding-right: 0.3125rem;
 }
 
-.campaign__content {
+.rooms__content {
 	margin-top: 1.46875rem;
 	position: relative;
 }
 
-.campaign__cards {
+.rooms__cards {
 	padding: 0.3125rem;
 }
 
-.campaign__swiper {
+.rooms__swiper {
 	margin: 2.5rem 0 0;
 	padding: 2.8125rem 0 7.5rem;
 	width: 100%;
 }
 
-.campaign__button {
+.rooms__button {
 	margin-top: 5rem;
 	text-align: center;
 }
 
-.campaign__card.swiper-slide img {
+.rooms__card.swiper-slide img {
 	width: 100%;
 }
 
-.campaign__card.swiper-slide {
+.rooms__card.swiper-slide {
 	opacity: 0.4;
 	overflow: hidden;
 	transition: 0.7s;
 	z-index: 1;
 }
 
-.campaign__card.swiper-slide-active {
+.rooms__card.swiper-slide-active {
 	opacity: 1;
 	position: relative;
 	transform: scale(1.5);
@@ -588,7 +588,7 @@ a {
 	margin-top: 0.375rem;
 }
 
-.layout-campaign {
+.layout-rooms {
 	padding-top: 2.75rem;
 }
 
@@ -1606,6 +1606,77 @@ a {
 
 .campaign-card__text {
 	display: none;
+	font-size: 0.65rem;
+	line-height: 1.75;
+	margin-top: 0.9375rem;
+	text-align: justify;
+}
+
+/* Room Card Styles */
+.room-card {
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+	display: block;
+	height: auto;
+	width: 17.5rem;
+}
+
+.room-card a:hover {
+	opacity: 1;
+}
+
+.room-card__item {
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.room-card__img {
+	overflow: hidden;
+	width: 100%;
+}
+
+.room-card__img img {
+	-o-object-fit: cover;
+	aspect-ratio: 280/188;
+	height: auto;
+	object-fit: cover;
+}
+
+.room-card__body {
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	padding: 1.0625rem 1rem 1.375rem;
+}
+
+.room-card__title-main {
+	color: #131e29;
+	font-family: "Cormorant Garamond", serif;
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: 1.5;
+	padding-bottom: 0.9375rem;
+	position: relative;
+	text-align: center;
+}
+
+.room-card__title-main::after {
+	background-color: #2b2b2b;
+	bottom: 0;
+	content: "";
+	display: inline-block;
+	height: 0.125rem;
+	left: 50%;
+	position: absolute;
+	transform: translateX(-50%);
+	width: 2.5rem;
+}
+
+.room-card__text {
 	font-size: 0.65rem;
 	line-height: 1.75;
 	margin-top: 0.9375rem;
@@ -3485,16 +3556,16 @@ span.wpcf7-spinner {
 		height: 21.875rem;
 	}
 
-	.campaign__content {
+	.rooms__content {
 		margin-top: 3rem;
 	}
 
-	.campaign__cards {
+	.rooms__cards {
 		margin-left: -0.3125rem;
 		padding-left: 0.3125rem;
 	}
 
-	.campaign__button {
+	.rooms__button {
 		margin-top: 4.375rem;
 	}
 
@@ -3631,7 +3702,7 @@ span.wpcf7-spinner {
 		margin-top: 0.625rem;
 	}
 
-	.layout-campaign {
+	.layout-rooms {
 		padding-top: 7.5rem;
 	}
 
@@ -4024,6 +4095,22 @@ span.wpcf7-spinner {
 	}
 
 	.campaign-card__text {
+		display: block;
+	}
+
+	.room-card {
+		width: 20rem;
+	}
+
+	.room-card__body {
+		padding: 1.5rem 1.25rem 1.75rem;
+	}
+
+	.room-card__title-main {
+		font-size: 1.125rem;
+	}
+
+	.room-card__text {
 		display: block;
 	}
 

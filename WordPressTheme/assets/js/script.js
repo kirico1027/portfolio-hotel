@@ -78,8 +78,8 @@ WordPressTheme.CONFIG = {
       autoplayDelay: 3000, // 自動再生の間隔
       effect: "fade", // フェード効果
     },
-    campaign: {
-      speed: 1800, // キャンペーンスライダーの速度
+    rooms: {
+      speed: 1800, // ルームスライダーの速度
       slidesPerView: {
         mobile: 2, // モバイルでの表示枚数
         tablet: 3, // タブレットでの表示枚数
@@ -618,7 +618,7 @@ WordPressTheme.SwiperManager.prototype.constructor = WordPressTheme.SwiperManage
 WordPressTheme.SwiperManager.prototype.setup = function () {
   try {
     this.initMvSlider();
-    this.initCampaignSlider();
+    this.initRoomsSlider();
   } catch (error) {
     WordPressTheme.Utils.logError("SwiperManager", "setup", error, {});
   }
@@ -653,27 +653,27 @@ WordPressTheme.SwiperManager.prototype.initMvSlider = function () {
 };
 
 /**
- * キャンペーンスライダーの初期化
+ * ルームスライダーの初期化
  *
- * キャンペーン用のスライダーを設定します。
+ * ルーム用のスライダーを設定します。
  * レスポンシブ対応とナビゲーション機能を有効にします。
  */
-WordPressTheme.SwiperManager.prototype.initCampaignSlider = function () {
-  if (WordPressTheme.Utils.elementExists(".js-campaign-swiper")) {
-    this.sliders.campaign = new Swiper(".js-campaign-swiper", {
+WordPressTheme.SwiperManager.prototype.initRoomsSlider = function () {
+  if (WordPressTheme.Utils.elementExists(".js-rooms-swiper")) {
+    this.sliders.rooms = new Swiper(".js-rooms-swiper", {
       centeredSlides: true,
       loop: true,
-      speed: WordPressTheme.CONFIG.swiper.campaign.speed,
-      slidesPerView: WordPressTheme.CONFIG.swiper.campaign.slidesPerView.mobile,
-      spaceBetween: WordPressTheme.CONFIG.swiper.campaign.spaceBetween.mobile,
+      speed: WordPressTheme.CONFIG.swiper.rooms.speed,
+      slidesPerView: WordPressTheme.CONFIG.swiper.rooms.slidesPerView.mobile,
+      spaceBetween: WordPressTheme.CONFIG.swiper.rooms.spaceBetween.mobile,
       breakpoints: {
         [WordPressTheme.CONFIG.breakpoints.tablet]: {
-          spaceBetween: WordPressTheme.CONFIG.swiper.campaign.spaceBetween.tablet,
-          slidesPerView: WordPressTheme.CONFIG.swiper.campaign.slidesPerView.tablet,
+          spaceBetween: WordPressTheme.CONFIG.swiper.rooms.spaceBetween.tablet,
+          slidesPerView: WordPressTheme.CONFIG.swiper.rooms.slidesPerView.tablet,
         },
         [WordPressTheme.CONFIG.breakpoints.desktop]: {
-          spaceBetween: WordPressTheme.CONFIG.swiper.campaign.spaceBetween.desktop,
-          slidesPerView: WordPressTheme.CONFIG.swiper.campaign.slidesPerView.desktop,
+          spaceBetween: WordPressTheme.CONFIG.swiper.rooms.spaceBetween.desktop,
+          slidesPerView: WordPressTheme.CONFIG.swiper.rooms.slidesPerView.desktop,
         },
       },
       navigation: {

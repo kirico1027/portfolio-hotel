@@ -30,12 +30,12 @@
                 $alt = isset($mv_alt[$alt_key]) ? $mv_alt[$alt_key] : ''; // alt属性が設定されていない場合は空文字をセット
 
             ?>
-                <div class="mv-swiper__slide swiper-slide">
-                  <picture class="mv-swiper__image">
-                    <source srcset="<?php echo $pc_src; ?>" media="(min-width:768px)" type="image/jpg">
-                    <img src="<?php echo $sp_src; ?>" alt="<?php echo $alt; ?>">
-                  </picture>
-                </div>
+            <div class="mv-swiper__slide swiper-slide">
+              <picture class="mv-swiper__image">
+                <source srcset="<?php echo $pc_src; ?>" media="(min-width:768px)" type="image/jpg">
+                <img src="<?php echo $sp_src; ?>" alt="<?php echo $alt; ?>">
+              </picture>
+            </div>
             <?php
               }
             endfor;
@@ -47,9 +47,9 @@
     </div>
   </section>
 
-  <section class="campaign layout-campaign">
-    <div class="campaign__inner">
-      <div class="campaign__title section-title">
+  <section class="rooms layout-rooms">
+    <div class="rooms__inner">
+      <div class="rooms__title section-title">
         <h3 class="section-title__main">
           <span class="text">R</span><span class="text">o</span><span class="text">o</span><span
             class="text">m</span><span class="text">s</span>
@@ -58,10 +58,10 @@
             class="text">t</span><span class="text">e</span><span class="text">s</span>
         </h3>
       </div>
-      <div class="campaign__content js-fade-down">
-        <div class="campaign__swiper swiper js-campaign-swiper">
+      <div class="rooms__content js-fade-down">
+        <div class="rooms__swiper swiper js-rooms-swiper">
 
-          <div class="campaign__cards swiper-wrapper">
+          <div class="rooms__cards swiper-wrapper">
             <?php
             $args = array(
               "post_type" => "campaign",
@@ -72,20 +72,20 @@
             $the_query = new WP_Query($args);
             ?>
             <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-              <div class="campaign__card campaign-card swiper-slide">
-                <div class="campaign-card__item">
-                  <figure class="campaign-card__img">
-                    <?php if (has_post_thumbnail()) : ?>
-                      <?php the_post_thumbnail('full'); ?>
-                    <?php else : ?>
-                      <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
-                        alt="NoImage画像" loading="lazy">
-                    <?php endif; ?>
-                  </figure>
-                  <div class="campaign-card__body">
-                    <h4 class="campaign-card__title-main"><?php the_title(); ?></h4>
-                    <p class="campaign-card__text">
-                      <?php
+            <div class="rooms__card room-card swiper-slide">
+              <div class="room-card__item">
+                <figure class="room-card__img">
+                  <?php if (has_post_thumbnail()) : ?>
+                  <?php the_post_thumbnail('full'); ?>
+                  <?php else : ?>
+                  <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
+                    alt="NoImage画像" loading="lazy">
+                  <?php endif; ?>
+                </figure>
+                <div class="room-card__body">
+                  <h4 class="room-card__title-main"><?php the_title(); ?></h4>
+                  <p class="room-card__text">
+                    <?php
                       $campaign_text = get_field("campaign_text");
                       if (mb_strlen($campaign_text) > 80) {
                         echo mb_substr($campaign_text, 0, 80, 'UTF-8') . '...';
@@ -93,22 +93,22 @@
                         echo $campaign_text;
                       }
                       ?>
-                    </p>
-                  </div>
+                  </p>
                 </div>
               </div>
+            </div>
             <?php endwhile; ?>
             <?php wp_reset_postdata(); ?>
           </div>
         </div>
-        <div class="campaign__swiper-button-wrap">
+        <div class="rooms__swiper-button-wrap">
           <button class="swiper-button-prev"></button>
           <div class="swiper-pagination"></div>
           <button class="swiper-button-next"></button>
         </div>
       </div>
 
-      <div class="campaign__button">
+      <div class="rooms__button">
         <a href="<?php echo esc_url(home_url("/campaign")) ?>" class="button js-fade-in"><span>View
             more</span></a>
       </div>
@@ -207,27 +207,27 @@
         if ($the_query->have_posts()) :
           while ($the_query->have_posts()) : $the_query->the_post();
         ?>
-            <li class="blog-cards__card blog-card js-fade-down">
-              <a href="<?php the_permalink(); ?>">
-                <div class="blog-card__item">
-                  <figure class="blog-card__img">
-                    <?php if (has_post_thumbnail()) : ?>
-                      <?php the_post_thumbnail('full'); ?>
-                    <?php else : ?>
-                      <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
-                        alt="NoImage画像" loading="lazy">
-                    <?php endif; ?>
-                  </figure>
-                  <div class="blog-card__body">
-                    <time datetime="<?php the_time('c'); ?>" class="blog-card__date date"><?php the_time('Y.m/d'); ?></time>
-                    <h4 class="blog-card__title"><?php echo wp_trim_words(get_the_title(), 16, '…'); ?></h4>
-                    <p class="blog-card__text">
-                      <?php echo wp_trim_words(get_the_content(), 70, '…'); ?>
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </li>
+        <li class="blog-cards__card blog-card js-fade-down">
+          <a href="<?php the_permalink(); ?>">
+            <div class="blog-card__item">
+              <figure class="blog-card__img">
+                <?php if (has_post_thumbnail()) : ?>
+                <?php the_post_thumbnail('full'); ?>
+                <?php else : ?>
+                <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
+                  alt="NoImage画像" loading="lazy">
+                <?php endif; ?>
+              </figure>
+              <div class="blog-card__body">
+                <time datetime="<?php the_time('c'); ?>" class="blog-card__date date"><?php the_time('Y.m/d'); ?></time>
+                <h4 class="blog-card__title"><?php echo wp_trim_words(get_the_title(), 16, '…'); ?></h4>
+                <p class="blog-card__text">
+                  <?php echo wp_trim_words(get_the_content(), 70, '…'); ?>
+                </p>
+              </div>
+            </div>
+          </a>
+        </li>
         <?php
           endwhile;
           wp_reset_postdata();
@@ -259,45 +259,45 @@
         if ($the_query->have_posts()) :
           while ($the_query->have_posts()) : $the_query->the_post();
         ?>
-            <li class="voice-cards__card voice-card">
-              <div class="voice-card__item">
-                <div class="voice-card__head">
-                  <div class="voice-card__content">
-                    <div class="voice-card__box">
-                      <?php
+        <li class="voice-cards__card voice-card">
+          <div class="voice-card__item">
+            <div class="voice-card__head">
+              <div class="voice-card__content">
+                <div class="voice-card__box">
+                  <?php
                       $personalInfo = get_field('personal_info');
                       if ($personalInfo) :
                       ?> <span class="voice-card__info">
-                          <?php echo $personalInfo['personal_age']; ?>代(<?php echo $personalInfo['personal_gender']; ?>)</span>
-                      <?php endif; ?>
-                      <span class="voice-card__category">
-                        <?php echo get_the_terms(get_the_ID(), 'voice_category')[0]->name; ?>
-                      </span>
-                    </div>
-                    <h4 class="voice-card__title">
-                      <?php echo wp_trim_words(get_the_title(), 20, '…'); ?>
-                    </h4>
-                    <div>
-                      <?php
+                    <?php echo $personalInfo['personal_age']; ?>代(<?php echo $personalInfo['personal_gender']; ?>)</span>
+                  <?php endif; ?>
+                  <span class="voice-card__category">
+                    <?php echo get_the_terms(get_the_ID(), 'voice_category')[0]->name; ?>
+                  </span>
+                </div>
+                <h4 class="voice-card__title">
+                  <?php echo wp_trim_words(get_the_title(), 20, '…'); ?>
+                </h4>
+                <div>
+                  <?php
                       $termGroup = get_field('term_group');
                       if ($termGroup) :
                       ?>
-                        <p class="page-campaign-card__period">
-                          <?php echo $termGroup['term_start']; ?> 〜 <?php echo $termGroup['term_end']; ?></p>
-                      <?php endif; ?>
-                    </div>
-                  </div>
-                  <figure class="voice-card__img js-colorbox">
-                    <?php if (has_post_thumbnail()) : ?>
-                      <?php the_post_thumbnail('full'); ?>
-                    <?php else : ?>
-                      <img src="<?php echo esc_url(get_theme_file_uri("/images/common/noimage.jpg")); ?>" alt="NoImage画像"
-                        loading="lazy">
-                    <?php endif; ?>
-                  </figure>
+                  <p class="page-campaign-card__period">
+                    <?php echo $termGroup['term_start']; ?> 〜 <?php echo $termGroup['term_end']; ?></p>
+                  <?php endif; ?>
                 </div>
-                <p class="voice-card__text">
-                  <?php
+              </div>
+              <figure class="voice-card__img js-colorbox">
+                <?php if (has_post_thumbnail()) : ?>
+                <?php the_post_thumbnail('full'); ?>
+                <?php else : ?>
+                <img src="<?php echo esc_url(get_theme_file_uri("/images/common/noimage.jpg")); ?>" alt="NoImage画像"
+                  loading="lazy">
+                <?php endif; ?>
+              </figure>
+            </div>
+            <p class="voice-card__text">
+              <?php
                   $customer_text = get_field("customer_text");
                   if (mb_strlen($customer_text) > 150) {
                     echo mb_substr($customer_text, 0, 150, 'UTF-8') . '...';
@@ -305,11 +305,11 @@
                     echo $customer_text;
                   }
                   ?>
-                </p>
-              </div>
-            </li>
-          <?php endwhile; ?>
-          <?php wp_reset_postdata(); ?>
+            </p>
+          </div>
+        </li>
+        <?php endwhile; ?>
+        <?php wp_reset_postdata(); ?>
         <?php endif; ?>
       </ul>
       <div class="voice__button">
