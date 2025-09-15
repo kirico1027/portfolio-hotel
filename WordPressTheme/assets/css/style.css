@@ -11,7 +11,7 @@ body.is-noscroll {
 
 a:hover {
 	opacity: 0.85;
-	transition: opacity 0.3s;
+	transition: opacity 0.4s;
 }
 
 .u-desktop {
@@ -379,6 +379,8 @@ a {
 .contact__map-wrap {
 	margin-top: 0.9375rem;
 	width: 100%;
+	transform: scale(0.9);
+	transform-origin: left center;
 }
 
 .contact__map {
@@ -1442,7 +1444,7 @@ a {
 	top: 0;
 	transform: scale(0, 1);
 	transform-origin: left top;
-	transition: 0.3s cubic-bezier(0.45, 0, 0.55, 1);
+	transition: 0.4s cubic-bezier(0.45, 0, 0.55, 1);
 	width: 100%;
 	z-index: -1;
 }
@@ -1779,6 +1781,7 @@ a {
 
 .footer__content a:hover {
 	color: #867050;
+	transition: color 0.3s;
 }
 
 .footer__logo {
@@ -3918,7 +3921,7 @@ span.wpcf7-spinner {
 	}
 
 	.location__image {
-		width: 45.682%;
+		width: 43%;
 	}
 
 	.location__image img {
