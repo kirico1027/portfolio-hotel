@@ -248,22 +248,40 @@ a {
 .rooms__swiper-button-wrap .swiper-button-next::after {
 	color: #131e29;
 	font-size: 1rem;
+	border-radius: 2px;
 }
 
+
 .rooms__swiper-button-wrap .swiper-pagination {
-	color: #131e29;
+	color: #2b2b2b;
 	left: 50%;
 	position: absolute;
 	transform: translateX(-50%);
 	width: auto;
 }
 
+.rooms__swiper-button-wrap .swiper-pagination-bullet {
+	background-color: #ccc;
+	opacity: 1;
+	width: 8px;
+	height: 8px;
+	transition: all 0.3s ease;
+	vertical-align: middle;
+}
+
+.rooms__swiper-button-wrap .swiper-pagination-bullet-active {
+	background-color: #2b2b2b;
+	width: 10px;
+	height: 10px;
+	vertical-align: middle;
+}
+
 .rooms__swiper-button-wrap .swiper-button-prev {
-	left: calc(50% - 4.375rem);
+	left: calc(50% - 5.5rem);
 }
 
 .rooms__swiper-button-wrap .swiper-button-next {
-	left: calc(50% + 3.125rem);
+	left: calc(50% + 4.25rem);
 }
 
 .rooms__swiper-button-wrap .swiper-pagination-current,
