@@ -1339,7 +1339,7 @@ a {
 .blog-card__title {
 	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
-	font-weight: 500;
+	font-weight: 600;
 	line-height: 1;
 	margin-top: 0.5rem;
 }
@@ -2199,7 +2199,7 @@ span.wpcf7-spinner {
 	flex-direction: column;
 	font-family: "Cormorant Garamond", serif;
 	font-size: 1.125rem;
-	font-weight: 400;
+	font-weight: 600;
 	height: inherit;
 	justify-content: center;
 	line-height: 1;
@@ -2219,7 +2219,7 @@ span.wpcf7-spinner {
 	display: flex;
 	align-items: center;
 	overflow: hidden;
-	letter-spacing: 0.1em;
+	letter-spacing: 0.08em;
 	padding-inline: 0.3em;
 }
 
@@ -4594,7 +4594,7 @@ span.wpcf7-spinner {
 
 /* hover時にだけ transition 有効化 */
 .js-splitText.is-animating .char {
-	transition: transform 0.5s;
+	transition: transform 0.4s;
 }
 
 .mv__main-title span,
