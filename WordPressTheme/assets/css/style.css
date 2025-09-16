@@ -1813,7 +1813,15 @@ a {
 }
 
 .footer__logo a:hover {
-	opacity: 0.3s;
+	opacity: 1;
+}
+
+.footer__logo img {
+	transition: filter 0.8s ease;
+}
+
+.footer__logo img:hover {
+	filter: brightness(0) saturate(100%) invert(45%) sepia(15%) saturate(1200%) hue-rotate(25deg) brightness(95%) contrast(85%);
 }
 
 .footer__sns {
@@ -1831,6 +1839,14 @@ a {
 
 .footer__sns-icon+.footer__sns-icon {
 	margin-left: 1.25rem;
+}
+
+.footer__sns-icon img {
+	transition: filter 0.8s ease;
+}
+
+.footer__sns-icon img:hover {
+	filter: brightness(0) saturate(100%) invert(45%) sepia(15%) saturate(1200%) hue-rotate(25deg) brightness(95%) contrast(85%);
 }
 
 .footer__nav {
@@ -2165,7 +2181,17 @@ span.wpcf7-spinner {
 
 .header__logo-main:hover,
 .header__logo-sub:hover {
-	opacity: 0.7;
+	opacity: 1;
+}
+
+.header__logo-main,
+.header__logo-sub {
+	transition: filter 0.8s ease;
+}
+
+.header__logo-main:hover,
+.header__logo-sub:hover {
+	filter: brightness(0) saturate(100%) invert(45%) sepia(15%) saturate(1200%) hue-rotate(25deg) brightness(95%) contrast(85%);
 }
 
 .header__logo-sub.js-change-color {
