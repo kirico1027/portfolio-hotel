@@ -67,7 +67,7 @@ WordPressTheme.CONFIG = {
 
   // スクロール設定
   scroll: {
-    threshold: 100, // ヘッダー表示/非表示の閾値
+    threshold: 50, // ヘッダー表示/非表示の閾値（100→50に変更）
     smoothLerp: 0.08, // Lenisスムーススクロールの補間値
   },
 
@@ -79,7 +79,7 @@ WordPressTheme.CONFIG = {
       effect: "fade", // フェード効果
     },
     rooms: {
-      speed: 2500, // ルームスライダーの速度
+      speed: 1500, // ルームスライダーの速度（速くするため短縮）
       slidesPerView: {
         mobile: 2, // モバイルでの表示枚数
         tablet: 3, // タブレットでの表示枚数

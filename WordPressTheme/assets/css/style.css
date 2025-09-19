@@ -2135,7 +2135,7 @@ span.wpcf7-spinner {
 	position: fixed;
 	right: 0;
 	top: 0;
-	transition: background-color 0.5s, color 0.5s;
+	transition: background-color 0.8s, color 0.8s;
 	width: 100%;
 	z-index: 900;
 }
@@ -2143,8 +2143,7 @@ span.wpcf7-spinner {
 /* headerの色を変える */
 
 .header.js-change-color {
-	background-color: #fff;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	background-color: rgba(255, 255, 255, 0.9);
 }
 
 .header.is-open {
