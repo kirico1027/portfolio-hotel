@@ -1,22 +1,22 @@
   <?php if (is_front_page()) : ?>
-  <footer class="footer">
+    <footer class="footer">
     <?php else : ?>
-    <footer class="footer layout-footer">
+      <footer class="footer layout-footer">
       <?php endif; ?>
       <div class="footer__inner inner">
         <div class="footer__content">
           <?php
-        $home = esc_url(home_url("/"));
-        $campaign = esc_url(home_url("/campaign"));
-        $about = esc_url(home_url("/about-us"));
-        $information = esc_url(home_url("/information"));
-        $blog = esc_url(home_url("/blog"));
-        $voice = esc_url(home_url("/voice"));
-        $contact = esc_url(home_url("/contact"));
-        $campaign_category_license = esc_url(home_url("/campaign_category/rooms"));
-        $campaign_category_trial_diving = esc_url(home_url("/campaign_category/suites"));
-        $privacypolicy = esc_url(home_url("/privacypolicy"));
-        ?>
+          $home = esc_url(home_url("/"));
+          $campaign = esc_url(home_url("/campaign"));
+          $about = esc_url(home_url("/about-us"));
+          $information = esc_url(home_url("/information"));
+          $blog = esc_url(home_url("/blog"));
+          $voice = esc_url(home_url("/voice"));
+          $contact = esc_url(home_url("/contact"));
+          $campaign_category_license = esc_url(home_url("/campaign_category/rooms"));
+          $campaign_category_trial_diving = esc_url(home_url("/campaign_category/suites"));
+          $privacypolicy = esc_url(home_url("/privacypolicy"));
+          ?>
 
           <div class="footer__head-box">
             <div class="footer__logo">
@@ -98,8 +98,8 @@
             Kirico Palece Hotel All Rights Reserved.</small>
         </div>
       </div>
-    </footer>
-    <?php wp_footer(); ?>
-    </body>
+      </footer>
+      <?php wp_footer(); ?>
+      </body>
 
-    </html>
+      </html>

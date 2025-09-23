@@ -11,7 +11,7 @@
 
 <?php
 $home = esc_url(home_url("/"));
-$campaign = esc_url(home_url("/campaign"));
+$rooms = esc_url(home_url("/rooms"));
 $about = esc_url(home_url("/about-us"));
 $information = esc_url(home_url("/information"));
 $blog = esc_url(home_url("/blog"));
@@ -27,31 +27,31 @@ $privacypolicy = esc_url(home_url("/privacypolicy"));
   <header class="header js-header">
     <div class="header__inner">
       <?php if (is_front_page()) : ?>
-      <h1 class="header__logo">
-        <a href="<?php echo $home; ?>">
-          <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-main.svg" alt="KIRICO PALECE HOTEL"
-            class="header__logo-main">
-        </a>
-        <a href="<?php echo $home; ?>">
-          <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-sub.svg" alt=" KIRICO PALECE HOTEL"
-            class="header__logo-sub"> </a>
-      </h1>
+        <h1 class="header__logo">
+          <a href="<?php echo $home; ?>">
+            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-main.svg" alt="KIRICO PALECE HOTEL"
+              class="header__logo-main">
+          </a>
+          <a href="<?php echo $home; ?>">
+            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-sub.svg" alt=" KIRICO PALECE HOTEL"
+              class="header__logo-sub"> </a>
+        </h1>
       <?php else : ?>
-      <div class="header__logo">
-        <a href="<?php echo $home; ?>">
-          <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-main.svg" alt="KIRICO PALECE HOTEL"
-            class="header__logo-main">
-        </a>
-        <a href="<?php echo $home; ?>">
-          <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-sub.svg" alt="KIRICO PALECE HOTEL"
-            class="header__logo-sub">
-        </a>
-      </div>
+        <div class="header__logo">
+          <a href="<?php echo $home; ?>">
+            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-main.svg" alt="KIRICO PALECE HOTEL"
+              class="header__logo-main">
+          </a>
+          <a href="<?php echo $home; ?>">
+            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-sub.svg" alt="KIRICO PALECE HOTEL"
+              class="header__logo-sub">
+          </a>
+        </div>
       <?php endif; ?>
       <nav class="header__nav">
         <ul class="header__nav-items">
           <li class="header__nav-item">
-            <a class="js-splitText" href="<?php echo $campaign; ?>">ROOMS &amp; SUITES</a>
+            <a class="js-splitText" href="<?php echo $rooms; ?>">ROOMS &amp; SUITES</a>
           </li>
           <li class="header__nav-item">
             <a class="js-splitText" href="<?php echo $about; ?>">ABOUT US</a>
@@ -82,7 +82,7 @@ $privacypolicy = esc_url(home_url("/privacypolicy"));
               <div class="header__drawer-content">
                 <div class="header__drawer-block">
                   <div class="header__drawer-item header__drawer-item--main">
-                    <a href="<?php echo $campaign; ?>">Rooms&nbsp;&&nbsp;Suites</a>
+                    <a href="<?php echo $rooms; ?>">Rooms&nbsp;&&nbsp;Suites</a>
                   </div>
                   <div class="header__drawer-item">
                     <a href="<?php echo $campaign_category_license; ?>">Rooms</a>
