@@ -5,10 +5,10 @@
 
   <?php get_template_part('template-parts/breadcrumb'); ?>
 
-  <div class="page-campaign layout-page-campaign">
-    <div class="page-campaign__inner inner">
+  <div class="page-rooms layout-page-rooms">
+    <div class="page-rooms__inner inner">
 
-      <div class="page-campaign__category-list category-list">
+      <div class="page-rooms__category-list category-list">
         <?php
         $current_term_id = 0;
         $queried_object = get_queried_object();
@@ -40,11 +40,11 @@
           ?>
         </ul>
       </div>
-      <div class="page-campaign__cards">
+      <div class="page-rooms__cards">
         <?php if (have_posts()) : ?>
           <?php while (have_posts()) : the_post(); ?>
-            <div class="page-campaign__card page-campaign-card">
-              <figure class="page-campaign-card__img">
+            <div class="page-rooms__card page-rooms-card">
+              <figure class="page-rooms-card__img">
                 <?php if (has_post_thumbnail()) : ?>
                   <?php the_post_thumbnail('full'); ?>
                 <?php else : ?>
@@ -52,10 +52,10 @@
                     loading="lazy">
                 <?php endif; ?>
               </figure>
-              <div class="page-campaign-card__body">
-                <h2 class="page-campaign-card__title-main"><?php the_title(); ?></h2>
+              <div class="page-rooms-card__body">
+                <h2 class="page-rooms-card__title-main"><?php the_title(); ?></h2>
               </div>
-              <p class="page-campaign-card__text">
+              <p class="page-rooms-card__text">
                 <?php
                 $campaign_text = get_field("campaign_text");
                 if (mb_strlen($campaign_text) > 200) {
@@ -65,7 +65,7 @@
                 }
                 ?>
               </p>
-              <div class="page-campaign-card__button">
+              <div class="page-rooms-card__button">
                 <a href="<?php echo esc_url(home_url("/contact")) ?>" class="button"><span>Reserve</span></a>
               </div>
 
@@ -77,7 +77,7 @@
 
       </div>
 
-      <div class="page-campaign__pagenavi pagenavi">
+      <div class="page-rooms__pagenavi pagenavi">
         <div class="pagenavi__inner">
           <div class="pagination">
             <?php if (function_exists('wp_pagenavi')) {

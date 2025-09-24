@@ -18,9 +18,9 @@
 
   <?php get_template_part('template-parts/breadcrumb'); ?>
 
-  <div class=" page-campaign layout-page-campaign">
-    <div class="page-campaign__inner inner">
-      <div class="page-campaign__category-list category-list">
+  <div class=" page-rooms layout-page-rooms">
+    <div class="page-rooms__inner inner">
+      <div class="page-rooms__category-list category-list">
         <?php
         $current_term_id = 0;
         $queried_object = get_queried_object();
@@ -41,11 +41,11 @@
             foreach ($terms as $term) :
               $term_class = ($cat_name === $term->name) ? 'is-active' : '';
           ?>
-          <li class="category-list__item <?php echo esc_attr($term_class); ?>">
-            <a href="<?php echo esc_url(get_term_link($term->term_id)); ?>">
-              <?php echo esc_html($term->name); ?>
-            </a>
-          </li>
+              <li class="category-list__item <?php echo esc_attr($term_class); ?>">
+                <a href="<?php echo esc_url(get_term_link($term->term_id)); ?>">
+                  <?php echo esc_html($term->name); ?>
+                </a>
+              </li>
           <?php
             endforeach;
           endif;
@@ -53,7 +53,7 @@
         </ul>
       </div>
 
-      <ul class="page-campaign__cards">
+      <ul class="page-rooms__cards">
         <?php
         $genre_slug = get_query_var('campaign_category');
         $args = array(
@@ -70,38 +70,38 @@
         $the_query = new WP_Query($args);
         ?>
         <?php if ($the_query->have_posts()) : ?>
-        <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-        <li class="page-campaign__card page-campaign-card">
-          <figure class="page-campaign-card__img">
-            <?php if (has_post_thumbnail()) : ?>
-            <?php the_post_thumbnail('full'); ?>
-            <?php else : ?>
-            <img src="<?php echo esc_url(get_theme_file_uri("/images/common/noimage.jpg")); ?>" alt="NoImage画像"
-              loading="lazy">
-            <?php endif; ?>
-          </figure>
-          <div class="page-campaign-card__body">
-            <h2 class="page-campaign-card__title-main"><?php the_title(); ?></h2>
-          </div>
-          <p class="page-campaign-card__text">
-            <?php
-                  $campaign_text = get_field("campaign_text");
-                  if (mb_strlen($campaign_text) > 200) {
-                    echo mb_substr($campaign_text, 0, 200, 'UTF-8') . '...';
-                  } else {
-                    echo $campaign_text;
-                  }
-                  ?>
-          </p>
-          <div class="page-campaign-card__button">
-            <a href="<?php echo esc_url(home_url("/contact")) ?>" class="button"><span>Reserve</span></a>
-          </div>
-        </li>
-        <?php endwhile; ?>
-        <?php wp_reset_postdata(); ?>
+          <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
+            <li class="page-rooms__card page-rooms-card">
+              <figure class="page-rooms-card__img">
+                <?php if (has_post_thumbnail()) : ?>
+                  <?php the_post_thumbnail('full'); ?>
+                <?php else : ?>
+                  <img src="<?php echo esc_url(get_theme_file_uri("/images/common/noimage.jpg")); ?>" alt="NoImage画像"
+                    loading="lazy">
+                <?php endif; ?>
+              </figure>
+              <div class="page-rooms-card__body">
+                <h2 class="page-rooms-card__title-main"><?php the_title(); ?></h2>
+              </div>
+              <p class="page-rooms-card__text">
+                <?php
+                $campaign_text = get_field("campaign_text");
+                if (mb_strlen($campaign_text) > 200) {
+                  echo mb_substr($campaign_text, 0, 200, 'UTF-8') . '...';
+                } else {
+                  echo $campaign_text;
+                }
+                ?>
+              </p>
+              <div class="page-rooms-card__button">
+                <a href="<?php echo esc_url(home_url("/contact")) ?>" class="button"><span>Reserve</span></a>
+              </div>
+            </li>
+          <?php endwhile; ?>
+          <?php wp_reset_postdata(); ?>
         <?php endif; ?>
       </ul>
-      <div class="page-campaign__pagenavi pagenavi">
+      <div class="page-rooms__pagenavi pagenavi">
         <div class="pagenavi__inner">
           <div class="pagination">
             <?php if (function_exists('wp_pagenavi')) {
