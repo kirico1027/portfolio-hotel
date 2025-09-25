@@ -2683,11 +2683,68 @@ span.wpcf7-spinner {
 	height: 100%;
 }
 
+.page-rooms-card__img {
+	position: relative;
+	overflow: hidden;
+}
+
 .page-rooms-card__img img {
 	-o-object-fit: cover;
-	aspect-ratio: 280/188;
+	aspect-ratio: 280/170;
 	height: auto;
 	object-fit: cover;
+}
+
+/* ホバー時のオーバーレイ */
+.page-rooms-card__overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.8);
+	opacity: 0;
+	transition: opacity 0.5s ease-out;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.page-rooms-card__info {
+	text-align: center;
+	color: white;
+}
+
+.room-info-table {
+	border-collapse: collapse;
+	margin-bottom: 1rem;
+	width: 100%;
+}
+
+.room-info-table td {
+	padding: 0.5rem 1rem;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	text-align: left;
+	font-size: 0.8125rem;
+}
+
+.room-info-table td:first-child {
+	font-weight: bold;
+	width: 50%;
+	white-space: nowrap;
+}
+
+.room-info-table td:last-child {
+	text-align: right;
+	width: 50%;
+	white-space: nowrap;
+}
+
+
+/* ホバー効果 */
+.page-rooms-card:hover .page-rooms-card__overlay {
+	opacity: 1;
 }
 
 .page-rooms-card__body {
@@ -2761,6 +2818,7 @@ span.wpcf7-spinner {
 	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 400;
+	padding-bottom: 2rem;
 	letter-spacing: 0em;
 	line-height: 1.8;
 	margin-top: 1.5rem;
@@ -4342,8 +4400,15 @@ span.wpcf7-spinner {
 	}
 
 	.page-rooms-card__img img {
-		aspect-ratio: 520/347;
+		aspect-ratio: 520/320;
 	}
+
+	/* デスクトップ版のオーバーレイ調整 */
+	.room-info-table td {
+		padding: 0.75rem 1.5rem;
+		font-size: 0.8125rem;
+	}
+
 
 	.page-rooms-card__category span {
 		padding: 0.28125rem 0.90625rem 0.34375rem;
