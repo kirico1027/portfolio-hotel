@@ -1994,9 +1994,7 @@ WordPressTheme.CampaignNavigation = function () {
   this.scrollStorageKeys = ["categoryScrollPosition", "paginationScrollPosition"];
 };
 
-WordPressTheme.CampaignNavigation.prototype = Object.create(
-  WordPressTheme.BaseComponent.prototype
-);
+WordPressTheme.CampaignNavigation.prototype = Object.create(WordPressTheme.BaseComponent.prototype);
 WordPressTheme.CampaignNavigation.prototype.constructor = WordPressTheme.CampaignNavigation;
 
 WordPressTheme.CampaignNavigation.prototype.setup = function () {
@@ -2013,8 +2011,7 @@ WordPressTheme.CampaignNavigation.prototype.setup = function () {
   this.$paginationContainer = jQuery(WordPressTheme.CONFIG.selectors.campaign.pagination);
 
   var supportsHistory =
-    typeof window.history !== "undefined" &&
-    typeof window.history.pushState === "function";
+    typeof window.history !== "undefined" && typeof window.history.pushState === "function";
   var supportsFetch = typeof window.fetch === "function" && typeof window.DOMParser !== "undefined";
 
   this.isEnabled =
@@ -2115,12 +2112,7 @@ WordPressTheme.CampaignNavigation.prototype.navigate = function (url, shouldPush
       }
     })
     .catch(function (error) {
-      WordPressTheme.Utils.logError(
-        "CampaignNavigation",
-        "navigate",
-        error,
-        { url: url }
-      );
+      WordPressTheme.Utils.logError("CampaignNavigation", "navigate", error, { url: url });
       window.location.href = url;
     })
     .finally(function () {
@@ -2171,11 +2163,9 @@ WordPressTheme.CampaignNavigation.prototype.clearStoredScrollPosition = function
       sessionStorage.removeItem(this.scrollStorageKeys[i]);
     }
   } catch (error) {
-    WordPressTheme.Utils.logWarning(
-      "CampaignNavigation",
-      "clearStoredScrollPosition",
-      { message: error.message }
-    );
+    WordPressTheme.Utils.logWarning("CampaignNavigation", "clearStoredScrollPosition", {
+      message: error.message,
+    });
   }
 };
 
@@ -2486,51 +2476,82 @@ jQuery(window).on("load", function () {
       });
 
       // -------------------------------------
+      // 共通関数: タイトルアニメーション
+      // -------------------------------------
+      function createTitleAnimation(selector, options) {
+        options = options || {};
+        var delay = options.delay || 0;
+        var useTimeline = options.useTimeline || false;
+        var timeline = options.timeline || null;
+
+        try {
+          var $titleElement = jQuery(selector);
+          if ($titleElement.length === 0) {
+            WordPressTheme.Utils.logWarning("load", "Title element not found: " + selector, {
+              selector: selector,
+            });
+            return;
+          }
+
+          // 文字分割
+          var chars = $titleElement
+            .text()
+            .split("")
+            .map(function (char) {
+              return char === " " ? "&nbsp;" : char;
+            })
+            .map(function (c) {
+              return "<span>" + c + "</span>";
+            })
+            .join("");
+          $titleElement.html(chars);
+
+          // 初期状態を設定
+          gsap.set(selector, {
+            autoAlpha: 1,
+            visibility: "visible",
+            opacity: 1,
+          });
+
+          gsap.set(selector + " span", {
+            autoAlpha: 0,
+            scale: 0.95,
+          });
+
+          // アニメーション実行
+          var animationConfig = {
+            autoAlpha: 1,
+            scale: 1,
+            duration: 1,
+            ease: "Power2.easeInOut",
+            stagger: { each: 0.05, from: "random" },
+            delay: delay,
+          };
+
+          if (useTimeline && timeline) {
+            timeline.fromTo(selector + " span", { autoAlpha: 0, scale: 0.95 }, animationConfig);
+          } else {
+            gsap.fromTo(selector + " span", { autoAlpha: 0, scale: 0.95 }, animationConfig);
+          }
+        } catch (error) {
+          WordPressTheme.Utils.logError("load", "title animation", error, {
+            selector: selector,
+          });
+        }
+      }
+
+      // -------------------------------------
       // トップページのみタイムライン実行
       // -------------------------------------
       if (jQuery("body").hasClass("is-top")) {
         try {
-          // タイトル要素の文字分割
-          var titleSelectors = [
-            WordPressTheme.CONFIG.selectors.mv.main,
-            WordPressTheme.CONFIG.selectors.mv.sub,
-          ];
-          titleSelectors.forEach(function (selector) {
-            try {
-              var $titleElement = jQuery(selector);
-              if ($titleElement.length === 0) {
-                WordPressTheme.Utils.logWarning("load", "Title element not found: " + selector, {
-                  selector: selector,
-                });
-                return;
-              }
-
-              var chars = $titleElement
-                .text()
-                .split("")
-                .map(function (char) {
-                  return char === " " ? "&nbsp;" : char;
-                })
-                .map(function (c) {
-                  return "<span>" + c + "</span>";
-                })
-                .join("");
-              $titleElement.html(chars);
-            } catch (error) {
-              WordPressTheme.Utils.logError("load", "title processing", error, {
-                selector: selector,
-              });
-            }
-          });
+          // タイムライン作成
+          var timeline = gsap.timeline();
+          timeline.to({}, { duration: 0.5 }); // 暗転後の待機
 
           // タイトル・ロゴ・navの表示は事前にset（タイムライン内でなく）
           gsap.set(
-            [
-              WordPressTheme.CONFIG.selectors.mv.main,
-              WordPressTheme.CONFIG.selectors.mv.sub,
-              WordPressTheme.CONFIG.selectors.mv.logo,
-              WordPressTheme.CONFIG.selectors.splitText,
-            ],
+            [WordPressTheme.CONFIG.selectors.mv.logo, WordPressTheme.CONFIG.selectors.splitText],
             {
               autoAlpha: 1,
               visibility: "visible",
@@ -2538,26 +2559,17 @@ jQuery(window).on("load", function () {
             }
           );
 
-          // アニメーションタイムラインの実行
-          var timeline = gsap.timeline();
+          // MVタイトルのアニメーション（タイムライン使用）
+          createTitleAnimation(WordPressTheme.CONFIG.selectors.mv.main, {
+            useTimeline: true,
+            timeline: timeline,
+          });
+          createTitleAnimation(WordPressTheme.CONFIG.selectors.mv.sub, {
+            useTimeline: true,
+            timeline: timeline,
+          });
 
           timeline
-            .to({}, { duration: 0.5 }) // 暗転後の待機
-
-            .fromTo(
-              WordPressTheme.CONFIG.selectors.mv.main +
-                " span, " +
-                WordPressTheme.CONFIG.selectors.mv.sub +
-                " span",
-              { autoAlpha: 0, scale: 0.95 },
-              {
-                autoAlpha: 1,
-                scale: 1,
-                duration: 1,
-                ease: "Power2.easeInOut",
-                stagger: { each: 0.05, from: "random" },
-              }
-            )
 
             .fromTo(
               WordPressTheme.CONFIG.selectors.mv.logo + " img",
@@ -2590,6 +2602,15 @@ jQuery(window).on("load", function () {
           WordPressTheme.Utils.logError("load", "top page timeline", error, {});
         }
       }
+
+      // -------------------------------------
+      // sub-mv__title アニメーション実行
+      // -------------------------------------
+      if (jQuery(".js-sub-mv-title").length > 0) {
+        createTitleAnimation(".js-sub-mv-title", {
+          delay: 0.3,
+        });
+      }
     },
     "load",
     "split text animation",
@@ -2603,7 +2624,6 @@ jQuery(window).on("load", function () {
       );
     }
   );
-
 });
 
 // カテゴリ・ページネーション切り替え時のスクロール位置制御
