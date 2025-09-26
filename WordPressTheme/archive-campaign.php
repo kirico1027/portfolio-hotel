@@ -21,13 +21,13 @@
         ?>
         <ul class="category-list__items">
           <li class="category-list__item is-active">
-            <a href=" <?php echo esc_url(home_url('rooms')); ?>">ALL</a>
+            <a href="<?php echo esc_url(home_url('campaign')); ?>">ALL</a>
           </li>
 
           <?php
           if ($terms) :
             foreach ($terms as $term) :
-              $term_class = ($current_term_id === $term->term_id) ?: '';
+              $term_class = ($current_term_id === $term->term_id) ? 'is-active' : '';
           ?>
           <li class="category-list__item <?php echo esc_attr($term_class); ?>">
             <a href="<?php echo esc_url(get_term_link($term->term_id)); ?>">

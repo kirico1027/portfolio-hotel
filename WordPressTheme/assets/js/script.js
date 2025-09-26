@@ -2392,4 +2392,41 @@ jQuery(window).on("load", function () {
       );
     }
   );
+
+  // カテゴリリストのスクロール制御
+  jQuery(".category-list__item a").on("click", function (e) {
+    // 現在のスクロール位置を保存
+    var currentScrollTop = jQuery(window).scrollTop();
+
+    // セッションストレージにスクロール位置を保存
+    sessionStorage.setItem("categoryScrollPosition", currentScrollTop);
+  });
+
+  // ページネーションのスクロール制御
+  jQuery(".wp-pagenavi a").on("click", function (e) {
+    // 現在のスクロール位置を保存
+    var currentScrollTop = jQuery(window).scrollTop();
+
+    // セッションストレージにスクロール位置を保存
+    sessionStorage.setItem("paginationScrollPosition", currentScrollTop);
+  });
+
+  // ページ読み込み時にスクロール位置を復元
+  jQuery(document).ready(function () {
+    // カテゴリまたはページネーションのスクロール位置を確認
+    var categoryScrollPosition = sessionStorage.getItem("categoryScrollPosition");
+    var paginationScrollPosition = sessionStorage.getItem("paginationScrollPosition");
+
+    var savedScrollPosition = categoryScrollPosition || paginationScrollPosition;
+
+    if (savedScrollPosition && savedScrollPosition > 0) {
+      // 少し遅延してからスクロール位置を復元
+      setTimeout(function () {
+        jQuery(window).scrollTop(savedScrollPosition);
+        // 復元後はセッションストレージをクリア
+        sessionStorage.removeItem("categoryScrollPosition");
+        sessionStorage.removeItem("paginationScrollPosition");
+      }, 100);
+    }
+  });
 });

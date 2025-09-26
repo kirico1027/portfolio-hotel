@@ -1738,6 +1738,7 @@ a {
 	cursor: pointer;
 	display: inline-block;
 	width: 100%;
+	scroll-behavior: auto;
 }
 
 .js-colorbox {
@@ -2977,13 +2978,15 @@ span.wpcf7-spinner {
 	border: 1px solid #2b2b2b;
 	color: #2b2b2b;
 	cursor: pointer;
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	font-family: "Noto Serif JP", serif;
 	font-size: 1rem;
 	font-weight: 700;
 	height: 2.375rem;
 	line-height: 1;
-	padding: 0.625rem 0;
+	padding: 0;
 	transition: 0.3s;
 	white-space: nowrap;
 	width: 2.375rem;
