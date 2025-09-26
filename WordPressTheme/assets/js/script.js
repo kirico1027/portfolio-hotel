@@ -114,6 +114,13 @@ WordPressTheme.CONFIG = {
       prev: ".single-pagenavi__prev", // 前ページナビ
       next: ".single-pagenavi__next", // 次ページナビ
     },
+    campaign: {
+      container: ".page-rooms",
+      list: ".page-rooms__category-list .category-list__items",
+      cards: ".page-rooms__cards",
+      pagination: ".page-rooms__pagenavi",
+      linkTargets: ".page-rooms__category-list a, .page-rooms__pagenavi a",
+    },
     headerElements:
       ".header, .header__nav-item a, .header__logo-main, .header__logo-sub, .header__hamburger span",
     sectionTitle: ".section-title__main", // セクションタイトル
@@ -1970,6 +1977,209 @@ WordPressTheme.AdvancedAnimation.prototype.destroy = function () {
 };
 
 // ========================================
+// キャンペーンナビゲーションクラス
+// ========================================
+WordPressTheme.CampaignNavigation = function () {
+  WordPressTheme.BaseComponent.call(this);
+  this.$document = null;
+  this.$categoryList = null;
+  this.$cardsContainer = null;
+  this.$paginationContainer = null;
+  this.isEnabled = false;
+  this.isLoading = false;
+  this.eventNamespace = ".campaignNavigation";
+  this.linkSelector = WordPressTheme.CONFIG.selectors.campaign.linkTargets;
+  this.handleLinkClick = null;
+  this.handlePopState = null;
+  this.scrollStorageKeys = ["categoryScrollPosition", "paginationScrollPosition"];
+};
+
+WordPressTheme.CampaignNavigation.prototype = Object.create(
+  WordPressTheme.BaseComponent.prototype
+);
+WordPressTheme.CampaignNavigation.prototype.constructor = WordPressTheme.CampaignNavigation;
+
+WordPressTheme.CampaignNavigation.prototype.setup = function () {
+  this.$document = jQuery(document);
+
+  var $campaignContainer = jQuery(WordPressTheme.CONFIG.selectors.campaign.container);
+  if ($campaignContainer.length === 0) {
+    this.isEnabled = false;
+    return true;
+  }
+
+  this.$categoryList = jQuery(WordPressTheme.CONFIG.selectors.campaign.list);
+  this.$cardsContainer = jQuery(WordPressTheme.CONFIG.selectors.campaign.cards);
+  this.$paginationContainer = jQuery(WordPressTheme.CONFIG.selectors.campaign.pagination);
+
+  var supportsHistory =
+    typeof window.history !== "undefined" &&
+    typeof window.history.pushState === "function";
+  var supportsFetch = typeof window.fetch === "function" && typeof window.DOMParser !== "undefined";
+
+  this.isEnabled =
+    this.$categoryList.length > 0 &&
+    this.$cardsContainer.length > 0 &&
+    supportsHistory &&
+    supportsFetch;
+
+  if (this.isEnabled && (!history.state || history.state.campaignAjax !== true)) {
+    history.replaceState({ campaignAjax: true }, "", window.location.href);
+  }
+
+  return true;
+};
+
+WordPressTheme.CampaignNavigation.prototype.bindEvents = function () {
+  if (!this.isEnabled) {
+    return;
+  }
+
+  this.handleLinkClick = this.onLinkClick.bind(this);
+  this.handlePopState = this.onPopState.bind(this);
+
+  this.$document.on("click" + this.eventNamespace, this.linkSelector, this.handleLinkClick);
+  window.addEventListener("popstate", this.handlePopState);
+};
+
+WordPressTheme.CampaignNavigation.prototype.destroy = function () {
+  if (this.isEnabled && this.$document !== null) {
+    this.$document.off("click" + this.eventNamespace, this.linkSelector, this.handleLinkClick);
+    window.removeEventListener("popstate", this.handlePopState);
+  }
+  WordPressTheme.BaseComponent.prototype.destroy.call(this);
+};
+
+WordPressTheme.CampaignNavigation.prototype.onLinkClick = function (event) {
+  if (!this.isEnabled) {
+    return;
+  }
+
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
+    return;
+  }
+
+  if (event.currentTarget.target && event.currentTarget.target !== "_self") {
+    return;
+  }
+
+  var href = event.currentTarget.href;
+  if (!href || href === window.location.href) {
+    event.preventDefault();
+    return;
+  }
+
+  event.preventDefault();
+  this.navigate(href, true);
+};
+
+WordPressTheme.CampaignNavigation.prototype.onPopState = function (event) {
+  if (!this.isEnabled) {
+    return;
+  }
+
+  if (!event.state || event.state.campaignAjax !== true) {
+    return;
+  }
+
+  this.navigate(window.location.href, false);
+};
+
+WordPressTheme.CampaignNavigation.prototype.navigate = function (url, shouldPush) {
+  if (!this.isEnabled) {
+    window.location.href = url;
+    return;
+  }
+
+  if (this.isLoading) {
+    return;
+  }
+
+  this.isLoading = true;
+  document.body.classList.add("is-campaign-loading");
+  this.clearStoredScrollPosition();
+
+  var self = this;
+
+  fetch(url, { headers: { "X-Requested-With": "XMLHttpRequest" } })
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("HTTP status " + response.status);
+      }
+      return response.text();
+    })
+    .then(function (html) {
+      self.updateContent(html);
+      if (shouldPush) {
+        history.pushState({ campaignAjax: true }, "", url);
+      }
+    })
+    .catch(function (error) {
+      WordPressTheme.Utils.logError(
+        "CampaignNavigation",
+        "navigate",
+        error,
+        { url: url }
+      );
+      window.location.href = url;
+    })
+    .finally(function () {
+      self.isLoading = false;
+      document.body.classList.remove("is-campaign-loading");
+    });
+};
+
+WordPressTheme.CampaignNavigation.prototype.updateContent = function (html) {
+  var parser = new DOMParser();
+  var doc = parser.parseFromString(html, "text/html");
+
+  var cardsSelector = WordPressTheme.CONFIG.selectors.campaign.cards;
+  var paginationSelector = WordPressTheme.CONFIG.selectors.campaign.pagination;
+  var listSelector = WordPressTheme.CONFIG.selectors.campaign.list;
+
+  var newCards = doc.querySelector(cardsSelector);
+  if (!newCards) {
+    throw new Error("Cards container missing in fetched document");
+  }
+  this.$cardsContainer.html(newCards.innerHTML);
+
+  if (this.$paginationContainer.length > 0) {
+    var newPagination = doc.querySelector(paginationSelector);
+    if (newPagination) {
+      this.$paginationContainer.html(newPagination.innerHTML);
+    } else {
+      this.$paginationContainer.empty();
+    }
+  }
+
+  if (this.$categoryList.length > 0) {
+    var newList = doc.querySelector(listSelector);
+    if (newList) {
+      this.$categoryList.html(newList.innerHTML);
+    }
+  }
+
+  var newTitle = doc.querySelector("title");
+  if (newTitle) {
+    document.title = newTitle.textContent;
+  }
+};
+
+WordPressTheme.CampaignNavigation.prototype.clearStoredScrollPosition = function () {
+  try {
+    for (var i = 0; i < this.scrollStorageKeys.length; i++) {
+      sessionStorage.removeItem(this.scrollStorageKeys[i]);
+    }
+  } catch (error) {
+    WordPressTheme.Utils.logWarning(
+      "CampaignNavigation",
+      "clearStoredScrollPosition",
+      { message: error.message }
+    );
+  }
+};
+
+// ========================================
 // アプリケーション管理クラス
 // ========================================
 /**
@@ -2047,6 +2257,7 @@ WordPressTheme.App.prototype = {
       { name: "faq", component: new WordPressTheme.FAQ() },
       { name: "tab", component: new WordPressTheme.Tab() },
       { name: "pageNavigation", component: new WordPressTheme.PageNavigation() },
+      { name: "campaignNavigation", component: new WordPressTheme.CampaignNavigation() },
       { name: "headerScroll", component: new WordPressTheme.HeaderScroll() },
       { name: "gsapAnimation", component: new WordPressTheme.GSAPAnimation() },
       { name: "smoothScroll", component: new WordPressTheme.SmoothScroll() },
@@ -2393,40 +2604,33 @@ jQuery(window).on("load", function () {
     }
   );
 
-  // カテゴリリストのスクロール制御
-  jQuery(".category-list__item a").on("click", function (e) {
-    // 現在のスクロール位置を保存
-    var currentScrollTop = jQuery(window).scrollTop();
+});
 
-    // セッションストレージにスクロール位置を保存
-    sessionStorage.setItem("categoryScrollPosition", currentScrollTop);
+// カテゴリ・ページネーション切り替え時のスクロール位置制御
+jQuery(function ($) {
+  var CATEGORY_KEY = "categoryScrollPosition";
+  var PAGINATION_KEY = "paginationScrollPosition";
+
+  // クリック時に現在位置を保存
+  jQuery(".category-list__item a").on("click", function () {
+    sessionStorage.setItem(CATEGORY_KEY, window.pageYOffset);
   });
 
-  // ページネーションのスクロール制御
-  jQuery(".wp-pagenavi a").on("click", function (e) {
-    // 現在のスクロール位置を保存
-    var currentScrollTop = jQuery(window).scrollTop();
-
-    // セッションストレージにスクロール位置を保存
-    sessionStorage.setItem("paginationScrollPosition", currentScrollTop);
+  jQuery(".wp-pagenavi a").on("click", function () {
+    sessionStorage.setItem(PAGINATION_KEY, window.pageYOffset);
   });
 
-  // ページ読み込み時にスクロール位置を復元
-  jQuery(document).ready(function () {
-    // カテゴリまたはページネーションのスクロール位置を確認
-    var categoryScrollPosition = sessionStorage.getItem("categoryScrollPosition");
-    var paginationScrollPosition = sessionStorage.getItem("paginationScrollPosition");
+  // 可能な限り早いタイミングでスクロール位置を復元
+  var savedScroll = sessionStorage.getItem(CATEGORY_KEY) || sessionStorage.getItem(PAGINATION_KEY);
 
-    var savedScrollPosition = categoryScrollPosition || paginationScrollPosition;
-
-    if (savedScrollPosition && savedScrollPosition > 0) {
-      // 少し遅延してからスクロール位置を復元
-      setTimeout(function () {
-        jQuery(window).scrollTop(savedScrollPosition);
-        // 復元後はセッションストレージをクリア
-        sessionStorage.removeItem("categoryScrollPosition");
-        sessionStorage.removeItem("paginationScrollPosition");
-      }, 100);
+  if (savedScroll !== null) {
+    var targetY = parseInt(savedScroll, 10);
+    if (!isNaN(targetY)) {
+      requestAnimationFrame(function () {
+        window.scrollTo(0, targetY);
+      });
     }
-  });
+    sessionStorage.removeItem(CATEGORY_KEY);
+    sessionStorage.removeItem(PAGINATION_KEY);
+  }
 });
