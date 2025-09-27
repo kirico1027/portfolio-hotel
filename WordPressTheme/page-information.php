@@ -9,7 +9,7 @@
     <div class="page-info__inner inner">
       <div class="page-info__tab tab">
         <ul class="tab__menu tab-menu">
-          <li class="tab-menu__item js-tab-menu" data-number="tab01"><span>Gardening Party</span>
+          <li class="tab-menu__item js-tab-menu is-active" data-number="tab01"><span>Gardening Party</span>
           </li>
           <li class="tab-menu__item js-tab-menu" data-number="tab02"><span>Events</span></li>
           <li class="tab-menu__item js-tab-menu" data-number="tab03"><span>Relaxation</span></li>

@@ -1174,14 +1174,14 @@ WordPressTheme.Tab.prototype.bindEvents = function () {
 /**
  * 指定されたタブをアクティブにする
  *
- * @param {number} tabNumber - アクティブにするタブ番号
+ * @param {string} tabNumber - アクティブにするタブ番号
  */
 WordPressTheme.Tab.prototype.activateTab = function (tabNumber) {
   this.$tabMenuItems.removeClass("is-active");
   this.$tabContentItems.removeClass("is-active");
 
   this.$tabMenuItems.filter('[data-number="' + tabNumber + '"]').addClass("is-active");
-  this.$tabContentItems.filter('[data-number="' + tabNumber + '"]').addClass("is-active");
+  this.$tabContentItems.filter("#" + tabNumber).addClass("is-active");
 };
 
 /**
@@ -1191,7 +1191,7 @@ WordPressTheme.Tab.prototype.initializeTab = function () {
   try {
     var urlTabParam = new URL(window.location.href).searchParams.get("tab");
     if (urlTabParam) {
-      this.activateTab(parseInt(urlTabParam));
+      this.activateTab(urlTabParam);
     }
   } catch (error) {
     WordPressTheme.Utils.logError("Tab", "initializeTab", error, {});
