@@ -96,6 +96,9 @@ function my_pre_get_posts($query)
 {
   if (is_admin() || !$query->is_main_query()) {
     return;
+  } elseif ($query->is_home()) {
+    $query->set('posts_per_page', 6);
+    return;
   } elseif ($query->is_post_type_archive('campaign')) {
     $query->set('posts_per_page', 4);
     return;

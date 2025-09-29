@@ -1413,16 +1413,38 @@ WordPressTheme.GSAPAnimation.prototype.initCommonFadeDownAnimation = function ()
     return;
   }
 
+  // ホームページのブログカード（個別発火）
+  jQuery(".blog-card.js-home-card").each(function () {
+    var $card = jQuery(this);
+    gsap.fromTo(
+      $card,
+      {
+        opacity: 0,
+        y: -60, // 上から60pxの位置から開始
+      },
+      {
+        opacity: 1,
+        y: 0, // 元の位置に下に降りる
+        duration: 1.6, // section-title__mainと同じ速さ
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: $card[0], // 各カード個別で発火
+          start: "top 80%", // 各カードが80%の位置に来たときに発火
+        },
+      }
+    );
+  });
+
   // .js-fade-down要素が存在するかチェック
   if (!document.querySelector(".js-fade-down")) {
     WordPressTheme.Utils.logWarning("GSAPAnimation", "js-fade-down element not found", {});
     return;
   }
 
-  // ブログカードの場合は特別処理（ランダム表示）
-  if (jQuery(".blog-card.js-fade-down").length > 0) {
+  // その他のブログカード（ランダム表示）
+  if (jQuery(".blog-card.js-fade-down:not(.js-home-card)").length > 0) {
     gsap.fromTo(
-      ".blog-card.js-fade-down",
+      ".blog-card.js-fade-down:not(.js-home-card)",
       {
         opacity: 0,
         y: -60, // 上から60pxの位置から開始
