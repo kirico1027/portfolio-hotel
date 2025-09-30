@@ -585,7 +585,7 @@ a {
 }
 
 .home-main__card .blog-card__img:hover img {
-	transform: scale(1.1);
+	transform: scale(1.05);
 }
 
 .layout-about {
@@ -1061,14 +1061,29 @@ a {
 }
 
 .single-main__title {
-	border-bottom: 1px solid #2b2b2b;
 	color: #131e29;
 	font-family: "Noto Serif JP", serif;
 	font-size: 1.5rem;
 	font-weight: 500;
 	line-height: 1;
 	margin-top: 0.8125rem;
-	padding-bottom: 0.9375rem;
+	padding-bottom: 1.125rem;
+	position: relative;
+}
+
+.single-main__title::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 1px;
+	background-color: #2b2b2b;
+	transition: width 1.5s ease;
+}
+
+.single-main__title.animate-underline::after {
+	width: 100%;
 }
 
 .single-main__thumbnail {
@@ -1324,7 +1339,7 @@ a {
 }
 
 .blog-card:hover .blog-card__img img {
-	transform: scale(1.1);
+	transform: scale(1.05);
 }
 
 
@@ -1645,7 +1660,7 @@ a {
 
 .campaign-card__text {
 	display: none;
-	font-size: 0.65rem;
+	font-size: 0.875rem;
 	line-height: 1.75;
 	margin-top: 0.9375rem;
 	text-align: justify;
@@ -3319,7 +3334,7 @@ span.wpcf7-spinner {
 
 .sidebar-review__image img {
 	-o-object-fit: cover;
-	aspect-ratio: 294/218;
+	aspect-ratio: 294/188;
 	height: auto;
 	object-fit: cover;
 }
@@ -4076,7 +4091,7 @@ span.wpcf7-spinner {
 	}
 
 	.single-main__title {
-		font-size: 2rem;
+		font-size: 1.7rem;
 		margin-top: 0.9375rem;
 	}
 

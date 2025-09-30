@@ -1343,6 +1343,7 @@ WordPressTheme.GSAPAnimation.prototype.setup = function () {
 
     this.initContactFormAnimation();
     this.initFadeInAnimation();
+    this.initFadeInSingleAnimation();
   } catch (error) {
     WordPressTheme.Utils.logError("GSAPAnimation", "setup", error, {});
   }
@@ -1686,6 +1687,53 @@ WordPressTheme.GSAPAnimation.prototype.initFadeInAnimation = function () {
         scrollTrigger: {
           trigger: $element[0],
           start: "top 90%", // 要求された位置
+        },
+      }
+    );
+  });
+};
+
+/**
+ * フェードインアニメーションの初期化（single.php専用）
+ *
+ * js-fade-in-singleクラスを持つ要素のスクロールアニメーションを設定します。
+ * start: "top 70%"の位置から浮かんでくるように出現します。
+ */
+WordPressTheme.GSAPAnimation.prototype.initFadeInSingleAnimation = function () {
+  // GSAPとScrollTriggerが利用可能かチェック
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    WordPressTheme.Utils.logWarning("GSAPAnimation", "GSAP or ScrollTrigger not available", {});
+    return;
+  }
+
+  // .js-fade-in-single要素が存在するかチェック
+  if (!document.querySelector(".js-fade-in-single")) {
+    WordPressTheme.Utils.logWarning("GSAPAnimation", "js-fade-in-single element not found", {});
+    return;
+  }
+
+  jQuery(".js-fade-in-single").each(function () {
+    var $element = jQuery(this);
+
+    // 要素がその位置から浮かんでくるように出現
+    gsap.fromTo(
+      $element,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 1.5, // よりゆっくり
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: $element[0],
+          start: "top 80%", // single.php専用の位置
+        },
+        onStart: function () {
+          // タイトル要素の場合、下線アニメーションを実行
+          if ($element.hasClass("single-main__title")) {
+            $element.addClass("animate-underline");
+          }
         },
       }
     );

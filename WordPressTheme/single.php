@@ -14,9 +14,10 @@
 
           <article class="single-main__box">
             <div class="single-main__body">
-              <time datetime="<?php the_time('c'); ?>" class="single-main__date"><?php the_time('Y.m/d'); ?></time>
-              <h2 class="single-main__title"><?php the_title(); ?></h2>
-              <div class="single-main__thumbnail">
+              <time datetime="<?php the_time('c'); ?>"
+                class="single-main__date js-fade-in-single"><?php the_time('Y.m/d'); ?></time>
+              <h2 class="single-main__title js-fade-in-single"><?php the_title(); ?></h2>
+              <div class="single-main__thumbnail js-fade-in-single">
                 <?php if (has_post_thumbnail()) : ?>
                 <?php the_post_thumbnail('full'); ?>
                 <?php else : ?>
@@ -25,7 +26,7 @@
                 <?php endif; ?>
               </div>
             </div>
-            <div class="single-main__content single-content">
+            <div class="single-main__content single-content js-fade-in-single">
               <?php the_content(); ?>
             </div>
           </article>
