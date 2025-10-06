@@ -103,7 +103,7 @@ function my_pre_get_posts($query)
     $query->set('posts_per_page', 4);
     return;
   } elseif ($query->is_post_type_archive('voice')) {
-    $query->set('posts_per_page', 6);
+    $query->set('posts_per_page', 4);
     return;
   }
 }

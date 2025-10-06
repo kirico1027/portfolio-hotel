@@ -13,7 +13,7 @@
             <ul class="home-main__cards blog-cards blog-cards--2col">
               <?php if (have_posts()) : ?>
               <?php while (have_posts()) : the_post(); ?>
-              <li class="home-main__card blog-card js-home-card">
+              <li class="home-main__card blog-card js-card-fade">
                 <a href="<?php the_permalink(); ?>">
                   <div class="blog-card__item">
                     <figure class="blog-card__img">

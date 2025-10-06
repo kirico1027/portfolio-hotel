@@ -172,7 +172,7 @@ a {
 }
 
 .archive-voice__cards {
-	margin-top: 2.5rem;
+	margin-top: 4rem;
 }
 
 .archive-voice__pagenavi .wp-pagenavi {
@@ -853,7 +853,7 @@ a {
 	grid-gap: 2.5rem 2.5rem;
 	display: grid;
 	gap: 2.5rem 2.5rem;
-	margin-top: 2.5rem;
+	margin-top: 4rem;
 }
 
 .page-rooms__pagenavi {

@@ -20,7 +20,7 @@
 
   <div class=" page-rooms layout-page-rooms">
     <div class="page-rooms__inner inner">
-      <div class="page-rooms__category-list category-list">
+      <div class="page-rooms__category-list category-list js-fade-in">
         <?php
         $current_term_id = 0;
         $queried_object = get_queried_object();
@@ -71,7 +71,7 @@
         ?>
         <?php if ($the_query->have_posts()) : ?>
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-            <li class="page-rooms__card page-rooms-card">
+            <li class="page-rooms__card page-rooms-card js-card-fade">
               <figure class="page-rooms-card__img">
                 <?php if (has_post_thumbnail()) : ?>
                   <?php the_post_thumbnail('full'); ?>

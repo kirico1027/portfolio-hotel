@@ -1415,8 +1415,8 @@ WordPressTheme.GSAPAnimation.prototype.initCommonFadeDownAnimation = function ()
     return;
   }
 
-  // ホームページのブログカード（個別発火）
-  jQuery(".blog-card.js-home-card").each(function () {
+  // カードの個別発火アニメーション（ブログカード・voice-card共通）
+  jQuery(".js-card-fade").each(function () {
     var $card = jQuery(this);
     gsap.fromTo(
       $card,
