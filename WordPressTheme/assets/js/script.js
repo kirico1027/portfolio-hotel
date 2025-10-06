@@ -1344,6 +1344,7 @@ WordPressTheme.GSAPAnimation.prototype.setup = function () {
     this.initContactFormAnimation();
     this.initFadeInAnimation();
     this.initFadeInSingleAnimation();
+    this.initSidebarTitleAnimation();
   } catch (error) {
     WordPressTheme.Utils.logError("GSAPAnimation", "setup", error, {});
   }
@@ -1734,6 +1735,49 @@ WordPressTheme.GSAPAnimation.prototype.initFadeInSingleAnimation = function () {
           if ($element.hasClass("single-main__title")) {
             $element.addClass("animate-underline");
           }
+        },
+      }
+    );
+  });
+};
+
+/**
+ * サイドバータイトルアニメーションの初期化
+ *
+ * サイドバータイトルの::before疑似要素（縦線）のスクロールアニメーションを設定します。
+ * スクロールすると上から下に出現するアニメーションを実現します。
+ */
+WordPressTheme.GSAPAnimation.prototype.initSidebarTitleAnimation = function () {
+  // GSAPとScrollTriggerが利用可能かチェック
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    WordPressTheme.Utils.logWarning("GSAPAnimation", "GSAP or ScrollTrigger not available", {});
+    return;
+  }
+
+  // .js-sidebar-title要素が存在するかチェック
+  if (!document.querySelector(".js-sidebar-title")) {
+    WordPressTheme.Utils.logWarning("GSAPAnimation", "js-sidebar-title element not found", {});
+    return;
+  }
+
+  jQuery(".js-sidebar-title").each(function () {
+    var $title = jQuery(this);
+
+    // スクロールアニメーション設定
+    gsap.fromTo(
+      $title,
+      {
+        // 初期状態では何もしない（CSSでheight: 0に設定済み）
+      },
+      {
+        // アニメーション完了時にanimate-lineクラスを追加
+        onStart: function () {
+          $title.addClass("animate-line");
+        },
+        duration: 0.1, // 非常に短い時間でクラス追加のみ実行
+        scrollTrigger: {
+          trigger: $title[0],
+          start: "top 80%", // タイトルが80%の位置に来たときに発火
         },
       }
     );

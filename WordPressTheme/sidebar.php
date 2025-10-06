@@ -2,7 +2,7 @@
   <div class="sidebar__inner">
     <div class="sidebar__container">
       <div class="sidebar__popular sidebar-popular js-fade-in">
-        <h2 class="sidebar-popular__title sidebar-title">
+        <h2 class="sidebar-popular__title sidebar-title js-sidebar-title">
           Popular Blogs
         </h2>
         <ul class="sidebar-popular__list">
@@ -20,23 +20,23 @@
           if ($the_query->have_posts()) :
             while ($the_query->have_posts()) : $the_query->the_post();
               $loopcounter++; ?>
-              <li>
-                <a href="<?php echo get_permalink(); ?>">
-                  <div class="sidebar-popular__item">
-                    <figure class="sidebar-popular__image">
-                      <?php if (has_post_thumbnail()) : ?>
-                        <?php the_post_thumbnail('full'); ?>
-                      <?php endif; ?>
-                    </figure>
-                    <div class="sidebar-popular__body">
-                      <time datetime="<?php the_time('c'); ?>"
-                        class="sidebar-popular__date date"><?php the_time('Y.m/d'); ?></time>
-                      <h3 class="sidebar-popular__text">
-                        <?php echo wp_trim_words(get_the_title(), 20, '…'); ?></h3>
-                    </div>
-                  </div>
-                </a>
-              </li>
+          <li>
+            <a href="<?php echo get_permalink(); ?>">
+              <div class="sidebar-popular__item">
+                <figure class="sidebar-popular__image">
+                  <?php if (has_post_thumbnail()) : ?>
+                  <?php the_post_thumbnail('full'); ?>
+                  <?php endif; ?>
+                </figure>
+                <div class="sidebar-popular__body">
+                  <time datetime="<?php the_time('c'); ?>"
+                    class="sidebar-popular__date date"><?php the_time('Y.m/d'); ?></time>
+                  <h3 class="sidebar-popular__text">
+                    <?php echo wp_trim_words(get_the_title(), 20, '…'); ?></h3>
+                </div>
+              </div>
+            </a>
+          </li>
           <?php endwhile;
           endif;
           wp_reset_postdata();
@@ -44,7 +44,7 @@
         </ul>
       </div>
       <div class=" sidebar__review sidebar-review js-fade-in">
-        <h2 class="sidebar-review__main-title sidebar-title">
+        <h2 class="sidebar-review__main-title sidebar-title js-sidebar-title">
           Voice
         </h2>
         <div class="sidebar-review__content">
@@ -56,26 +56,26 @@
           $the_query = new WP_Query($args);
           ?>
           <?php if ($the_query->have_posts()) : ?>
-            <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-              <figure class="sidebar-review__image">
-                <?php if (has_post_thumbnail()) : ?>
-                  <?php the_post_thumbnail('full'); ?>
-                <?php else : ?>
-                  <img src="<?php echo esc_url(get_theme_file_uri("/images/common/noimage.jpg")); ?>" alt="NoImage画像"
-                    loading="lazy">
-                <?php endif; ?>
-              </figure>
-              <div class="sidebar-review__body">
-                <?php
+          <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
+          <figure class="sidebar-review__image">
+            <?php if (has_post_thumbnail()) : ?>
+            <?php the_post_thumbnail('full'); ?>
+            <?php else : ?>
+            <img src="<?php echo esc_url(get_theme_file_uri("/images/common/noimage.jpg")); ?>" alt="NoImage画像"
+              loading="lazy">
+            <?php endif; ?>
+          </figure>
+          <div class="sidebar-review__body">
+            <?php
                 $personalInfo = get_field('personal_info');
                 if ($personalInfo) :
                 ?>
-                  <span
-                    class="sidebar-review__age"><?php echo $personalInfo['personal_age']; ?>代(<?php echo $personalInfo['personal_gender']; ?>)</span>
-                <?php endif; ?>
-                <h3 class="sidebar-review__title"><?php echo wp_trim_words(get_the_title(), 20, '…'); ?></h3>
-                <p class="sidebar-review__text">
-                  <?php
+            <span
+              class="sidebar-review__age"><?php echo $personalInfo['personal_age']; ?>代(<?php echo $personalInfo['personal_gender']; ?>)</span>
+            <?php endif; ?>
+            <h3 class="sidebar-review__title"><?php echo wp_trim_words(get_the_title(), 20, '…'); ?></h3>
+            <p class="sidebar-review__text">
+              <?php
                   $customer_text = get_field("customer_text");
                   if (mb_strlen($customer_text) > 40) {
                     echo mb_substr($customer_text, 0, 40, 'UTF-8') . '...';
@@ -83,11 +83,11 @@
                     echo $customer_text;
                   }
                   ?>
-                </p>
+            </p>
 
-              </div>
-            <?php endwhile; ?>
-            <?php wp_reset_postdata(); ?>
+          </div>
+          <?php endwhile; ?>
+          <?php wp_reset_postdata(); ?>
           <?php endif; ?>
         </div>
         <div class="sidebar-review__button">
@@ -95,7 +95,7 @@
         </div>
       </div>
       <div class="sidebar__campaign sidebar-campaign js-fade-in">
-        <h2 class="sidebar-campaign__title sidebar-title">
+        <h2 class="sidebar-campaign__title sidebar-title js-sidebar-title">
           Rooms & Suites
         </h2>
         <ul class="sidebar-campaign__cards">
@@ -107,21 +107,21 @@
           $the_query = new WP_Query($args);
           ?>
           <?php if ($the_query->have_posts()) : ?>
-            <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-              <li class="sidebar-campaign__card sidebar-campaign-card">
-                <div class="sidebar-campaign-card__item">
-                  <figure class="sidebar-campaign-card__img">
-                    <?php if (has_post_thumbnail()) : ?>
-                      <?php the_post_thumbnail('full'); ?>
-                    <?php else : ?>
-                      <img src="<?php echo esc_url(get_theme_file_uri("/images/common/noimage.jpg")); ?>" alt="NoImage画像"
-                        loading="lazy">
-                    <?php endif; ?>
-                  </figure>
-                  <div class="sidebar-campaign-card__body">
-                    <h3 class="sidebar-campaign-card__title-main"><?php the_title(); ?></h3>
-                    <p class="campaign-card__text">
-                      <?php
+          <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
+          <li class="sidebar-campaign__card sidebar-campaign-card">
+            <div class="sidebar-campaign-card__item">
+              <figure class="sidebar-campaign-card__img">
+                <?php if (has_post_thumbnail()) : ?>
+                <?php the_post_thumbnail('full'); ?>
+                <?php else : ?>
+                <img src="<?php echo esc_url(get_theme_file_uri("/images/common/noimage.jpg")); ?>" alt="NoImage画像"
+                  loading="lazy">
+                <?php endif; ?>
+              </figure>
+              <div class="sidebar-campaign-card__body">
+                <h3 class="sidebar-campaign-card__title-main"><?php the_title(); ?></h3>
+                <p class="campaign-card__text">
+                  <?php
                       $campaign_text = get_field("campaign_text");
                       if (mb_strlen($campaign_text) > 40) {
                         echo mb_substr($campaign_text, 0, 40, 'UTF-8') . '...';
@@ -129,12 +129,12 @@
                         echo $campaign_text;
                       }
                       ?>
-                    </p>
-                  </div>
-                </div>
-              </li>
-            <?php endwhile; ?>
-            <?php wp_reset_postdata(); ?>
+                </p>
+              </div>
+            </div>
+          </li>
+          <?php endwhile; ?>
+          <?php wp_reset_postdata(); ?>
           <?php endif; ?>
         </ul>
         <div class="sidebar-campaign__button">
@@ -143,7 +143,7 @@
       </div>
 
       <div class="sidebar__archive sidebar-archive js-fade-in">
-        <h2 class="sidebar-archive__title sidebar-title">
+        <h2 class="sidebar-archive__title sidebar-title js-sidebar-title">
           Archives
         </h2>
         <div class="sidebar-archive__accordion sidebar-accordion">
@@ -161,21 +161,21 @@
               $year_current = $month->year;
               if ($year_current != $year_prev) {
                 if ($year_prev != null) { ?>
+            <?php } ?>
+            <p class="sidebar-accordion__year js-accordion__year"><?php echo $month->year; ?></p>
+            <div class="sidebar-accordion__month-box">
+              <ul class="sidebar-accordion__month js-accordion__month">
                 <?php } ?>
-                <p class="sidebar-accordion__year js-accordion__year"><?php echo $month->year; ?></p>
-                <div class="sidebar-accordion__month-box">
-                  <ul class="sidebar-accordion__month js-accordion__month">
-                  <?php } ?>
-                  <li>
-                    <a
-                      href="<?php bloginfo('url') ?>/<?php echo $month->year; ?>/<?php echo date("m", mktime(0, 0, 0, $month->month, 1, $month->year)) ?>">
-                      <?php echo date("n", mktime(0, 0, 0, $month->month, 1, $month->year)) ?>月
-                      (<?php echo $month->post_count; ?>)
-                    </a>
-                  </li>
-                  </ul>
-                </div>
-              <?php $year_prev = $year_current;
+                <li>
+                  <a
+                    href="<?php bloginfo('url') ?>/<?php echo $month->year; ?>/<?php echo date("m", mktime(0, 0, 0, $month->month, 1, $month->year)) ?>">
+                    <?php echo date("n", mktime(0, 0, 0, $month->month, 1, $month->year)) ?>月
+                    (<?php echo $month->post_count; ?>)
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <?php $year_prev = $year_current;
             endforeach; ?>
           </div>
         </div>
