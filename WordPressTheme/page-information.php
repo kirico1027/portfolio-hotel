@@ -8,13 +8,13 @@
   <section class="page-info layout-page-info">
     <div class="page-info__inner inner">
       <div class="page-info__tab tab">
-        <ul class="tab__menu tab-menu">
+        <ul class="tab__menu tab-menu js-fade-in">
           <li class="tab-menu__item js-tab-menu is-active" data-number="tab01"><span>Gardening Party</span>
           </li>
           <li class="tab-menu__item js-tab-menu" data-number="tab02"><span>Events</span></li>
           <li class="tab-menu__item js-tab-menu" data-number="tab03"><span>Relaxation</span></li>
         </ul>
-        <ul class="tab__content tab-content">
+        <ul class="tab__content tab-content js-card-fade">
           <li id="tab01" class="tab-content__item js-tab-content is-active">
             <div class="tab-content__box">
               <div class="tab-content__body">

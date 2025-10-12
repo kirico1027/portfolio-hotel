@@ -1261,7 +1261,7 @@ a {
 }
 
 .tab__content {
-	margin-top: 1rem;
+	margin-top: 4rem;
 }
 
 .voice__cards {
@@ -3511,7 +3511,7 @@ span.wpcf7-spinner {
 
 .tab-content {
 	border: 1px solid #2b2b2b;
-	padding: 1.5rem 1.375rem 1.4375rem;
+	padding: 2.25rem 2rem 2.125rem;
 }
 
 .tab-content__item {
@@ -3558,29 +3558,24 @@ span.wpcf7-spinner {
 }
 
 .tab-menu {
-	-moz-column-gap: 1.25rem;
-	column-gap: 1.25rem;
-	display: flex;
-	justify-content: space-between;
+	grid-gap: 1rem 1.3125rem;
+	display: grid;
+	gap: 1rem 1.3125rem;
+	grid-template-columns: repeat(3, 1fr);
+	margin: 0 auto;
 }
 
 .tab-menu__item {
-	align-items: center;
 	background-color: #fff;
-	border: 0.0625rem solid #131e29;
-	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+	border: 1px solid #2b2b2b;
 	color: #2b2b2b;
-	cursor: pointer;
-	display: flex;
 	font-family: "Noto Serif JP", serif;
 	font-size: 0.875rem;
 	font-weight: 400;
-	justify-content: center;
-	line-height: 1.4;
-	padding: 0.625rem 0;
+	line-height: 1.5714285714;
+	padding: 0.3125rem 0;
 	text-align: center;
 	transition: 0.3s;
-	width: 100%;
 }
 
 .tab-menu__item:hover {
@@ -3591,6 +3586,13 @@ span.wpcf7-spinner {
 .tab-menu__item.is-active {
 	background-color: #2b2b2b;
 	color: #fff;
+}
+
+.tab-menu__item a {
+	cursor: pointer;
+	display: inline-block;
+	width: 100%;
+	scroll-behavior: auto;
 }
 
 .voice-card {
@@ -4168,7 +4170,7 @@ span.wpcf7-spinner {
 	}
 
 	.tab__content {
-		margin-top: 1.5rem;
+		margin-top: 4rem;
 	}
 
 	.voice__cards {
@@ -4621,7 +4623,7 @@ span.wpcf7-spinner {
 	}
 
 	.tab-content {
-		padding: 0.9375rem 1.375rem 1.3125rem;
+		padding: 1.5rem 2rem 1.875rem;
 	}
 
 	.tab-content__box {
@@ -4645,10 +4647,14 @@ span.wpcf7-spinner {
 		width: 47.7%;
 	}
 
+	.tab-menu {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem 2rem;
+	}
+
 	.tab-menu__item {
-		font-size: 1.5rem;
-		max-width: 18.75rem;
-		padding: 0.9375rem 0;
+		width: 10.125rem;
 	}
 
 	.voice-card+.voice-card {
