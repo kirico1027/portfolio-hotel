@@ -431,8 +431,23 @@ a {
 }
 
 .form__item {
-	border-bottom: 1px dotted #2b2b2b;
 	padding-bottom: 1.46875rem;
+	position: relative;
+}
+
+.form__item::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 1px;
+	border-bottom: 1px dotted #2b2b2b;
+	transition: width 1.5s ease;
+}
+
+.form__item.animate-underline::after {
+	width: 100%;
 }
 
 .form__item.form__item--textarea {
@@ -3796,6 +3811,22 @@ span.wpcf7-spinner {
 		align-items: flex-start;
 		display: flex;
 		padding-bottom: 2.5rem;
+		position: relative;
+	}
+
+	.form__item::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0;
+		height: 1px;
+		border-bottom: 1px dotted #2b2b2b;
+		transition: width 1.5s ease;
+	}
+
+	.form__item.animate-underline::after {
+		width: 100%;
 	}
 
 	.form__item.form__item--textarea {

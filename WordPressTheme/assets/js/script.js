@@ -1337,11 +1337,11 @@ WordPressTheme.GSAPAnimation.prototype.setup = function () {
   try {
     gsap.registerPlugin(ScrollTrigger);
     this.initSectionTitleAnimation();
-    this.initCommonFadeDownAnimation();
+    this.initContactFormAnimation(); // 先にクラスを追加
+    this.initCommonFadeDownAnimation(); // その後でアニメーション設定
     this.initInformationCardAnimation();
     this.initLocationContactAnimation();
 
-    this.initContactFormAnimation();
     this.initFadeInAnimation();
     this.initFadeInSingleAnimation();
     this.initSidebarTitleAnimation();
@@ -1629,28 +1629,62 @@ WordPressTheme.GSAPAnimation.prototype.initInformationCardAnimation = function (
 /**
  * コンタクトフォームアニメーションの初期化
  *
- * フォームアイテムのスクロールアニメーションを設定します。
+ * フォームアイテムにjs-card-fadeクラスとアンダーラインアニメーションを適用します。
  */
 WordPressTheme.GSAPAnimation.prototype.initContactFormAnimation = function () {
-  if (WordPressTheme.Utils.elementExists(WordPressTheme.CONFIG.selectors.formItem)) {
+  // Contact Form 7のform__itemにjs-card-fadeクラスを追加
+  jQuery(".form__item").each(function () {
+    jQuery(this).addClass("js-card-fade");
+  });
+
+  // フォーム項目のアンダーラインアニメーション設定
+  this.initFormUnderlineAnimation();
+
+  WordPressTheme.Utils.logWarning(
+    "GSAPAnimation",
+    "Added js-card-fade class and underline animation to form__item elements",
+    {}
+  );
+};
+
+/**
+ * フォーム項目のアンダーラインアニメーション初期化
+ *
+ * single-main__titleと同じ方式でアンダーラインアニメーションを設定します。
+ */
+WordPressTheme.GSAPAnimation.prototype.initFormUnderlineAnimation = function () {
+  // GSAPとScrollTriggerが利用可能かチェック
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    WordPressTheme.Utils.logWarning(
+      "GSAPAnimation",
+      "GSAP or ScrollTrigger not available for form underline",
+      {}
+    );
+    return;
+  }
+
+  jQuery(".form__item").each(function () {
+    var $formItem = jQuery(this);
+
+    // スクロールアニメーション設定
     gsap.fromTo(
-      WordPressTheme.CONFIG.selectors.formItem,
-      { x: -50, opacity: 0 },
+      $formItem,
       {
-        x: 0,
-        opacity: 1,
-        duration: 1,
-        ease: WordPressTheme.CONFIG.animation.easing.smooth,
-        stagger: 0.2,
+        // 初期状態では何もしない
+      },
+      {
+        // アニメーション完了時にanimate-underlineクラスを追加
+        onStart: function () {
+          $formItem.addClass("animate-underline");
+        },
+        duration: 0.1, // 非常に短い時間でクラス追加のみ実行
         scrollTrigger: {
-          trigger: WordPressTheme.CONFIG.selectors.formItem,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
+          trigger: $formItem[0],
+          start: "top 80%", // フォーム項目が80%の位置に来たときに発火
         },
       }
     );
-  }
+  });
 };
 
 /**
