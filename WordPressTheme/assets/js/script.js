@@ -1175,14 +1175,15 @@ WordPressTheme.Tab.prototype.bindEvents = function () {
  * 指定されたタブをアクティブにする
  *
  * @param {string} tabNumber - アクティブにするタブ番号
+ * @param {boolean} forceActivate - 強制的にアクティブにするかどうか
  */
-WordPressTheme.Tab.prototype.activateTab = function (tabNumber) {
+WordPressTheme.Tab.prototype.activateTab = function (tabNumber, forceActivate) {
   var self = this;
   var $activeContent = this.$tabContentItems.filter(".is-active");
   var $newContent = this.$tabContentItems.filter("#" + tabNumber);
 
-  // 同じタブをクリックした場合は何もしない
-  if ($newContent.hasClass("is-active")) {
+  // 同じタブをクリックした場合は何もしない（強制アクティブの場合は除く）
+  if ($newContent.hasClass("is-active") && !forceActivate) {
     return;
   }
 
@@ -1212,7 +1213,7 @@ WordPressTheme.Tab.prototype.activateTab = function (tabNumber) {
       .set($newContent, { opacity: 1 })
       .set($newContent.find(".tab-content__title"), { opacity: 0 })
       .set($newContent.find(".tab-content__text"), { opacity: 0, y: 20 })
-      .set($newContent.find(".tab-content__image"), { opacity: 0 })
+      .set($newContent.find(".tab-content__image"), { opacity: 0, scale: 1.04 })
       .fromTo(
         $newContent.find(".tab-content__title"),
         { opacity: 0 },
@@ -1227,8 +1228,8 @@ WordPressTheme.Tab.prototype.activateTab = function (tabNumber) {
       )
       .fromTo(
         $newContent.find(".tab-content__image"),
-        { opacity: 0 },
-        { opacity: 1, duration: 2.0, ease: "power1.out" },
+        { opacity: 0, scale: 1.04 },
+        { opacity: 1, scale: 1.0, duration: 2.0, ease: "power1.out" },
         1.2
       );
   } else {
@@ -1244,11 +1245,16 @@ WordPressTheme.Tab.prototype.activateTab = function (tabNumber) {
 WordPressTheme.Tab.prototype.initializeTab = function () {
   try {
     var urlTabParam = new URL(window.location.href).searchParams.get("tab");
-    if (urlTabParam) {
-      this.activateTab(urlTabParam);
+    if (urlTabParam && (urlTabParam === "tab02" || urlTabParam === "tab03")) {
+      this.activateTab(urlTabParam, true);
+    } else {
+      // URLパラメータがない場合、またはtab01の場合はtab1を表示
+      this.activateTab("tab01", true);
     }
   } catch (error) {
     WordPressTheme.Utils.logError("Tab", "initializeTab", error, {});
+    // エラーの場合もtab1を表示
+    this.activateTab("tab01", true);
   }
 };
 

@@ -3536,6 +3536,10 @@ span.wpcf7-spinner {
 	transform: translateY(20px);
 }
 
+.tab-content__item:not(.is-active) .tab-content__image {
+	transform: scale(1.04);
+}
+
 /* アクティブなタブの要素は通常表示 */
 .tab-content__item.is-active .tab-content__title,
 .tab-content__item.is-active .tab-content__text,
@@ -3545,6 +3549,10 @@ span.wpcf7-spinner {
 
 .tab-content__item.is-active .tab-content__text {
 	transform: translateY(0);
+}
+
+.tab-content__item.is-active .tab-content__image {
+	transform: scale(1.0);
 }
 
 .tab-content__body {
