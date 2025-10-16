@@ -3516,12 +3516,35 @@ span.wpcf7-spinner {
 
 .tab-content__item {
 	display: none;
+	opacity: 0;
+	transition: opacity 0.6s ease-out;
 }
 
 .tab-content__item.is-active {
-	-webkit-animation: fade 0.3s;
-	animation: fade 0.3s;
 	display: block;
+	opacity: 1;
+}
+
+/* タブアニメーション用の初期状態（GSAPで制御） */
+.tab-content__item:not(.is-active) .tab-content__title,
+.tab-content__item:not(.is-active) .tab-content__text,
+.tab-content__item:not(.is-active) .tab-content__image {
+	opacity: 0;
+}
+
+.tab-content__item:not(.is-active) .tab-content__text {
+	transform: translateY(20px);
+}
+
+/* アクティブなタブの要素は通常表示 */
+.tab-content__item.is-active .tab-content__title,
+.tab-content__item.is-active .tab-content__text,
+.tab-content__item.is-active .tab-content__image {
+	opacity: 1;
+}
+
+.tab-content__item.is-active .tab-content__text {
+	transform: translateY(0);
 }
 
 .tab-content__body {
@@ -3569,6 +3592,7 @@ span.wpcf7-spinner {
 	background-color: #fff;
 	border: 1px solid #2b2b2b;
 	color: #2b2b2b;
+	cursor: pointer;
 	font-family: "Noto Serif JP", serif;
 	font-size: 0.875rem;
 	font-weight: 400;

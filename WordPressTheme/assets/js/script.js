@@ -1177,11 +1177,65 @@ WordPressTheme.Tab.prototype.bindEvents = function () {
  * @param {string} tabNumber - アクティブにするタブ番号
  */
 WordPressTheme.Tab.prototype.activateTab = function (tabNumber) {
-  this.$tabMenuItems.removeClass("is-active");
-  this.$tabContentItems.removeClass("is-active");
+  var self = this;
+  var $activeContent = this.$tabContentItems.filter(".is-active");
+  var $newContent = this.$tabContentItems.filter("#" + tabNumber);
 
+  // 同じタブをクリックした場合は何もしない
+  if ($newContent.hasClass("is-active")) {
+    return;
+  }
+
+  // タブメニューの切り替え
+  this.$tabMenuItems.removeClass("is-active");
   this.$tabMenuItems.filter('[data-number="' + tabNumber + '"]').addClass("is-active");
-  this.$tabContentItems.filter("#" + tabNumber).addClass("is-active");
+
+  // GSAPが利用可能かチェック
+  if (typeof gsap === "undefined") {
+    // フォールバック: 通常の表示切り替え
+    $activeContent.removeClass("is-active");
+    $newContent.addClass("is-active");
+    return;
+  }
+
+  // 前のコンテンツが存在する場合
+  if ($activeContent.length > 0) {
+    // GSAPタイムラインでアニメーション実行
+    var tl = gsap.timeline();
+
+    // 前のコンテンツを薄く消す
+    tl.to($activeContent, { opacity: 0, duration: 0.3, ease: "power1.out" })
+      .call(function () {
+        $activeContent.removeClass("is-active");
+        $newContent.addClass("is-active");
+      })
+      .set($newContent, { opacity: 1 })
+      .set($newContent.find(".tab-content__title"), { opacity: 0 })
+      .set($newContent.find(".tab-content__text"), { opacity: 0, y: 20 })
+      .set($newContent.find(".tab-content__image"), { opacity: 0 })
+      .fromTo(
+        $newContent.find(".tab-content__title"),
+        { opacity: 0 },
+        { opacity: 1, duration: 2.5, ease: "power1.out" },
+        0.4
+      )
+      .fromTo(
+        $newContent.find(".tab-content__text"),
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 1.2, ease: "power2.out" },
+        0.6
+      )
+      .fromTo(
+        $newContent.find(".tab-content__image"),
+        { opacity: 0 },
+        { opacity: 1, duration: 2.0, ease: "power1.out" },
+        1.2
+      );
+  } else {
+    // 初回表示の場合
+    $newContent.addClass("is-active");
+    gsap.set($newContent, { opacity: 1 });
+  }
 };
 
 /**
