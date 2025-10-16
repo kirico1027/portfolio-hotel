@@ -14,8 +14,8 @@
           <li class="tab-menu__item js-tab-menu" data-number="tab02"><span>Events</span></li>
           <li class="tab-menu__item js-tab-menu" data-number="tab03"><span>Relaxation</span></li>
         </ul>
-        <ul class="tab__content tab-content js-card-fade">
-          <li id="tab01" class="tab-content__item js-tab-content is-active">
+        <div class="tab__content tab-content js-card-fade">
+          <div id="tab01" class="tab-content__item js-tab-content is-active">
             <div class="tab-content__box">
               <div class="tab-content__body">
                 <h2 class="tab-content__title">Gardening Party</h2>
@@ -28,8 +28,8 @@
                   loading="lazy">
               </figure>
             </div>
-          </li>
-          <li id="tab02" class="tab-content__item js-tab-content">
+          </div>
+          <div id="tab02" class="tab-content__item js-tab-content">
             <div class="tab-content__box">
               <div class="tab-content__body">
                 <h2 class="tab-content__title">Events</h2>
@@ -42,8 +42,8 @@
                   loading="lazy">
               </figure>
             </div>
-          </li>
-          <li id="tab03" class="tab-content__item js-tab-content">
+          </div>
+          <div id="tab03" class="tab-content__item js-tab-content">
             <div class="tab-content__box">
               <div class="tab-content__body">
                 <h2 class="tab-content__title">Relaxation</h2>
@@ -56,8 +56,8 @@
                   loading="lazy">
               </figure>
             </div>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
