@@ -6,7 +6,7 @@
       <div class="mv__inner">
         <div class="mv__title-wrap">
           <h2 class="mv__main-title">KIRICO</h2>
-          <p class=" mv__sub-title">PALECE HOTEL</p>
+          <p class=" mv__sub-title">PALACE HOTEL</p>
         </div>
         <div class="mv__swiper mv-swiper swiper js-mv-swiper">
           <div class="mv-swiper__wrapper swiper-wrapper">
@@ -30,12 +30,12 @@
                 $alt = isset($mv_alt[$alt_key]) ? $mv_alt[$alt_key] : ''; // alt属性が設定されていない場合は空文字をセット
 
             ?>
-            <div class="mv-swiper__slide swiper-slide">
-              <picture class="mv-swiper__image">
-                <source srcset="<?php echo $pc_src; ?>" media="(min-width:768px)" type="image/jpg">
-                <img src="<?php echo $sp_src; ?>" alt="<?php echo $alt; ?>">
-              </picture>
-            </div>
+                <div class="mv-swiper__slide swiper-slide">
+                  <picture class="mv-swiper__image">
+                    <source srcset="<?php echo esc_url($pc_src); ?>" media="(min-width:768px)" type="image/jpg">
+                    <img src="<?php echo esc_url($sp_src); ?>" alt="<?php echo esc_attr($alt); ?>">
+                  </picture>
+                </div>
             <?php
               }
             endfor;
@@ -72,31 +72,33 @@
             $the_query = new WP_Query($args);
             ?>
             <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-            <div class="rooms__card room-card swiper-slide">
-              <div class="room-card__item">
-                <figure class="room-card__img">
-                  <?php if (has_post_thumbnail()) : ?>
-                  <?php the_post_thumbnail('full'); ?>
-                  <?php else : ?>
-                  <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
-                    alt="NoImage画像" loading="lazy">
-                  <?php endif; ?>
-                </figure>
-                <div class="room-card__body">
-                  <h4 class="room-card__title-main"><?php the_title(); ?></h4>
-                  <p class="room-card__text">
-                    <?php
+              <div class="rooms__card room-card swiper-slide">
+                <div class="room-card__item">
+                  <figure class="room-card__img">
+                    <?php if (has_post_thumbnail()) : ?>
+                      <?php the_post_thumbnail('full'); ?>
+                    <?php else : ?>
+                      <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
+                        alt="<?php echo esc_attr(get_the_title()); ?>の画像" loading="lazy">
+                    <?php endif; ?>
+                  </figure>
+                  <div class="room-card__body">
+                    <h4 class="room-card__title-main"><?php the_title(); ?></h4>
+                    <p class="room-card__text">
+                      <?php
                       $campaign_text = get_field("campaign_text");
-                      if (mb_strlen($campaign_text) > 80) {
-                        echo mb_substr($campaign_text, 0, 80, 'UTF-8') . '...';
-                      } else {
-                        echo $campaign_text;
+                      if ($campaign_text) {
+                        if (mb_strlen($campaign_text) > 80) {
+                          echo esc_html(mb_substr($campaign_text, 0, 80, 'UTF-8')) . '...';
+                        } else {
+                          echo esc_html($campaign_text);
+                        }
                       }
                       ?>
-                  </p>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
             <?php endwhile; ?>
             <?php wp_reset_postdata(); ?>
           </div>
@@ -167,7 +169,8 @@
       </div>
       <div class="information__card information-card">
         <figure class="information-card__img js-colorbox">
-          <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/information1.jpg" alt="画像" loading="lazy">
+          <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/information1.jpg" alt="ガーデニングパーティの画像"
+            loading="lazy">
         </figure>
         <div class="information-card__body">
           <div class="information-content">
@@ -207,27 +210,27 @@
         if ($the_query->have_posts()) :
           while ($the_query->have_posts()) : $the_query->the_post();
         ?>
-        <li class="blog-cards__card blog-card js-fade-down">
-          <a href="<?php the_permalink(); ?>">
-            <div class="blog-card__item">
-              <figure class="blog-card__img">
-                <?php if (has_post_thumbnail()) : ?>
-                <?php the_post_thumbnail('full'); ?>
-                <?php else : ?>
-                <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
-                  alt="NoImage画像" loading="lazy">
-                <?php endif; ?>
-              </figure>
-              <div class="blog-card__body">
-                <time datetime="<?php the_time('c'); ?>" class="blog-card__date date"><?php the_time('Y.m/d'); ?></time>
-                <h4 class="blog-card__title"><?php echo wp_trim_words(get_the_title(), 16, '…'); ?></h4>
-                <p class="blog-card__text">
-                  <?php echo wp_trim_words(get_the_content(), 70, '…'); ?>
-                </p>
-              </div>
-            </div>
-          </a>
-        </li>
+            <li class="blog-cards__card blog-card js-fade-down">
+              <a href="<?php the_permalink(); ?>">
+                <div class="blog-card__item">
+                  <figure class="blog-card__img">
+                    <?php if (has_post_thumbnail()) : ?>
+                      <?php the_post_thumbnail('full'); ?>
+                    <?php else : ?>
+                      <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
+                        alt="<?php echo esc_attr(get_the_title()); ?>の画像" loading="lazy">
+                    <?php endif; ?>
+                  </figure>
+                  <div class="blog-card__body">
+                    <time datetime="<?php the_time('c'); ?>" class="blog-card__date date"><?php the_time('Y.m/d'); ?></time>
+                    <h4 class="blog-card__title"><?php echo wp_trim_words(get_the_title(), 16, '…'); ?></h4>
+                    <p class="blog-card__text">
+                      <?php echo wp_trim_words(get_the_content(), 70, '…'); ?>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
         <?php
           endwhile;
           wp_reset_postdata();
@@ -259,57 +262,65 @@
         if ($the_query->have_posts()) :
           while ($the_query->have_posts()) : $the_query->the_post();
         ?>
-        <li class="voice-cards__card voice-card">
-          <div class="voice-card__item">
-            <div class="voice-card__head">
-              <div class="voice-card__content">
-                <div class="voice-card__box">
-                  <?php
+            <li class="voice-cards__card voice-card">
+              <div class="voice-card__item">
+                <div class="voice-card__head">
+                  <div class="voice-card__content">
+                    <div class="voice-card__box">
+                      <?php
                       $personalInfo = get_field('personal_info');
                       if ($personalInfo) :
                       ?> <span class="voice-card__info">
-                    <?php echo $personalInfo['personal_age']; ?>代(<?php echo $personalInfo['personal_gender']; ?>)</span>
-                  <?php endif; ?>
-                  <span class="voice-card__category">
-                    <?php echo get_the_terms(get_the_ID(), 'voice_category')[0]->name; ?>
-                  </span>
-                </div>
-                <h4 class="voice-card__title">
-                  <?php echo wp_trim_words(get_the_title(), 20, '…'); ?>
-                </h4>
-                <div>
-                  <?php
+                          <?php echo esc_html($personalInfo['personal_age']); ?>代(<?php echo esc_html($personalInfo['personal_gender']); ?>)</span>
+                      <?php endif; ?>
+                      <span class="voice-card__category">
+                        <?php
+                        $terms = get_the_terms(get_the_ID(), 'voice_category');
+                        if ($terms && !is_wp_error($terms)) {
+                          echo esc_html($terms[0]->name);
+                        }
+                        ?>
+                      </span>
+                    </div>
+                    <h4 class="voice-card__title">
+                      <?php echo wp_trim_words(get_the_title(), 20, '…'); ?>
+                    </h4>
+                    <div>
+                      <?php
                       $termGroup = get_field('term_group');
                       if ($termGroup) :
                       ?>
-                  <p class="page-rooms-card__period">
-                    <?php echo $termGroup['term_start']; ?> 〜 <?php echo $termGroup['term_end']; ?></p>
-                  <?php endif; ?>
+                        <p class="page-rooms-card__period">
+                          <?php echo esc_html($termGroup['term_start']); ?> 〜 <?php echo esc_html($termGroup['term_end']); ?>
+                        </p>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                  <figure class="voice-card__img js-colorbox">
+                    <?php if (has_post_thumbnail()) : ?>
+                      <?php the_post_thumbnail('full'); ?>
+                    <?php else : ?>
+                      <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
+                        alt="<?php echo esc_attr(get_the_title()); ?>の画像" loading="lazy">
+                    <?php endif; ?>
+                  </figure>
                 </div>
-              </div>
-              <figure class="voice-card__img js-colorbox">
-                <?php if (has_post_thumbnail()) : ?>
-                <?php the_post_thumbnail('full'); ?>
-                <?php else : ?>
-                <img src="<?php echo esc_url(get_theme_file_uri("/images/common/noimage.jpg")); ?>" alt="NoImage画像"
-                  loading="lazy">
-                <?php endif; ?>
-              </figure>
-            </div>
-            <p class="voice-card__text">
-              <?php
+                <p class="voice-card__text">
+                  <?php
                   $customer_text = get_field("customer_text");
-                  if (mb_strlen($customer_text) > 150) {
-                    echo mb_substr($customer_text, 0, 150, 'UTF-8') . '...';
-                  } else {
-                    echo $customer_text;
+                  if ($customer_text) {
+                    if (mb_strlen($customer_text) > 150) {
+                      echo esc_html(mb_substr($customer_text, 0, 150, 'UTF-8')) . '...';
+                    } else {
+                      echo esc_html($customer_text);
+                    }
                   }
                   ?>
-            </p>
-          </div>
-        </li>
-        <?php endwhile; ?>
-        <?php wp_reset_postdata(); ?>
+                </p>
+              </div>
+            </li>
+          <?php endwhile; ?>
+          <?php wp_reset_postdata(); ?>
         <?php endif; ?>
       </ul>
       <div class="voice__button">
@@ -333,8 +344,8 @@
           <picture class="location__image js-colorbox">
             <source srcset="<?php echo get_theme_file_uri() ?>/assets/images/common/price-pc.jpg"
               media="(min-width: 768px)" type="image/jpg">
-            <img src=" <?php echo get_theme_file_uri() ?>
-              /assets/images/common/sub-mv-others.jpg" alt="海底の岩場にひしめくサンゴとその周りに群れる赤色の鮮やかな小魚の画像" loading="lazy">
+            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/sub-mv-others.jpg"
+              alt="海底の岩場にひしめくサンゴとその周りに群れる赤色の鮮やかな小魚の画像" loading="lazy">
           </picture>
           <div class="location__list">
             <div class="contact__body">

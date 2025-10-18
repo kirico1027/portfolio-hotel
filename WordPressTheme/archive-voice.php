@@ -11,7 +11,6 @@
 
         <?php
         $current_term_id = 0;
-        $queried_object = get_queried_object();
         $terms = get_terms(array(
           'taxonomy' => 'voice_category',
           'orderby' => 'name',
@@ -28,13 +27,13 @@
           <?php
           if ($terms) :
             foreach ($terms as $term) :
-              $term_class = ($current_term_id === $term->term_id) ?: '';
+              $term_class = ($current_term_id === $term->term_id) ? 'is-active' : '';
           ?>
-              <li class="category-list__item <?php echo esc_attr($term_class); ?>">
-                <a href="<?php echo esc_url(get_term_link($term->term_id)); ?>">
-                  <?php echo esc_html($term->name); ?>
-                </a>
-              </li>
+          <li class="category-list__item <?php echo esc_attr($term_class); ?>">
+            <a href="<?php echo esc_url(get_term_link($term->term_id)); ?>">
+              <?php echo esc_html($term->name); ?>
+            </a>
+          </li>
           <?php
             endforeach;
           endif;
@@ -44,22 +43,22 @@
 
       <ul class="archive-voice__cards voice-cards">
         <?php if (have_posts()) : ?>
-          <?php while (have_posts()) : the_post(); ?>
-            <li class="voice-cards__card voice-card js-card-fade">
-              <div class="voice-card__item">
-                <div class="voice-card__head">
-                  <div class="voice-card__content">
-                    <div class="voice-card__box">
-                      <?php
+        <?php while (have_posts()) : the_post(); ?>
+        <li class="voice-cards__card voice-card js-card-fade">
+          <div class="voice-card__item">
+            <div class="voice-card__head">
+              <div class="voice-card__content">
+                <div class="voice-card__box">
+                  <?php
                       $personalInfo = get_field('personal_info');
                       if ($personalInfo) :
                       ?>
-                        <span
-                          class="voice-card__info"><?php echo $personalInfo['personal_age']; ?>代(<?php echo $personalInfo['personal_gender']; ?>)</span>
-                      <?php endif; ?>
-                      <br>
-                      <span class="voice-card__category">
-                        <?php
+                  <span
+                    class="voice-card__info"><?php echo esc_html($personalInfo['personal_age']); ?>代(<?php echo esc_html($personalInfo['personal_gender']); ?>)</span>
+                  <?php endif; ?>
+                  <br>
+                  <span class="voice-card__category">
+                    <?php
                         $taxonomy_terms = get_the_terms($post->ID, 'voice_category');
                         if (!empty($taxonomy_terms)) {
                           foreach ($taxonomy_terms as $taxonomy_term) {
@@ -67,45 +66,46 @@
                           }
                         }
                         ?>
-                      </span>
-                    </div>
-                    <h2 class="voice-card__title">
-                      <?php echo wp_trim_words(get_the_title(), 20, '…'); ?>
-                    </h2>
-                    <div>
-                      <?php
+                  </span>
+                </div>
+                <h2 class="voice-card__title">
+                  <?php echo wp_trim_words(get_the_title(), 20, '…'); ?>
+                </h2>
+                <div>
+                  <?php
                       $termGroup = get_field('term_group');
                       if ($termGroup) :
                       ?>
-                        <p class="page-campaign-card__period">
-                          <?php echo $termGroup['term_start']; ?> 〜 <?php echo $termGroup['term_end']; ?></p>
-                      <?php endif; ?>
-                    </div>
-                  </div>
-                  <figure class="voice-card__img js-colorbox">
-                    <?php if (has_post_thumbnail()) : ?>
-                      <?php the_post_thumbnail('full'); ?>
-                    <?php else : ?>
-                      <img src="<?php echo esc_url(get_theme_file_uri("/images/common/noimage.jpg")); ?>" alt="NoImage画像"
-                        loading="lazy">
-                    <?php endif; ?>
-                  </figure>
+                  <p class="page-campaign-card__period">
+                    <?php echo esc_html($termGroup['term_start']); ?> 〜 <?php echo esc_html($termGroup['term_end']); ?>
+                  </p>
+                  <?php endif; ?>
                 </div>
-                <p class="voice-card__text">
-                  <?php
+              </div>
+              <figure class="voice-card__img js-colorbox">
+                <?php if (has_post_thumbnail()) : ?>
+                <?php the_post_thumbnail('full'); ?>
+                <?php else : ?>
+                <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
+                  alt="<?php echo esc_attr(get_the_title()); ?>の画像" loading="lazy">
+                <?php endif; ?>
+              </figure>
+            </div>
+            <p class="voice-card__text">
+              <?php
                   $customer_text = get_field("customer_text");
                   if (!empty($customer_text)) {
                     if (mb_strlen($customer_text) > 200) {
-                      echo mb_substr($customer_text, 0, 200, 'UTF-8') . '...';
+                      echo esc_html(mb_substr($customer_text, 0, 200, 'UTF-8')) . '...';
                     } else {
-                      echo $customer_text;
+                      echo esc_html($customer_text);
                     }
                   }
                   ?>
-                </p>
-              </div>
-            </li>
-          <?php endwhile; ?>
+            </p>
+          </div>
+        </li>
+        <?php endwhile; ?>
         <?php endif; ?>
       </ul>
 
