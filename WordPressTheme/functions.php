@@ -47,7 +47,10 @@ add_action('wp_enqueue_scripts', 'my_script_init');
 
 // body_classから特定のクラスを削除する
 add_filter('body_class', function ($classes) {
-  unset($classes[array_search('blog', $classes)]);
+  $key = array_search('blog', $classes);
+  if ($key !== false) {
+    unset($classes[$key]);
+  }
   return $classes;
 });
 
@@ -65,7 +68,7 @@ add_action('wp_footer', 'redirect_to_thanks_page');
 function redirect_to_thanks_page()
 {
   //トップページのurlを取得
-  $homeUrl = home_url();
+  $homeUrl = esc_url(home_url());
   echo <<< EOD
     <script>
       document.addEventListener( 'wpcf7mailsent', function( event ) {
@@ -114,13 +117,24 @@ add_action('pre_get_posts', 'my_pre_get_posts');
 // クローラーのアクセス判別
 function is_bot()
 {
+  if (!isset($_SERVER['HTTP_USER_AGENT'])) {
+    return false;
+  }
+
   $ua = $_SERVER['HTTP_USER_AGENT'];
-  $bot = array(
+  $bot_list = array(
     "googlebot",
+    "bingbot",
     "msnbot",
-    "yahoo"
+    "yahoo",
+    "slurp",
+    "duckduckbot",
+    "baiduspider",
+    "yandexbot",
+    "facebookexternalhit",
+    "twitterbot"
   );
-  foreach ($bot as $bot) {
+  foreach ($bot_list as $bot) {
     if (stripos($ua, $bot) !== false) {
       return true;
     }
@@ -131,15 +145,14 @@ function is_bot()
 // アクセス数を保存
 function set_post_views()
 {
-  if (is_single()) {
+  if (is_single() && !is_bot()) {
     $post_id = get_the_ID();
     $count_key = 'post_views_count';
     $count = get_post_meta($post_id, $count_key, true);
     if (empty($count)) {
-      delete_post_meta($post_id, $count_key);
       add_post_meta($post_id, $count_key, 1);
     } else {
-      $count = $count + 1;
+      $count = intval($count) + 1;
       update_post_meta($post_id, $count_key, $count);
     }
   }
@@ -166,17 +179,20 @@ function add_column($column_name, $post_id)
     /*View数呼び出し*/
     if ($column_name === 'post_views_count') {
       $pv = get_post_meta($post_id, 'post_views_count', true);
-      echo esc_html($pv);
+      if (empty($pv)) {
+        echo esc_html__('0');
+      } else {
+        echo esc_html($pv);
+      }
     }
     /*サムネイル呼び出し*/
     if ($column_name === 'thumbnail') {
       $thumb = get_the_post_thumbnail($post_id, array(100, 100), 'thumbnail');
-      echo $thumb;
-    }
-
-    /*ない場合は「なし」を表示する*/
-    if (empty($pv) && empty($thumb)) {
-      echo esc_html__('None');
+      if ($thumb) {
+        echo $thumb;
+      } else {
+        echo esc_html__('None');
+      }
     }
   }
 }

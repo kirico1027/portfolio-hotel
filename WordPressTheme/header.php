@@ -17,8 +17,8 @@ $information = esc_url(home_url("/information"));
 $blog = esc_url(home_url("/blog"));
 $voice = esc_url(home_url("/voice"));
 $contact = esc_url(home_url("/contact"));
-$campaign_category_license = esc_url(home_url("/campaign_category/rooms"));
-$campaign_category_trial_diving = esc_url(home_url("/campaign_category/suites"));
+$campaign_category_rooms = esc_url(home_url("/campaign_category/rooms"));
+$campaign_category_suites = esc_url(home_url("/campaign_category/suites"));
 $privacypolicy = esc_url(home_url("/privacypolicy"));
 ?>
 
@@ -29,21 +29,21 @@ $privacypolicy = esc_url(home_url("/privacypolicy"));
       <?php if (is_front_page()) : ?>
         <h1 class="header__logo">
           <a href="<?php echo $home; ?>">
-            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-main.svg" alt="KIRICO PALECE HOTEL"
+            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-main.svg" alt="KIRICO PALACE HOTEL"
               class="header__logo-main">
           </a>
           <a href="<?php echo $home; ?>">
-            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-sub.svg" alt=" KIRICO PALECE HOTEL"
-              class="header__logo-sub"> </a>
+            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-sub.svg" alt="KIRICO PALACE HOTEL"
+              class="header__logo-sub"></a>
         </h1>
       <?php else : ?>
         <div class="header__logo">
           <a href="<?php echo $home; ?>">
-            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-main.svg" alt="KIRICO PALECE HOTEL"
+            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-main.svg" alt="KIRICO PALACE HOTEL"
               class="header__logo-main">
           </a>
           <a href="<?php echo $home; ?>">
-            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-sub.svg" alt="KIRICO PALECE HOTEL"
+            <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/logo-sub.svg" alt="KIRICO PALACE HOTEL"
               class="header__logo-sub">
           </a>
         </div>
@@ -85,10 +85,10 @@ $privacypolicy = esc_url(home_url("/privacypolicy"));
                     <a href="<?php echo $rooms; ?>">Rooms&nbsp;&&nbsp;Suites</a>
                   </div>
                   <div class="header__drawer-item">
-                    <a href="<?php echo $campaign_category_license; ?>">Rooms</a>
+                    <a href="<?php echo $campaign_category_rooms; ?>">Rooms</a>
                   </div>
                   <div class="header__drawer-item">
-                    <a href="<?php echo $campaign_category_trial_diving; ?>">Suites</a>
+                    <a href="<?php echo $campaign_category_suites; ?>">Suites</a>
                   </div>
                 </div>
               </div>

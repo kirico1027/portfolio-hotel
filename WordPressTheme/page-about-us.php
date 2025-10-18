@@ -13,7 +13,7 @@
             <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/about2.jpg" alt="ホテルの寝室の画像"
               loading="lazy">
           </figure>
-          <h2 class="page-about-lead__body-title js-fade-in">with all<br>one's heart</h2>
+          <h1 class="page-about-lead__body-title js-fade-in">with all<br>one's heart</h1>
         </div>
         <div class="page-about-lead__box">
           <p class="page-about-lead__text js-fade-in">
@@ -34,7 +34,7 @@
           </figure>
         </div>
         <div class="about-main-image__body">
-          <h2 class="about-main-image__body-title js-fade-in">with&nbsp;all<br>one's&nbsp;heart</h2>
+          <h1 class="about-main-image__body-title js-fade-in">with&nbsp;all<br>one's&nbsp;heart</h1>
           <div class="about-main-image__box">
             <p class="about-main-image__text js-fade-in">
               真心を込めて・・・お客様の快適な滞在を第一に考え、笑顔と心温まるサービスでお迎えします。<br>
@@ -60,14 +60,23 @@
         if ($gallery_group) :
           foreach ($gallery_group as $item) :
         ?>
-        <div class="page-about-gallery__image">
-          <img src="<?php echo wp_get_attachment_url($item['gallery_image']); ?>" alt="">
-        </div>
-        <?php
+            <div class="page-about-gallery__image">
+              <?php if (!empty($item['gallery_image'])) : ?>
+                <?php
+                $image_url = wp_get_attachment_url($item['gallery_image']);
+                $image_alt = get_post_meta($item['gallery_image'], '_wp_attachment_image_alt', true);
+                if (empty($image_alt)) {
+                  $image_alt = 'ギャラリー画像';
+                }
+                ?>
+                <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>" loading="lazy">
+              <?php endif; ?>
+            </div>
+          <?php
           endforeach;
         else :
           ?>
-        <p>No images found.</p>
+          <p>No images found.</p>
         <?php endif; ?>
       </div>
       <div class="page-about-gallery__modal modal-image"></div>
