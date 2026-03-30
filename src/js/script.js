@@ -969,44 +969,67 @@ $(window).on("load", function () {
     });
 
     // アニメーション実行
-    const tl = gsap.timeline();
+    const mvTl = gsap.timeline();
 
-    tl.to({}, { duration: 0.5 }) // 暗転後の待機
+    mvTl.to({}, { duration: 0.5 }); // 暗転後の待機
 
-      .fromTo(
-        ".mv__main-title span, .mv__sub-title span",
-        { autoAlpha: 0, scale: 0.95 },
-        {
-          autoAlpha: 1,
-          scale: 1,
-          duration: 1,
-          ease: "Power2.easeInOut",
-          stagger: { each: 0.05, from: "random" },
-        }
-      )
+    mvTl.fromTo(
+      ".mv__main-title span, .mv__sub-title span", {
+        autoAlpha: 0,
+        scale: 0.95
+      }, {
+        autoAlpha: 1,
+        scale: 1,
+        duration: 1,
+        ease: "Power2.easeInOut",
+        stagger: {
+          each: 0.05,
+          from: "random"
+        },
+      }
+    );
 
-      .fromTo(
-        ".header__logo img",
-        { opacity: 0 },
-        { opacity: 1, duration: 1.2, ease: "sine.out" },
-        ">0.1"
-      )
+    mvTl.fromTo(
+      ".header__logo img", {
+        opacity: 0
+      }, {
+        opacity: 1,
+        duration: 1.2,
+        ease: "sine.out"
+      },
+      ">0.1"
+    );
 
-      .fromTo(
-        allBeforeSpans,
-        { y: "-100%" },
-        { y: "0%", stagger: 0.03, duration: 0.3, ease: "Power2.easeInOut" },
-        ">-0.1"
-      )
+    mvTl.fromTo(
+      allBeforeSpans, {
+        y: "-100%"
+      }, {
+        y: "0%",
+        stagger: 0.03,
+        duration: 0.3,
+        ease: "Power2.easeInOut"
+      },
+      ">-0.1"
+    );
 
-      .fromTo(
-        ".c-fv__bg",
-        { autoAlpha: 1 },
-        { duration: 4, autoAlpha: 0, ease: "power2.out" },
-        ">1"
-      )
+    mvTl.fromTo(
+      ".c-fv__bg", {
+        autoAlpha: 1
+      }, {
+        duration: 4,
+        autoAlpha: 0,
+        ease: "power2.out"
+      },
+      ">1"
+    );
 
-      .fromTo(".mv-swiper", { scale: 1.15 }, { scale: 1, duration: 2, ease: "power2.out" }, "<");
+    mvTl.fromTo(".mv-swiper", {
+      scale: 1.15
+    }, {
+      scale: 1,
+      duration: 2,
+      ease: "power2.out"
+    }, "<");
   }
 
   // -------------------------------------
