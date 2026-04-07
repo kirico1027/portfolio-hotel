@@ -9,7 +9,7 @@
     <div class="page-about-lead__inner inner">
       <div class="page-about-lead__content-sp">
         <div class="page-about-lead__image">
-          <figure class="page-about-lead__image-right js-fade-down">
+          <figure class="page-about-lead__image-right">
             <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/about2.jpg" alt="ホテルの寝室の画像"
               loading="lazy">
           </figure>
@@ -24,11 +24,11 @@
       </div>
       <div class="page-about-lead__content-pc about-main-image">
         <div class="about-main-image__image">
-          <figure class="about-main-image__image-left js-fade-down">
+          <figure class="about-main-image__image-left">
             <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/about2.jpg" alt="ホテルの寝室の画像"
               loading="lazy">
           </figure>
-          <figure class="about-main-image__image-right js-fade-down">
+          <figure class="about-main-image__image-right">
             <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/about1.jpg" alt="ホテルのレストランの画像"
               loading="lazy">
           </figure>

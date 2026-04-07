@@ -975,13 +975,13 @@ $(window).on("load", function () {
 
     mvTl.fromTo(
       ".mv__main-title span, .mv__sub-title span", {
-        autoAlpha: 0,
+        opacity: 0,
         scale: 0.95
       }, {
-        autoAlpha: 1,
+        opacity: 1,
         scale: 1,
         duration: 1,
-        ease: "Power2.easeInOut",
+        ease: "power2.inOut",
         stagger: {
           each: 0.05,
           from: "random"
@@ -997,7 +997,7 @@ $(window).on("load", function () {
         duration: 1.2,
         ease: "sine.out"
       },
-      ">0.1"
+      ">-0.2"
     );
 
     mvTl.fromTo(
@@ -1007,9 +1007,9 @@ $(window).on("load", function () {
         y: "0%",
         stagger: 0.03,
         duration: 0.3,
-        ease: "Power2.easeInOut"
+        ease: "power2.inOut"
       },
-      ">-0.1"
+      ">-0.2"
     );
 
     mvTl.fromTo(

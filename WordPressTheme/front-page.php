@@ -58,7 +58,7 @@
             class="text">t</span><span class="text">e</span><span class="text">s</span>
         </h3>
       </div>
-      <div class="rooms__content js-fade-down">
+      <div class="rooms__content">
         <div class="rooms__swiper swiper js-rooms-swiper">
 
           <div class="rooms__cards swiper-wrapper">
@@ -128,13 +128,13 @@
       </div>
       <div class="about__main-image about-main-image">
         <div class="about-main-image__image">
-          <picture class="about-main-image__image-left js-fade-down">
+          <picture class="about-main-image__image-left">
             <source srcset="<?php echo get_theme_file_uri() ?>/assets/images/common/about2.jpg"
               media="(min-width: 768px)" type="image/jpg">
             <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/about2.jpg" alt="ホテル内のレストランの画像"
               loading="lazy">
           </picture>
-          <picture class="about-main-image__image-right js-fade-down">
+          <picture class="about-main-image__image-right">
             <source srcset="<?php echo get_theme_file_uri() ?>/assets/images/common/about1.jpg"
               media="(min-width: 768px)" type="image/jpg">
             <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/about1.jpg" alt="ホテルの寝室の画像"
@@ -210,7 +210,7 @@
         if ($the_query->have_posts()) :
           while ($the_query->have_posts()) : $the_query->the_post();
         ?>
-            <li class="blog-cards__card blog-card js-fade-down">
+            <li class="blog-cards__card blog-card">
               <a href="<?php the_permalink(); ?>">
                 <div class="blog-card__item">
                   <figure class="blog-card__img">
@@ -251,7 +251,7 @@
             class="text">c</span><span class="text">e</span>
         </h3>
       </div>
-      <ul class="voice__cards voice-cards js-fade-down">
+      <ul class="voice__cards voice-cards">
         <?php
         $args = array(
           "post_type" => "voice",

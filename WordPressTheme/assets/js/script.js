@@ -7,6 +7,8 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 jQuery(function ($) {
+  // 旧実装ブロック（下部の改良版と重複して実行されるため無効化）
+  return;
   // ハンバーガーメニュー
   $(".js-hamburger").on("click", function () {
     $(this).toggleClass("is-open");
@@ -59,8 +61,8 @@ jQuery(function ($) {
   }
 
   // Campaign Swiper
-  if (document.querySelector(".js-campaign-swiper")) {
-    new Swiper(".js-campaign-swiper", {
+  if (document.querySelector(".js-campaign-swiper, .js-rooms-swiper")) {
+    new Swiper(".js-campaign-swiper, .js-rooms-swiper", {
       centeredSlides: true,
       loop: true,
       speed: 1800,
@@ -224,7 +226,7 @@ jQuery(function ($) {
 
   // campaign-swiper
   jQuery(function ($) {
-    var campaign_swiper = new Swiper(".js-campaign-swiper", {
+    var campaign_swiper = new Swiper(".js-campaign-swiper, .js-rooms-swiper", {
       centeredSlides: true,
       loop: true,
       speed: 1800,
@@ -525,12 +527,25 @@ jQuery(function ($) {
   }
 
   // =====================================
-  // Campaign Swiper
+  // Campaign / Rooms Swiper
   // =====================================
-  if (hasSwiper && document.querySelector(".js-campaign-swiper")) {
-    var campaign_swiper = new Swiper(".js-campaign-swiper", {
-      centeredSlides: true,
-      loop: true,
+  // それぞれ別初期化に分離（セレクタ共有による意図しない挙動を防ぐ）
+  var initCardSwiper = function initCardSwiper(rootSelector) {
+    var root = document.querySelector(rootSelector);
+    if (!root) return;
+    var slideCount = root.querySelectorAll(".swiper-slide").length;
+    // rooms は過去に「境界で一気に流れる」不具合が出たため、安定優先の設定に固定
+    // （loop/centeredSlides を切る。campaign 側は従来どおり）
+    var isRooms = rootSelector === ".js-rooms-swiper";
+
+    // ループは十分な枚数がある場合のみ有効化。
+    // 枚数不足で loop すると、境界で急加速したような見え方になることがある。
+    var canLoop = !isRooms && slideCount > 5;
+
+    new Swiper(rootSelector, {
+      centeredSlides: !isRooms,
+      loop: canLoop,
+      watchOverflow: true,
       speed: 1800,
       slidesPerView: 2,
       spaceBetween: 24,
@@ -549,10 +564,14 @@ jQuery(function ($) {
         }
       },
       navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
+        nextEl: root.parentElement && root.parentElement.querySelector(".swiper-button-next") || ".swiper-button-next",
+        prevEl: root.parentElement && root.parentElement.querySelector(".swiper-button-prev") || ".swiper-button-prev"
       }
     });
+  };
+  if (hasSwiper) {
+    initCardSwiper(".js-campaign-swiper");
+    initCardSwiper(".js-rooms-swiper");
   }
 
   // =====================================
@@ -758,7 +777,7 @@ jQuery(function ($) {
         },
         scrollTrigger: {
           trigger: $section[0],
-          start: "top 95%"
+          start: "top 90%"
         }
       });
     });
@@ -1011,7 +1030,6 @@ $(window).on("load", function () {
 
     // タイトル・ロゴ・navの表示は事前にset（タイムライン内でなく）
     gsap.set([".mv__main-title", ".mv__sub-title", ".header__logo", ".js-splitText"], {
-      autoAlpha: 1,
       visibility: "visible",
       opacity: 1
     });
@@ -1019,50 +1037,54 @@ $(window).on("load", function () {
     // アニメーション実行
     var mvTl = gsap.timeline();
     mvTl.to({}, {
-      duration: 0.5
+      duration: 0.2
     }); // 暗転後の待機
 
     mvTl.fromTo(".mv__main-title span, .mv__sub-title span", {
-      autoAlpha: 0,
+      opacity: 0,
       scale: 0.95
     }, {
-      autoAlpha: 1,
+      opacity: 1,
       scale: 1,
       duration: 1,
-      ease: "Power2.easeInOut",
+      ease: "power2.inOut",
       stagger: {
         each: 0.05,
         from: "random"
       }
     });
+
     mvTl.fromTo(".header__logo img", {
       opacity: 0
     }, {
       opacity: 1,
       duration: 1.2,
       ease: "sine.out"
-    }, ">0.1");
+    }, ">-0.2");
+
     mvTl.fromTo(allBeforeSpans, {
       y: "-100%"
     }, {
       y: "0%",
-      stagger: 0.03,
+      stagger: 0.02,
       duration: 0.3,
-      ease: "Power2.easeInOut"
-    }, ">-0.1");
+      ease: "power2.inOut"
+    }, ">-0.3");
+
     mvTl.fromTo(".c-fv__bg", {
-      autoAlpha: 1
+      opacity: 1
     }, {
-      duration: 4,
-      autoAlpha: 0,
-      ease: "power2.out"
-    }, ">1");
+      duration: 1.2,
+      opacity: 0,
+      ease: "sine.out"
+    }, ">0.5");
+
     mvTl.fromTo(".mv-swiper", {
       scale: 1.15
     }, {
       scale: 1,
-      duration: 2,
-      ease: "power2.out"
+      duration: 1.2,
+      ease: "sine.out"
     }, "<");
   }
 

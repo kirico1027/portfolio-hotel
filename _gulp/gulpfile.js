@@ -1,3 +1,12 @@
+// WordPress テーマを直接編集する運用のため、Gulp は既定で無効（誤実行による assets 上書き防止）
+if (process.env.ALLOW_GULP !== "1") {
+  console.error(
+    "[gulp] 無効です。CSS/JS は WordPressTheme/assets を直接編集してください。\n" +
+      "どうしても Gulp を使う場合: cd _gulp && ALLOW_GULP=1 npx gulp <タスク名>"
+  );
+  process.exit(1);
+}
+
 const { src, dest, watch, series, parallel } = require("gulp"); // Gulpの基本関数をインポート
 const sass = require("gulp-sass")(require("sass")); // SCSSをCSSにコンパイルするためのモジュール
 const plumber = require("gulp-plumber"); // エラーが発生してもタスクを続行するためのモジュール
@@ -201,7 +210,16 @@ const watchFiles = () => {
 };
 
 // ブラウザシンク付きの開発用タスク
-exports.default = series(series(cssSass, jsBabel, imgImagemin, htmlCopy), parallel(watchFiles, browserSyncFunc));
+// 起動時に cssSass / imgImagemin を走らせない（テーマの style.css を意図せず上書きしてレイアウトが崩れるのを防ぐ）
+// SCSS・JS・画像は各ファイル保存時に watch がビルドする。初回だけまとめて出したい場合は wpSync または build を使う
+exports.default = parallel(watchFiles, browserSyncFunc);
+
+// WordPress 向け：clean も画像の再生成もしない（JS/CSS だけ dist とテーマへ出力）
+// 日々の修正やアニメ調整はこちらを使うと、assets 全消しによる崩れを避けやすい
+exports.wpSync = series(cssSass, jsBabel);
+
+// JS のみ反映（アニメ・script.js だけ直したとき用。CSS の再コンパイルでレイアウトが変わるのを避ける）
+exports.wpJs = jsBabel;
 
 // 本番用タスク
 exports.build = series(clean, cssSass, jsBabel, imgImagemin, htmlCopy);
