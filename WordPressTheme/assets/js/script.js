@@ -784,23 +784,29 @@ jQuery(function ($) {
   }
 
   // =====================================
-  // ブログカードのアニメーション
+  // 汎用 stagger フェードアップ（.js-stagger）
   // =====================================
-  if (hasGSAP && hasScrollTrigger && document.querySelector(".blog-card")) {
-    gsap.fromTo(".blog-card", {
-      opacity: 0,
-      y: 30
-    }, {
-      opacity: 1,
-      y: 0,
-      stagger: {
-        each: 0.3,
-        from: "random"
-      },
-      scrollTrigger: {
-        trigger: ".blog-card",
-        start: "top 95%"
-      }
+  if (hasGSAP && hasScrollTrigger && document.querySelector(".js-stagger")) {
+    $(".js-stagger").each(function () {
+      var $group = $(this);
+      var $items = $group.children();
+      if (!$items.length) return;
+      gsap.fromTo($items, {
+        opacity: 0,
+        y: 30
+      }, {
+        opacity: 1,
+        y: 0,
+        stagger: {
+          each: 0.2,
+          from: "random"
+        },
+        scrollTrigger: {
+          trigger: $group[0],
+          start: "top 90%",
+          once: true
+        }
+      });
     });
   }
 
@@ -1015,6 +1021,33 @@ $(window).on("load", function () {
   // -------------------------------------
   // 3. トップページのみタイムライン実行
   // -------------------------------------
+  gsap.set("body", {
+    opacity: 1
+  });
+  
+  var webStorage = function () {
+    if (sessionStorage.getItem("access")) {
+      // 2回目以降
+      if (hasGSAP) {
+        gsap.set(".c-fv__bg", {
+          autoAlpha: 0,
+          display: "none"
+        });
+        gsap.set(allBeforeSpans, {
+          y: "0%"
+        });
+      } else {
+        $(".c-fv__bg").hide();
+      }
+      return false;
+    } else {
+      // 初回アクセス
+      sessionStorage.setItem("access", "1");
+      return true;
+    }
+  };
+  var isFirstAccess = webStorage();
+
   if ($("body").hasClass("is-top")) {
     // タイトル（.mv__main-title など）も構築
     var titles = [".mv__main-title", ".mv__sub-title"];
@@ -1037,22 +1070,24 @@ $(window).on("load", function () {
     // アニメーション実行
     var mvTl = gsap.timeline();
     mvTl.to({}, {
-      duration: 0.2
+      duration: isFirstAccess ? 0.2 : 0
     }); // 暗転後の待機
 
-    mvTl.fromTo(".mv__main-title span, .mv__sub-title span", {
-      opacity: 0,
-      scale: 0.95
-    }, {
-      opacity: 1,
-      scale: 1,
-      duration: 1,
-      ease: "power2.inOut",
-      stagger: {
-        each: 0.05,
-        from: "random"
-      }
-    });
+    if (isFirstAccess) {
+      mvTl.fromTo(".mv__main-title span, .mv__sub-title span", {
+        opacity: 0,
+        scale: 0.95
+      }, {
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        ease: "power2.inOut",
+        stagger: {
+          each: 0.05,
+          from: "random"
+        }
+      });
+    }
 
     mvTl.fromTo(".header__logo img", {
       opacity: 0
@@ -1062,22 +1097,26 @@ $(window).on("load", function () {
       ease: "sine.out"
     }, ">-0.2");
 
-    mvTl.fromTo(allBeforeSpans, {
-      y: "-100%"
-    }, {
-      y: "0%",
-      stagger: 0.02,
-      duration: 0.3,
-      ease: "power2.inOut"
-    }, ">-0.3");
+    if (isFirstAccess) {
+      mvTl.fromTo(allBeforeSpans, {
+        y: "-100%"
+      }, {
+        y: "0%",
+        stagger: 0.02,
+        duration: 0.3,
+        ease: "power2.inOut"
+      }, ">-0.3");
+    }
 
-    mvTl.fromTo(".c-fv__bg", {
-      opacity: 1
-    }, {
-      duration: 1.2,
-      opacity: 0,
-      ease: "sine.out"
-    }, ">0.5");
+    if (isFirstAccess) {
+      mvTl.fromTo(".c-fv__bg", {
+        opacity: 1
+      }, {
+        duration: 1.2,
+        opacity: 0,
+        ease: "sine.out"
+      }, ">0.5");
+    }
 
     mvTl.fromTo(".mv-swiper", {
       scale: 1.15
@@ -1161,3 +1200,27 @@ if (hasGSAP && hasScrollTrigger && document.querySelector(".mv") && document.que
     }
   });
 }
+
+// -------------------------------------
+// 汎用フェードイン（.js-fadeIn）
+// 画面内に入った要素を一度だけ下からフェード表示
+// -------------------------------------
+let fadeIns = document.querySelectorAll('.js-fadeIn');
+fadeIns.forEach((fadeIn) => {
+  gsap.fromTo(
+    fadeIn, {
+      opacity: 0,
+      y: 30,
+    }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: fadeIn,
+        start: "top 90%",
+        once: true,
+      }
+    }
+  )
+});

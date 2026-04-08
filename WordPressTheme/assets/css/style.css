@@ -4841,3 +4841,7 @@ body.is-top .header__logo {
 	height: 100vh;
 	z-index: 1;
 }
+
+body {
+	opacity: 0;
+}

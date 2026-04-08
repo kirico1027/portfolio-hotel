@@ -30,12 +30,12 @@
                 $alt = isset($mv_alt[$alt_key]) ? $mv_alt[$alt_key] : ''; // alt属性が設定されていない場合は空文字をセット
 
             ?>
-                <div class="mv-swiper__slide swiper-slide">
-                  <picture class="mv-swiper__image">
-                    <source srcset="<?php echo esc_url($pc_src); ?>" media="(min-width:768px)" type="image/jpg">
-                    <img src="<?php echo esc_url($sp_src); ?>" alt="<?php echo esc_attr($alt); ?>">
-                  </picture>
-                </div>
+            <div class="mv-swiper__slide swiper-slide">
+              <picture class="mv-swiper__image">
+                <source srcset="<?php echo esc_url($pc_src); ?>" media="(min-width:768px)" type="image/jpg">
+                <img src="<?php echo esc_url($sp_src); ?>" alt="<?php echo esc_attr($alt); ?>">
+              </picture>
+            </div>
             <?php
               }
             endfor;
@@ -58,7 +58,7 @@
             class="text">t</span><span class="text">e</span><span class="text">s</span>
         </h3>
       </div>
-      <div class="rooms__content">
+      <div class="rooms__content js-fadeIn">
         <div class="rooms__swiper swiper js-rooms-swiper">
 
           <div class="rooms__cards swiper-wrapper">
@@ -72,20 +72,20 @@
             $the_query = new WP_Query($args);
             ?>
             <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-              <div class="rooms__card room-card swiper-slide">
-                <div class="room-card__item">
-                  <figure class="room-card__img">
-                    <?php if (has_post_thumbnail()) : ?>
-                      <?php the_post_thumbnail('full'); ?>
-                    <?php else : ?>
-                      <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
-                        alt="<?php echo esc_attr(get_the_title()); ?>の画像" loading="lazy">
-                    <?php endif; ?>
-                  </figure>
-                  <div class="room-card__body">
-                    <h4 class="room-card__title-main"><?php the_title(); ?></h4>
-                    <p class="room-card__text">
-                      <?php
+            <div class="rooms__card room-card swiper-slide">
+              <div class="room-card__item">
+                <figure class="room-card__img">
+                  <?php if (has_post_thumbnail()) : ?>
+                  <?php the_post_thumbnail('full'); ?>
+                  <?php else : ?>
+                  <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
+                    alt="<?php echo esc_attr(get_the_title()); ?>の画像" loading="lazy">
+                  <?php endif; ?>
+                </figure>
+                <div class="room-card__body">
+                  <h4 class="room-card__title-main"><?php the_title(); ?></h4>
+                  <p class="room-card__text">
+                    <?php
                       $campaign_text = get_field("campaign_text");
                       if ($campaign_text) {
                         if (mb_strlen($campaign_text) > 80) {
@@ -95,10 +95,10 @@
                         }
                       }
                       ?>
-                    </p>
-                  </div>
+                  </p>
                 </div>
               </div>
+            </div>
             <?php endwhile; ?>
             <?php wp_reset_postdata(); ?>
           </div>
@@ -110,7 +110,7 @@
         </div>
       </div>
 
-      <div class="rooms__button">
+      <div class="rooms__button js-fadeIn">
         <a href="<?php echo esc_url(home_url("/campaign")) ?>" class="button js-fade-in"><span>View
             more</span></a>
       </div>
@@ -126,7 +126,7 @@
           <span class="text">u</span><span class="text">s</span>
         </h3>
       </div>
-      <div class="about__main-image about-main-image">
+      <div class="about__main-image about-main-image js-fadeIn">
         <div class="about-main-image__image">
           <picture class="about-main-image__image-left">
             <source srcset="<?php echo get_theme_file_uri() ?>/assets/images/common/about2.jpg"
@@ -167,7 +167,7 @@
             class="text">t</span><span class="text">i</span><span class="text">o</span><span class="text">n</span>
         </h3>
       </div>
-      <div class="information__card information-card">
+      <div class="information__card information-card js-fadeIn">
         <figure class="information-card__img js-colorbox">
           <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/information1.jpg" alt="ガーデニングパーティの画像"
             loading="lazy">
@@ -198,7 +198,7 @@
           <span class="text">B</span><span class="text">l</span><span class="text">o</span><span class="text">g</span>
         </h3>
       </div>
-      <ul class="blog__cards blog-cards">
+      <ul class="blog__cards blog-cards js-stagger">
         <?php
         $args = array(
           "post_type" => "post",
@@ -210,34 +210,34 @@
         if ($the_query->have_posts()) :
           while ($the_query->have_posts()) : $the_query->the_post();
         ?>
-            <li class="blog-cards__card blog-card">
-              <a href="<?php the_permalink(); ?>">
-                <div class="blog-card__item">
-                  <figure class="blog-card__img">
-                    <?php if (has_post_thumbnail()) : ?>
-                      <?php the_post_thumbnail('full'); ?>
-                    <?php else : ?>
-                      <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
-                        alt="<?php echo esc_attr(get_the_title()); ?>の画像" loading="lazy">
-                    <?php endif; ?>
-                  </figure>
-                  <div class="blog-card__body">
-                    <time datetime="<?php the_time('c'); ?>" class="blog-card__date date"><?php the_time('Y.m/d'); ?></time>
-                    <h4 class="blog-card__title"><?php echo wp_trim_words(get_the_title(), 16, '…'); ?></h4>
-                    <p class="blog-card__text">
-                      <?php echo wp_trim_words(get_the_content(), 70, '…'); ?>
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </li>
+        <li class="blog-cards__card blog-card">
+          <a href="<?php the_permalink(); ?>">
+            <div class="blog-card__item">
+              <figure class="blog-card__img">
+                <?php if (has_post_thumbnail()) : ?>
+                <?php the_post_thumbnail('full'); ?>
+                <?php else : ?>
+                <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
+                  alt="<?php echo esc_attr(get_the_title()); ?>の画像" loading="lazy">
+                <?php endif; ?>
+              </figure>
+              <div class="blog-card__body">
+                <time datetime="<?php the_time('c'); ?>" class="blog-card__date date"><?php the_time('Y.m/d'); ?></time>
+                <h4 class="blog-card__title"><?php echo wp_trim_words(get_the_title(), 16, '…'); ?></h4>
+                <p class="blog-card__text">
+                  <?php echo wp_trim_words(get_the_content(), 70, '…'); ?>
+                </p>
+              </div>
+            </div>
+          </a>
+        </li>
         <?php
           endwhile;
           wp_reset_postdata();
         endif;
         ?>
       </ul>
-      <div class="blog__button">
+      <div class="blog__button js-fadeIn">
         <a href="<?php echo esc_url(home_url("/blog")) ?>" class="button js-fade-in"><span>View more</span></a>
       </div>
     </div>
@@ -251,7 +251,7 @@
             class="text">c</span><span class="text">e</span>
         </h3>
       </div>
-      <ul class="voice__cards voice-cards">
+      <ul class="voice__cards voice-cards js-fadeIn">
         <?php
         $args = array(
           "post_type" => "voice",
@@ -262,51 +262,51 @@
         if ($the_query->have_posts()) :
           while ($the_query->have_posts()) : $the_query->the_post();
         ?>
-            <li class="voice-cards__card voice-card">
-              <div class="voice-card__item">
-                <div class="voice-card__head">
-                  <div class="voice-card__content">
-                    <div class="voice-card__box">
-                      <?php
+        <li class="voice-cards__card voice-card">
+          <div class="voice-card__item">
+            <div class="voice-card__head">
+              <div class="voice-card__content">
+                <div class="voice-card__box">
+                  <?php
                       $personalInfo = get_field('personal_info');
                       if ($personalInfo) :
                       ?> <span class="voice-card__info">
-                          <?php echo esc_html($personalInfo['personal_age']); ?>代(<?php echo esc_html($personalInfo['personal_gender']); ?>)</span>
-                      <?php endif; ?>
-                      <span class="voice-card__category">
-                        <?php
+                    <?php echo esc_html($personalInfo['personal_age']); ?>代(<?php echo esc_html($personalInfo['personal_gender']); ?>)</span>
+                  <?php endif; ?>
+                  <span class="voice-card__category">
+                    <?php
                         $terms = get_the_terms(get_the_ID(), 'voice_category');
                         if ($terms && !is_wp_error($terms)) {
                           echo esc_html($terms[0]->name);
                         }
                         ?>
-                      </span>
-                    </div>
-                    <h4 class="voice-card__title">
-                      <?php echo wp_trim_words(get_the_title(), 20, '…'); ?>
-                    </h4>
-                    <div>
-                      <?php
+                  </span>
+                </div>
+                <h4 class="voice-card__title">
+                  <?php echo wp_trim_words(get_the_title(), 20, '…'); ?>
+                </h4>
+                <div>
+                  <?php
                       $termGroup = get_field('term_group');
                       if ($termGroup) :
                       ?>
-                        <p class="page-rooms-card__period">
-                          <?php echo esc_html($termGroup['term_start']); ?> 〜 <?php echo esc_html($termGroup['term_end']); ?>
-                        </p>
-                      <?php endif; ?>
-                    </div>
-                  </div>
-                  <figure class="voice-card__img js-colorbox">
-                    <?php if (has_post_thumbnail()) : ?>
-                      <?php the_post_thumbnail('full'); ?>
-                    <?php else : ?>
-                      <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
-                        alt="<?php echo esc_attr(get_the_title()); ?>の画像" loading="lazy">
-                    <?php endif; ?>
-                  </figure>
+                  <p class="page-rooms-card__period">
+                    <?php echo esc_html($termGroup['term_start']); ?> 〜 <?php echo esc_html($termGroup['term_end']); ?>
+                  </p>
+                  <?php endif; ?>
                 </div>
-                <p class="voice-card__text">
-                  <?php
+              </div>
+              <figure class="voice-card__img js-colorbox">
+                <?php if (has_post_thumbnail()) : ?>
+                <?php the_post_thumbnail('full'); ?>
+                <?php else : ?>
+                <img src="<?php echo esc_url(get_theme_file_uri("/assets/images/common/noimage.jpg")); ?>"
+                  alt="<?php echo esc_attr(get_the_title()); ?>の画像" loading="lazy">
+                <?php endif; ?>
+              </figure>
+            </div>
+            <p class="voice-card__text">
+              <?php
                   $customer_text = get_field("customer_text");
                   if ($customer_text) {
                     if (mb_strlen($customer_text) > 150) {
@@ -316,14 +316,14 @@
                     }
                   }
                   ?>
-                </p>
-              </div>
-            </li>
-          <?php endwhile; ?>
-          <?php wp_reset_postdata(); ?>
+            </p>
+          </div>
+        </li>
+        <?php endwhile; ?>
+        <?php wp_reset_postdata(); ?>
         <?php endif; ?>
       </ul>
-      <div class="voice__button">
+      <div class="voice__button js-fadeIn">
         <a href="<?php echo esc_url(home_url("/voice")) ?>" class="button js-fade-in"><span>View
             more</span></a>
       </div>
@@ -341,7 +341,7 @@
       </div>
       <div class="location__container">
         <div class="location__content">
-          <picture class="location__image js-colorbox">
+          <picture class="location__image js-colorbox js-fadeIn">
             <source srcset="<?php echo get_theme_file_uri() ?>/assets/images/common/price-pc.jpg"
               media="(min-width: 768px)" type="image/jpg">
             <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/sub-mv-others.jpg"
@@ -350,10 +350,10 @@
           <div class="location__list">
             <div class="contact__body">
               <div class="contact__info">
-                <p class="contact__info-intro">
+                <p class="contact__info-intro js-fadeIn">
                   当ホテルは新潟市中央区湖畔町に位置し、<br>美しい湖畔ロケーションと質の高いサービスで<br>お客様をお迎えします。<br>地元食材を使用した料理やスパ、<br>観光地へのアクセスも良好です。<br>是非、新潟の魅力をお楽しみください。
                 </p>
-                <p class="contact__info-address">
+                <p class="contact__info-address js-fadeIn">
                   <span class="contact__info-name">Kirico Palace Hotel</span><br>
                   新潟県新潟市中央区湖畔町1-2-3<br>
                   1-2-3 Kohancho, Chuo-ku, Niigata City, <br class="u-mobile">Niigata Prefecture, Japan<br>
@@ -361,7 +361,7 @@
                   Email: info@kiricopalacehotel.ie
                 </p>
               </div>
-              <div class="contact__map-wrap">
+              <div class="contact__map-wrap js-fadeIn">
                 <div class="contact__map">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d25181.590301363347!2d139.03739536476618!3d37.91410263746811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z5paw5r2f55yM5paw5r2f5biC5Lit5aSu5Yy65rmW55WU55S6MS0yLTM!5e0!3m2!1sja!2sjp!4v1709948861134!5m2!1sja!2sjp"
