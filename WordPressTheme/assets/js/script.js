@@ -927,13 +927,16 @@ jQuery(function ($) {
       gsap.to(spans, {
         scrollTrigger: {
           trigger: $textElement[0],
-          start: "top 80%",
-          end: "bottom 50%",
-          scrub: 8,
-          onUpdate: function onUpdate(self) {
-            var progress = self.progress * spans.length;
+          start: "top 95%",
+          once: true,
+          onEnter: function onEnter() {
             spans.forEach(function (span, index) {
-              span.classList.toggle("is-active", index < progress);
+              gsap.to(span, {
+                color: "#131e29",
+                duration: 0.2,
+                ease: "power2.inOut",
+                delay: index * 0.02
+              });
             });
           }
         }
@@ -1223,4 +1226,30 @@ fadeIns.forEach((fadeIn) => {
       }
     }
   )
+});
+
+// =====================================
+// パララックス背景：clip-path で .inner 幅に合わせて開く
+// =====================================
+var getInnerSideInset = function () {
+  // .inner: max-width 1130px + 左右 padding 25px に合わせる
+  return Math.max(25, (window.innerWidth - 1130) / 2 + 25);
+};
+
+gsap.fromTo(".parallax-bg", {
+  clipPath: function () {
+    var side = getInnerSideInset();
+    return "inset(0px ".concat(side, "px 0px ").concat(side, "px)");
+  }
+}, {
+  clipPath: "inset(0px 0px 0px 0px)",
+  duration: 0.5,
+  ease: "power2.inOut",
+  scrollTrigger: {
+    trigger: ".parallax-bg",
+    start: "top 90%",
+    end: "center center",
+    scrub: 1,
+    invalidateOnRefresh: true
+  }
 });
