@@ -1213,8 +1213,13 @@ fadeIns.forEach((fadeIn) => {
 // パララックス背景：clip-path で .inner 幅に合わせて開く
 // =====================================
 var getInnerSideInset = function () {
-  // .inner: max-width 1130px + 左右 padding 25px に合わせる
-  return Math.max(25, (window.innerWidth - 1130) / 2 + 25);
+  // 画面上で実際に表示されている .inner の左右位置に合わせる
+  var innerEl = document.querySelector(".inner");
+  if (!innerEl) return 0;
+  var rect = innerEl.getBoundingClientRect();
+  var styles = window.getComputedStyle(innerEl);
+  var paddingLeft = parseFloat(styles.paddingLeft) || 0;
+  return Math.max(0, rect.left + paddingLeft);
 };
 
 gsap.fromTo(".parallax-bg", {
