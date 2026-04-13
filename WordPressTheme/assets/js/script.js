@@ -200,58 +200,8 @@ jQuery(function ($) {
     }
   });
 
-  // mv-swiper
-  jQuery(function ($) {
-    var mv_swiper = new Swiper(".js-mv-swiper", {
-      centeredSlides: true,
-      // 1枚目のスライドを中央にする
-      loop: true,
-      speed: 6000,
-      effect: "fade",
-      pagination: {
-        el: ".swiper-pagination",
-        // ページネーションのクラス名を指定
-        type: "fraction" // ページネーションのtypeを指定
-      },
-
-      fadeEffect: {
-        crossFade: true
-      },
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false
-      }
-    });
-  });
-
-  // campaign-swiper
-  jQuery(function ($) {
-    var campaign_swiper = new Swiper(".js-campaign-swiper, .js-rooms-swiper", {
-      centeredSlides: true,
-      loop: true,
-      speed: 1800,
-      slidesPerView: 2,
-      spaceBetween: 24,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false
-      },
-      breakpoints: {
-        768: {
-          spaceBetween: 25,
-          slidesPerView: 3
-        },
-        1025: {
-          spaceBetween: 25,
-          slidesPerView: 5
-        }
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-      }
-    });
-  });
+  // MV / Campaign / Rooms の Swiper は下部ブロック（hasSwiper + initCardSwiper）で一括初期化。
+  // ここで二重に new Swiper すると .rooms__swiper が壊れるため置かない。
 
   // 画像のアニメーション
   var box = $(".js-colorbox"),
@@ -534,16 +484,15 @@ jQuery(function ($) {
     var root = document.querySelector(rootSelector);
     if (!root) return;
     var slideCount = root.querySelectorAll(".swiper-slide").length;
-    // rooms は過去に「境界で一気に流れる」不具合が出たため、安定優先の設定に固定
-    // （loop/centeredSlides を切る。campaign 側は従来どおり）
-    var isRooms = rootSelector === ".js-rooms-swiper";
 
-    // ループは十分な枚数がある場合のみ有効化。
-    // 枚数不足で loop すると、境界で急加速したような見え方になることがある。
-    var canLoop = !isRooms && slideCount > 5;
+    // 枚数が少ないときの loop は不安定なので閾値以上だけループ。
+    // 二重初期化を解消したうえで rooms も同条件にし、先頭・末尾で片側だけ空く見え方を防ぐ。
+    var canLoop = slideCount > 5;
 
     new Swiper(rootSelector, {
-      centeredSlides: !isRooms,
+      centeredSlides: true,
+      centeredSlidesBounds: !canLoop,
+      centerInsufficientSlides: true,
       loop: canLoop,
       watchOverflow: true,
       speed: 1800,
