@@ -944,6 +944,18 @@ $(window).on("load", function () {
   // -------------------------------------
   // 2. splitText構築とhoverアニメ設定（全ページ共通）
   // -------------------------------------
+  function readSplitHoverFromCss() {
+    var cs = getComputedStyle(document.documentElement);
+    var d = parseFloat(cs.getPropertyValue("--motion-duration").trim());
+    var s = parseFloat(cs.getPropertyValue("--motion-stagger").trim());
+    return {
+      duration: isNaN(d) ? 0.38 : d,
+      stagger: isNaN(s) ? 0.03 : s,
+      ease: "power2.out"
+    };
+  }
+  var splitHover = readSplitHoverFromCss();
+  // splitHover.ease は :root --motion-ease に近い減衰（GSAP 本体のみのため power2.out 固定）
   var allBeforeSpans = [];
   $(".js-splitText").each(function () {
     var $target = $(this);
@@ -972,33 +984,33 @@ $(window).on("load", function () {
       $target.addClass("is-animating");
       gsap.to(beforeSpans, {
         y: "-100%",
-        stagger: 0.03,
-        duration: 0.05,
-        ease: "none"
+        stagger: splitHover.stagger,
+        duration: splitHover.duration,
+        ease: splitHover.ease
       });
       gsap.to(afterSpans, {
         y: "0%",
-        stagger: 0.03,
-        duration: 0.05,
-        ease: "none"
+        stagger: splitHover.stagger,
+        duration: splitHover.duration,
+        ease: splitHover.ease
       });
     });
     $target.on("mouseleave", function () {
-      gsap.to(beforeSpans, {
+      gsap.timeline({
+        onComplete: function () {
+          $target.removeClass("is-animating");
+        }
+      }).to(beforeSpans, {
         y: "0%",
-        stagger: 0.03,
-        duration: 0.05,
-        ease: "none"
-      });
-      gsap.to(afterSpans, {
+        stagger: splitHover.stagger,
+        duration: splitHover.duration,
+        ease: splitHover.ease
+      }, 0).to(afterSpans, {
         y: "100%",
-        stagger: 0.03,
-        duration: 0.05,
-        ease: "none"
-      });
-      setTimeout(function () {
-        $target.removeClass("is-animating");
-      }, 800);
+        stagger: splitHover.stagger,
+        duration: splitHover.duration,
+        ease: splitHover.ease
+      }, 0);
     });
   });
 

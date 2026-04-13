@@ -26,6 +26,10 @@ html {
 
 :root {
 	scroll-padding-top: 5rem;
+	/* ホバー系の共通調整（.button::after・split ナビの色・script.js の GSAP duration/stagger が参照） */
+	--motion-duration: 0.38s;
+	--motion-ease: cubic-bezier(0.33, 1, 0.68, 1);
+	--motion-stagger: 0.03s;
 }
 
 *,
@@ -1511,7 +1515,7 @@ a {
 	top: 0;
 	transform: scale(0, 1);
 	transform-origin: left top;
-	transition: 0.4s cubic-bezier(0.45, 0, 0.55, 1);
+	transition: transform var(--motion-duration) var(--motion-ease), opacity var(--motion-duration) var(--motion-ease);
 	width: 100%;
 	z-index: -1;
 }
@@ -1847,9 +1851,12 @@ a {
 	padding: 3rem 0 3.5rem;
 }
 
+.footer__content a {
+	transition: color var(--motion-duration) var(--motion-ease);
+}
+
 .footer__content a:hover {
 	color: #867050;
-	transition: color 0.3s;
 }
 
 .footer__logo {
@@ -2323,7 +2330,7 @@ span.wpcf7-spinner {
 .before span,
 .after span {
 	line-height: 1.1;
-	transition: color 0.3s ease-out;
+	transition: color var(--motion-duration) var(--motion-ease);
 	white-space: pre;
 	display: inline-block;
 	transform: translateY(0%);
@@ -4798,14 +4805,7 @@ span.wpcf7-spinner {
 }
 
 .js-splitText .char {
-	/* 通常は transition 無効に */
-	transition: none;
 	margin-left: 1px;
-}
-
-/* hover時にだけ transition 有効化 */
-.js-splitText.is-animating .char {
-	transition: transform 0.4s;
 }
 
 .mv__main-title span,
