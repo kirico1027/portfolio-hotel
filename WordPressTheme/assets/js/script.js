@@ -575,50 +575,31 @@ jQuery(function ($) {
   }
 
   // =====================================
-  // 画像カラーオーバーレイ（IntersectionObserver）
+  // 画像カラーオーバーレイ（GSAP + clip-path）
   // =====================================
   (function () {
-    var SPEED = 700;
+    if (!hasGSAP || !hasScrollTrigger) return;
     var boxes = document.querySelectorAll(".js-colorbox");
     if (!boxes.length) return;
+
     boxes.forEach(function (boxEl) {
-      // アニメ用要素を追加
-      var colorEl = boxEl.querySelector(".color");
-      if (!colorEl) {
-        colorEl = document.createElement("div");
-        colorEl.className = "color";
-        boxEl.appendChild(colorEl);
-      }
       var imgEl = boxEl.querySelector("img");
       if (!imgEl) return;
 
-      // 初期状態
-      imgEl.style.opacity = "0";
-      colorEl.style.width = "0%";
-      var done = false;
-      var observer = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting || done) return;
-          done = true;
-          // jQuery animate → CSS トランジションで代替（クラス付与）
-          colorEl.style.transition = "width ".concat(SPEED, "ms linear");
-          colorEl.style.width = "100%";
-          setTimeout(function () {
-            imgEl.style.transition = "opacity ".concat(Math.max(200, SPEED / 2), "ms ease");
-            imgEl.style.opacity = "1";
-            colorEl.style.left = "0";
-            colorEl.style.right = "auto";
-            // 戻す
-            colorEl.style.transition = "width ".concat(SPEED, "ms linear");
-            colorEl.style.width = "0%";
-          }, SPEED + 200);
-          obs.unobserve(entry.target);
-        });
-      }, {
-        rootMargin: "0px 0px -10% 0px",
-        threshold: 0.2
+      gsap.set(imgEl, {
+        clipPath: "inset(0px 100% 0px 0px)"
       });
-      observer.observe(boxEl);
+
+      gsap.to(imgEl, {
+        clipPath: "inset(0px 0px 0px 0px)",
+        duration: 0.9,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: boxEl,
+          start: "top 90%",
+          once: true
+        }
+      });
     });
   })();
 
