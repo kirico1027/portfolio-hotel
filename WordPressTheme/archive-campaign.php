@@ -42,7 +42,7 @@
       <div class="page-rooms__cards">
         <?php if (have_posts()) : ?>
           <?php while (have_posts()) : the_post(); ?>
-            <div class="page-rooms__card page-rooms-card js-card-fade">
+            <div class="page-rooms__card page-rooms-card js-fadeIn">
               <figure class="page-rooms-card__img">
                 <?php if (has_post_thumbnail()) : ?>
                   <?php the_post_thumbnail('full'); ?>

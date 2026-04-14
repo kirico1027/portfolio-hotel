@@ -1774,7 +1774,7 @@ a {
 	line-height: 1.5714285714;
 	padding: 0.3125rem 0;
 	text-align: center;
-	transition: 0.3s;
+	transition: background-color var(--motion-duration) var(--motion-ease), color var(--motion-duration) var(--motion-ease);
 }
 
 .category-list__item.is-active {
@@ -2761,7 +2761,7 @@ span.wpcf7-spinner {
 	bottom: 0;
 	background: rgba(0, 0, 0, 0.8);
 	opacity: 0;
-	transition: opacity 0.5s ease-out;
+	transition: opacity var(--motion-duration) var(--motion-ease);
 	z-index: 1;
 	display: flex;
 	align-items: center;
@@ -3043,7 +3043,7 @@ span.wpcf7-spinner {
 	height: 2.375rem;
 	line-height: 1;
 	padding: 0;
-	transition: 0.3s;
+	transition: background-color var(--motion-duration) var(--motion-ease), border-color var(--motion-duration) var(--motion-ease), color var(--motion-duration) var(--motion-ease);
 	white-space: nowrap;
 	width: 2.375rem;
 }
