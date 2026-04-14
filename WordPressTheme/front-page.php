@@ -142,13 +142,13 @@
           </picture>
         </div>
         <div class="about-main-image__body">
-          <p class="about-main-image__body-title">with&nbsp;all<br>one's&nbsp;heart</p>
+          <p class="about-main-image__body-title js-fadeIn">with&nbsp;all<br>one's&nbsp;heart</p>
           <div class="about-main-image__box">
-            <p class="about-main-image__text">
+            <p class="about-main-image__text js-fadeIn">
               真心を込めて・・・お客様の快適な滞在を第一に考え、笑顔と心温まるサービスでお迎えします。<br>
               <span>清潔なお部屋と充実したアメニティで、心地よい時間を提供いたします。お客様の幸せを願い、心からのサポートをお約束いたします。 </span>
             </p>
-            <div class="about-main-image__button">
+            <div class="about-main-image__button js-fadeIn">
               <a href="<?php echo esc_url(home_url("/about")) ?>" class="button js-fade-in"><span>View
                   more</span></a>
             </div>
@@ -167,20 +167,20 @@
             class="text">t</span><span class="text">i</span><span class="text">o</span><span class="text">n</span>
         </h3>
       </div>
-      <div class="information__card information-card js-fadeIn">
-        <figure class="information-card__img js-colorbox">
+      <div class="information__card information-card">
+        <figure class="information-card__img js-colorbox js-fadeIn">
           <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/information1.jpg" alt="ガーデニングパーティの画像"
             loading="lazy">
         </figure>
         <div class="information-card__body">
-          <div class="information-content">
+          <div class="information-content js-fadeIn">
             <h4 class="information-card__title">Gardening Party</h4>
             <p class="information-card__text js-colorChange">
               春の訪れを感じるガーデニングパーティに、ぜひご参加ください。<br>
               ホテル庭園では新緑が輝き、心地よい風が吹き抜けます。春の味覚を楽しめる軽食や、プロによる植物のお手入れワークショップもご用意。音楽と春の香りに包まれた、贅沢なひとときをお楽しみください。
             </p>
           </div>
-          <div class="information__button">
+          <div class="information__button js-fadeIn">
             <a href="<?php echo esc_url(home_url("/information")) ?>" class="button"><span>View
                 more</span></a>
           </div>
