@@ -15,9 +15,9 @@
           <article class="single-main__box">
             <div class="single-main__body">
               <time datetime="<?php the_time('c'); ?>"
-                class="single-main__date js-fade-in-single"><?php the_time('Y.m/d'); ?></time>
-              <h2 class="single-main__title js-fade-in-single"><?php the_title(); ?></h2>
-              <div class="single-main__thumbnail js-fade-in-single">
+                class="single-main__date js-fadeIn"><?php the_time('Y.m/d'); ?></time>
+              <h2 class="single-main__title js-fadeIn"><?php the_title(); ?></h2>
+              <div class="single-main__thumbnail js-fadeIn">
                 <?php if (has_post_thumbnail()) : ?>
                 <?php the_post_thumbnail('full'); ?>
                 <?php else : ?>
@@ -26,7 +26,7 @@
                 <?php endif; ?>
               </div>
             </div>
-            <div class="single-main__content single-content js-fade-in-single">
+            <div class="single-main__content single-content">
               <?php the_content(); ?>
             </div>
           </article>
@@ -34,7 +34,7 @@
           <?php endwhile; ?>
           <?php endif; ?>
           <div class="single__pagenavi single-pagenavi layout-pagenavi">
-            <div class="single-pagenavi__box">
+            <div class="single-pagenavi__box js-fadeIn">
               <?php
               $prev = get_previous_post();
               $prev_url = $prev ? esc_url(get_permalink($prev->ID)) : '';

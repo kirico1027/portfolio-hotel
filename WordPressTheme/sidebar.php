@@ -1,8 +1,8 @@
 <aside class="sidebar">
   <div class="sidebar__inner">
     <div class="sidebar__container">
-      <div class="sidebar__popular sidebar-popular js-fade-in">
-        <h2 class="sidebar-popular__title sidebar-title js-sidebar-title">
+      <div class="sidebar__popular sidebar-popular">
+        <h2 class="sidebar-popular__title sidebar-title js-sidebar-title js-fadeIn">
           Popular Blogs
         </h2>
         <ul class="sidebar-popular__list">
@@ -22,7 +22,7 @@
               $loopcounter++; ?>
           <li>
             <a href="<?php echo get_permalink(); ?>">
-              <div class="sidebar-popular__item">
+              <div class="sidebar-popular__item js-fadeIn">
                 <figure class="sidebar-popular__image">
                   <?php if (has_post_thumbnail()) : ?>
                   <?php the_post_thumbnail('full'); ?>
@@ -43,11 +43,11 @@
           ?>
         </ul>
       </div>
-      <div class=" sidebar__review sidebar-review js-fade-in">
-        <h2 class="sidebar-review__main-title sidebar-title js-sidebar-title">
+      <div class=" sidebar__review sidebar-review">
+        <h2 class="sidebar-review__main-title sidebar-title js-sidebar-title js-fadeIn">
           Voice
         </h2>
-        <div class="sidebar-review__content">
+        <div class="sidebar-review__content js-fadeIn">
           <?php
           $args = array(
             "post_type" => "voice",
@@ -90,12 +90,12 @@
           <?php wp_reset_postdata(); ?>
           <?php endif; ?>
         </div>
-        <div class="sidebar-review__button">
+        <div class="sidebar-review__button js-fadeIn">
           <a href="<?php echo esc_url(home_url("/voice")) ?>" class="button"><span>View more</span></a>
         </div>
       </div>
-      <div class="sidebar__campaign sidebar-campaign js-fade-in">
-        <h2 class="sidebar-campaign__title sidebar-title js-sidebar-title">
+      <div class="sidebar__campaign sidebar-campaign">
+        <h2 class="sidebar-campaign__title sidebar-title js-sidebar-title js-fadeIn">
           Rooms & Suites
         </h2>
         <ul class="sidebar-campaign__cards">
@@ -108,7 +108,7 @@
           ?>
           <?php if ($the_query->have_posts()) : ?>
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-          <li class="sidebar-campaign__card sidebar-campaign-card">
+          <li class="sidebar-campaign__card sidebar-campaign-card js-fadeIn">
             <div class="sidebar-campaign-card__item">
               <figure class="sidebar-campaign-card__img">
                 <?php if (has_post_thumbnail()) : ?>
@@ -137,16 +137,16 @@
           <?php wp_reset_postdata(); ?>
           <?php endif; ?>
         </ul>
-        <div class="sidebar-campaign__button">
+        <div class="sidebar-campaign__button js-fadeIn">
           <a href="<?php echo esc_url(home_url("/campaign")) ?>" class="button"><span>View more</span></a>
         </div>
       </div>
 
-      <div class="sidebar__archive sidebar-archive js-fade-in">
-        <h2 class="sidebar-archive__title sidebar-title js-sidebar-title">
+      <div class="sidebar__archive sidebar-archive">
+        <h2 class="sidebar-archive__title sidebar-title js-sidebar-title js-fadeIn">
           Archives
         </h2>
-        <div class="sidebar-archive__accordion sidebar-accordion">
+        <div class="sidebar-archive__accordion sidebar-accordion js-fadeIn">
           <div class="sidebar-accordion__box js-accordion__box">
             <?php
             $year_prev = null;

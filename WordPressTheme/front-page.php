@@ -126,15 +126,15 @@
           <span class="text">u</span><span class="text">s</span>
         </h3>
       </div>
-      <div class="about__main-image about-main-image js-fadeIn">
+      <div class="about__main-image about-main-image">
         <div class="about-main-image__image">
-          <picture class="about-main-image__image-left">
+          <picture class="about-main-image__image-left js-fadeIn">
             <source srcset="<?php echo get_theme_file_uri() ?>/assets/images/common/about2.jpg"
               media="(min-width: 768px)" type="image/jpg">
             <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/about2.jpg" alt="ホテル内のレストランの画像"
               loading="lazy">
           </picture>
-          <picture class="about-main-image__image-right">
+          <picture class="about-main-image__image-right js-fadeIn">
             <source srcset="<?php echo get_theme_file_uri() ?>/assets/images/common/about1.jpg"
               media="(min-width: 768px)" type="image/jpg">
             <img src="<?php echo get_theme_file_uri() ?>/assets/images/common/about1.jpg" alt="ホテルの寝室の画像"

@@ -1073,23 +1073,45 @@ $(window).on("load", function () {
   }
 
   // -------------------------------------
-  // 4. Aboutギャラリー（画像読み込み後のスクラブ）
+  // 4. 汎用パララックス（.js-parallax）
+  // data-parallax-y で移動量を上書き可能（例: data-parallax-y="140"）
   // -------------------------------------
-  if (hasGSAP && hasScrollTrigger && document.querySelector(".page-about-gallery__image img")) {
-    $(".page-about-gallery__image img").each(function () {
-      var $img = $(this)[0];
-      if ($img.complete && $img.naturalHeight !== 0) {
-        gsap.fromTo($img, {
-          y: -100
+  if (hasGSAP && hasScrollTrigger && document.querySelector(".js-parallax")) {
+    document.querySelectorAll(".js-parallax").forEach(function (targetEl) {
+      var offsetY = 100;
+      var rawOffsetY = targetEl.getAttribute("data-parallax-y");
+      if (rawOffsetY !== null) {
+        var parsedOffsetY = Number(rawOffsetY);
+        if (Number.isFinite(parsedOffsetY)) {
+          offsetY = parsedOffsetY;
+        }
+      }
+
+      var createParallax = function () {
+        gsap.fromTo(targetEl, {
+          y: -offsetY
         }, {
           y: 0,
           scrollTrigger: {
-            trigger: $img,
+            trigger: targetEl,
             start: "top bottom",
             end: "bottom top",
             scrub: 1
           }
         });
+      };
+
+      // 画像の場合は読み込み後に計算した方がズレにくい
+      if (targetEl.tagName === "IMG") {
+        if (targetEl.complete && targetEl.naturalHeight !== 0) {
+          createParallax();
+        } else {
+          targetEl.addEventListener("load", createParallax, {
+            once: true
+          });
+        }
+      } else {
+        createParallax();
       }
     });
   }

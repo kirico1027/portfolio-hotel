@@ -14,6 +14,29 @@ function my_setup()
 }
 add_action('after_setup_theme', 'my_setup');
 
+/**
+ * 単一投稿本文内の各 <p> に js-fadeIn を付与（汎用フェードイン用）
+ */
+function my_add_js_fadein_to_content_paragraphs($content)
+{
+  if (!is_single() || !in_the_loop() || !is_main_query()) {
+    return $content;
+  }
+  if (!class_exists('WP_HTML_Tag_Processor')) {
+    return $content;
+  }
+  $processor = new WP_HTML_Tag_Processor($content);
+  while ($processor->next_tag(array('tag_name' => 'P'))) {
+    $class = $processor->get_attribute('class');
+    if ($class !== null && strpos($class, 'js-fadeIn') !== false) {
+      continue;
+    }
+    $processor->set_attribute('class', trim(($class ? $class . ' ' : '') . 'js-fadeIn'));
+  }
+  return $processor->get_updated_html();
+}
+add_filter('the_content', 'my_add_js_fadein_to_content_paragraphs', 20);
+
 /* CSSとJavaScriptの読み込み */
 function my_script_init()
 {

@@ -14,7 +14,7 @@
           <li class="tab-menu__item js-tab-menu" data-number="tab02"><span>Events</span></li>
           <li class="tab-menu__item js-tab-menu" data-number="tab03"><span>Relaxation</span></li>
         </ul>
-        <div class="tab__content tab-content js-card-fade">
+        <div class="tab__content tab-content js-fadeIn">
           <div id="tab01" class="tab-content__item js-tab-content is-active">
             <div class="tab-content__box">
               <div class="tab-content__body">

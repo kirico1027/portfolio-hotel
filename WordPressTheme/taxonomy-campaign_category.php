@@ -71,7 +71,7 @@
         ?>
         <?php if ($the_query->have_posts()) : ?>
         <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-        <li class="page-rooms__card page-rooms-card js-card-fade">
+        <li class="page-rooms__card page-rooms-card js-fadeIn">
           <figure class="page-rooms-card__img">
             <?php if (has_post_thumbnail()) : ?>
             <?php the_post_thumbnail('full'); ?>
@@ -122,7 +122,7 @@
         <?php wp_reset_postdata(); ?>
         <?php endif; ?>
       </ul>
-      <div class="page-rooms__pagenavi pagenavi">
+      <div class="page-rooms__pagenavi pagenavi js-fadeIn">
         <div class="pagenavi__inner">
           <div class="pagination">
             <?php if (function_exists('wp_pagenavi')) {

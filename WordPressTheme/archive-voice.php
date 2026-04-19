@@ -44,7 +44,7 @@
       <ul class="archive-voice__cards voice-cards">
         <?php if (have_posts()) : ?>
         <?php while (have_posts()) : the_post(); ?>
-        <li class="voice-cards__card voice-card js-card-fade">
+        <li class="voice-cards__card voice-card js-fadeIn">
           <div class="voice-card__item">
             <div class="voice-card__head">
               <div class="voice-card__content">

@@ -73,7 +73,7 @@
         ?>
         <?php if ($the_query->have_posts()) : ?>
           <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-            <li class="voice-cards__card voice-card js-card-fade">
+            <li class="voice-cards__card voice-card js-fadeIn">
               <div class="voice-card__item">
                 <div class="voice-card__head">
                   <div class="voice-card__content">
