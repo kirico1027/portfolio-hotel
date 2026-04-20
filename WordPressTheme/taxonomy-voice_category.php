@@ -21,7 +21,7 @@
 
   <div class="archive-voice layout-archive-voice">
     <div class="archive-voice__inner inner">
-      <div class="archive-voice__category-list category-list js-fade-in">
+      <div class="archive-voice__category-list category-list">
         <?php
         $current_term_id = 0;
         $queried_object = get_queried_object();
@@ -41,11 +41,11 @@
             foreach ($terms as $term) :
               $term_class = ($cat_name === $term->name) ? 'is-active' : '';
           ?>
-              <li class="category-list__item <?php echo esc_attr($term_class); ?>">
-                <a href="<?php echo esc_url(get_term_link($term->term_id)); ?>">
-                  <?php echo esc_html($term->name); ?>
-                </a>
-              </li>
+          <li class="category-list__item <?php echo esc_attr($term_class); ?>">
+            <a href="<?php echo esc_url(get_term_link($term->term_id)); ?>">
+              <?php echo esc_html($term->name); ?>
+            </a>
+          </li>
           <?php
             endforeach;
           endif;
@@ -72,20 +72,20 @@
         $the_query = new WP_Query($args);
         ?>
         <?php if ($the_query->have_posts()) : ?>
-          <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
-            <li class="voice-cards__card voice-card js-fadeIn">
-              <div class="voice-card__item">
-                <div class="voice-card__head">
-                  <div class="voice-card__content">
-                    <div class="voice-card__box">
-                      <?php
+        <?php while ($the_query->have_posts()) : $the_query->the_post(); ?>
+        <li class="voice-cards__card voice-card js-fadeIn">
+          <div class="voice-card__item">
+            <div class="voice-card__head">
+              <div class="voice-card__content">
+                <div class="voice-card__box">
+                  <?php
                       $personalInfo = get_field('personal_info');
                       if ($personalInfo) :
                       ?>
-                        <span
-                          class="voice-card__info"><?php echo $personalInfo['personal_age']; ?>代(<?php echo $personalInfo['personal_gender']; ?>)</span>
-                      <?php endif; ?>
-                      <br><span class="voice-card__category"><?php
+                  <span
+                    class="voice-card__info"><?php echo $personalInfo['personal_age']; ?>代(<?php echo $personalInfo['personal_gender']; ?>)</span>
+                  <?php endif; ?>
+                  <br><span class="voice-card__category"><?php
                                                               $taxonomy_terms = get_the_terms($post->ID, 'voice_category');
                                                               if (!empty($taxonomy_terms)) {
                                                                 foreach ($taxonomy_terms as $taxonomy_term) {
@@ -93,22 +93,22 @@
                                                                 }
                                                               }
                                                               ?></span>
-                    </div>
-                    <h2 class="voice-card__title">
-                      <?php echo wp_trim_words(get_the_title(), 20, '…'); ?>
-                    </h2>
-                  </div>
-                  <figure class="voice-card__img js-colorbox">
-                    <?php if (has_post_thumbnail()) : ?>
-                      <?php the_post_thumbnail('full'); ?>
-                    <?php else : ?>
-                      <img src="<?php echo esc_url(get_theme_file_uri("/images/common/noimage.jpg")); ?>" alt="NoImage画像"
-                        loading="lazy">
-                    <?php endif; ?>
-                  </figure>
                 </div>
-                <p class="voice-card__text">
-                  <?php
+                <h2 class="voice-card__title">
+                  <?php echo wp_trim_words(get_the_title(), 20, '…'); ?>
+                </h2>
+              </div>
+              <figure class="voice-card__img js-colorbox">
+                <?php if (has_post_thumbnail()) : ?>
+                <?php the_post_thumbnail('full'); ?>
+                <?php else : ?>
+                <img src="<?php echo esc_url(get_theme_file_uri("/images/common/noimage.jpg")); ?>" alt="NoImage画像"
+                  loading="lazy">
+                <?php endif; ?>
+              </figure>
+            </div>
+            <p class="voice-card__text">
+              <?php
                   $customer_text = get_field("customer_text");
                   if (mb_strlen($customer_text) > 200) {
                     echo mb_substr($customer_text, 0, 200, 'UTF-8') . '...';
@@ -116,11 +116,11 @@
                     echo $customer_text;
                   }
                   ?>
-                </p>
-              </div>
-            </li>
-          <?php endwhile; ?>
-          <?php wp_reset_postdata(); ?>
+            </p>
+          </div>
+        </li>
+        <?php endwhile; ?>
+        <?php wp_reset_postdata(); ?>
         <?php endif; ?>
       </ul>
 

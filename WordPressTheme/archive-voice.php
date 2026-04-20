@@ -7,7 +7,7 @@
 
   <div class="archive-voice layout-archive-voice">
     <div class="archive-voice__inner inner">
-      <div class="archive-voice__category-list category-list js-fade-in">
+      <div class="archive-voice__category-list category-list js-fadeIn">
 
         <?php
         $current_term_id = 0;
@@ -111,7 +111,7 @@
 
       <div class="page-campaign__pagenavi pagenavi layout-pagenavi">
         <div class="pagenavi__inner">
-          <div class="pagination">
+          <div class="pagination js-fadeIn">
             <?php if (function_exists('wp_pagenavi')) {
               wp_pagenavi();
             } ?>
