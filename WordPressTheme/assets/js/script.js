@@ -817,27 +817,6 @@ jQuery(function ($) {
   }
 
   // =====================================
-  // お問い合わせフォームのアニメーション
-  // =====================================
-  if (hasGSAP && hasScrollTrigger && document.querySelector(".form__item")) {
-    gsap.fromTo(".form__item", {
-      opacity: 0,
-      x: -30
-    }, {
-      opacity: 1,
-      x: 0,
-      stagger: {
-        each: 0.3,
-        from: "start"
-      },
-      scrollTrigger: {
-        trigger: ".form__item",
-        start: "top center"
-      }
-    });
-  }
-
-  // =====================================
   // Aboutギャラリーのアニメーション（window load 側に統合）
 
   // =====================================
